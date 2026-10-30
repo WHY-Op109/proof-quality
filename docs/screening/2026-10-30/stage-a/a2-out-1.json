@@ -1,0 +1,1049 @@
+{
+ "9": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "robustness_maintenance",
+   "automation_fit"
+  ],
+  "reason": "Two `erw` steps (eval₂_C, Generators.comp_val) are replaced by simp calls fed explicit comp lemmas (`← Generators.comp_vars`, `toPresentation_comp`); the mathematics is unchanged, and whether removing defeq-dependent `erw` is a material robustness gain or just convention is open.",
+  "difficult_for_user": true,
+  "question": "When a final proof removes `erw` (or `show`/trailing `rfl` defeq steps) by supplying the proper rewrite lemmas, with no change to the mathematical argument, should that count as a material robustness_maintenance improvement or as convention (exclude)?"
+ },
+ "63": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "robustness_maintenance",
+   "explanatory_clarity"
+  ],
+  "reason": "The `simp only`/`show`/`rw`/`rfl` sequence is consolidated into one simp call with essentially the same lemmas (plus reversed homeoOfIso coercion lemmas); the step-by-step version is slightly more readable while the final avoids `show`, so no material net difference.",
+  "difficult_for_user": false
+ },
+ "143": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "explanatory_clarity"
+  ],
+  "reason": "`revert en` plus an explanatory comment becomes `induction n generalizing en`, which expresses the same generalisation idiomatically; the argument is unchanged.",
+  "difficult_for_user": false
+ },
+ "174": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "explanatory_clarity"
+  ],
+  "reason": "`by_contra` with a `▸` cast is replaced by `rintro rfl`; an idiomatic small rewrite of the same one-step argument.",
+  "difficult_for_user": false
+ },
+ "197": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "Full name application replaced by dot notation; pure syntax.",
+  "difficult_for_user": false
+ },
+ "234": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "robustness_maintenance"
+  ],
+  "reason": "Two `▸` casts of `Fintype.card_fin` are replaced by `simpa`; same library lemma (`card_le_of_surjective`), only the cast handling differs.",
+  "difficult_for_user": false
+ },
+ "295": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "An explicit contradiction from membership in the empty list is replaced by `assumption` after the preceding simp; small case-closing change with no mathematical content.",
+  "difficult_for_user": false
+ },
+ "311": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "argument_abstraction",
+   "explanatory_clarity"
+  ],
+  "reason": "Since `f_meas := ⟨f, hf_meas⟩` coerces definitionally back to `f`, the earlier two duplicated a.e.-transport sub-proofs (integrable_congr / integral_congr_ae) are a needless detour; the final discharges both side goals directly from the hypotheses, removing duplicated derivation.",
+  "difficult_for_user": false
+ },
+ "352": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "Removes a stray line break inside a simp list; layout only.",
+  "difficult_for_user": false
+ },
+ "360": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "Lemma rename `ofLpContinuousLinearEquiv`→`continuousLinearEquiv`; API migration.",
+  "difficult_for_user": false
+ },
+ "428": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "Namespace disambiguation `_root_.iSup_succ`; no quality effect.",
+  "difficult_for_user": false
+ },
+ "441": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "A rw chain of propositional rewrites (or_assoc, or_iff_left, and_iff_left, or_iff_left_of_imp) is replaced by `simp +contextual` with the same key facts; the explicit steps were logical bookkeeping, not mathematical insight.",
+  "difficult_for_user": false
+ },
+ "474": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "`not_lt`→`not_gt`, `not_le`→`not_ge` renames and the successor case moved to the `isSuccPrelimit` API; API migration with the same argument.",
+  "difficult_for_user": false
+ },
+ "492": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit",
+   "library_integration"
+  ],
+  "reason": "A hand-built continuity term for `max (‖x.1‖) (‖x.2‖)` is replaced by `by continuity`, plus a `PadicAlg`→`PadicAlgCl` rename; routine side condition, cf. calibration 1381.",
+  "difficult_for_user": false
+ },
+ "500": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "automation_fit",
+   "explanatory_clarity"
+  ],
+  "reason": "A closing `grind` is replaced by explicit `rw [← hxg_eq]; convert hx_tendsto using 1; ext1 n; exact (hxf_eq n).symm`; open question is whether spelling out this pointwise transport is a material clarity gain over the solver or merely the reverse convention.",
+  "difficult_for_user": false
+ },
+ "516": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "explanatory_clarity"
+  ],
+  "reason": "Tactic proof via `lift_two_power`/`lift_lt_univ'` becomes a term proof supplying witness `2 ^ w` to `lt_univ'`; same idea in a different form.",
+  "difficult_for_user": false
+ },
+ "575": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "argument_abstraction",
+   "reuse_modularity"
+  ],
+  "reason": "The earlier builds bespoke decompositions (`eqz` via prodEquivOfIsCompl, `eq` via injectivity and conv rewrites); the final reduces the goal to membership of a difference in the kernel and uses quotient characterisations (`sub_mem_ker_iff`, `mk_quotientEquivOfIsCompl_apply`, `quotKerEquivOfSurjective_apply_mk`), removing the ad hoc construction (earlier availability unverified).",
+  "difficult_for_user": false
+ },
+ "587": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "The reflexivity instance is now obtained via `.of_isPerfPair` instead of `P.reflexive_left`; API change, same proof.",
+  "difficult_for_user": false
+ },
+ "591": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`rw` then `simp` merged into one `simp`; convention.",
+  "difficult_for_user": false
+ },
+ "608": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "Lemma rename (`...ToProd`) and the trailing `rfl` replaced by an expanded `simp only` list; API migration.",
+  "difficult_for_user": false
+ },
+ "611": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`ext; simpa using Pi.apply_single ...` becomes a term `PiLp.ext <| Pi.apply_single ...`; same lemma, form only.",
+  "difficult_for_user": false
+ },
+ "625": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "explanatory_clarity",
+   "reuse_modularity"
+  ],
+  "reason": "The nil case's bespoke derivation (length positivity → ne_nil, rewrite with dropLast_append_getLast, long simp_all only) collapses to `simpa using (List.dropLast_append_getLast p.vertices_ne_nil).symm`, exposing the single key fact; the cons case becomes `simp [ih]` (earlier availability of vertices_ne_nil unverified).",
+  "difficult_for_user": false
+ },
+ "657": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "The `(by finiteness)` argument disappears from `integrableOn_Ici_iff_integrableOn_Ioi`, reflecting a signature change; API adaptation.",
+  "difficult_for_user": false
+ },
+ "691": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "robustness_maintenance"
+  ],
+  "reason": "A `have` + `conv_rhs` rewrite becomes `nth_rw 3 [← symm_apply_apply]`; both use positional rewriting of the same inverse identity.",
+  "difficult_for_user": false
+ },
+ "735": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`apply`/`intro` tactic proof becomes a term with the same lemma and the same `simp_all` side proof.",
+  "difficult_for_user": false
+ },
+ "741": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "Lemma name capitalisation fix; rename only.",
+  "difficult_for_user": false
+ },
+ "772": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "reuse_modularity",
+   "argument_abstraction"
+  ],
+  "reason": "Instead of a double `by_contra` deriving `m = n`, then `eq_id_of_epi`, then an instance, the final uses the characterisation `SimplexCategory.isIso_iff_of_epi` (iso ⇔ length inequality), giving a direct argument (earlier availability unverified).",
+  "difficult_for_user": false
+ },
+ "773": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`rw [← mk_embedding v₁, h, mk_embedding]` becomes `simpa using congr_arg mk h`; same idea, term vs tactic.",
+  "difficult_for_user": false
+ },
+ "796": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`have ⟨...⟩` destructuring becomes `rcases`, `classical` moved, `exists`/`constructor` becomes `refine` with `all_goals rw`; presentation only.",
+  "difficult_for_user": false
+ },
+ "822": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "rw-based `ext` proof becomes a term `ext' (iff_of_true ha hb) ...`; form only.",
+  "difficult_for_user": false
+ },
+ "864": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "`tauto` on a definitional goal replaced by `rfl`; small, closer to the goal's nature but no material effect.",
+  "difficult_for_user": false
+ },
+ "869": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "Tactic `intro; use; exact` becomes an anonymous-constructor term.",
+  "difficult_for_user": false
+ },
+ "874": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "`apply mul_nonneg <;> exact norm_nonneg _` replaced by `positivity`; routine side goal.",
+  "difficult_for_user": false
+ },
+ "876": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "reuse_modularity"
+  ],
+  "reason": "A local general helper `help₁` used once is inlined into the calc step with the same `abs_sub_comm; congr 1; field_simp` proof; no reuse is lost or gained.",
+  "difficult_for_user": false
+ },
+ "898": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "Two intermediate equations via `ring`/`omega` become one via `ring_nf; grind`, with the same divisibility lemma `two_dvd_mul_add_one`; same argument.",
+  "difficult_for_user": false
+ },
+ "902": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "The explicit set-algebra proof (inter_assoc, congr, inter_eq_self_of_subset_right) is replaced by `grind` given those same lemmas, plus term-form `▸`; the dependencies remain visible.",
+  "difficult_for_user": false
+ },
+ "911": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "Comment capitalisation only (calibration 947/1063/2250).",
+  "difficult_for_user": false
+ },
+ "928": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "Using `induction_on` (which yields `ListBlank.mk` directly) removes the `change` and its comment; API adaptation.",
+  "difficult_for_user": false
+ },
+ "930": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "Same as 928: `induction_on` removes the `change` workaround and comment; API adaptation.",
+  "difficult_for_user": false
+ },
+ "937": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "An explicit argument `p` becomes `_`; syntax.",
+  "difficult_for_user": false
+ },
+ "945": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "Redundant `toColex_inj` dropped from an `rwa` list; cleanup.",
+  "difficult_for_user": false
+ },
+ "979": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "The `finCongr` reindexing step disappears because the renamed `sylvesterDeriv_updateRow` presumably has the matching dimension; API/statement adaptation.",
+  "difficult_for_user": false
+ },
+ "995": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "`have √2^2 = 2; grind` replaced by `rw [← mul_inv]; norm_num`; trivial numeric fact.",
+  "difficult_for_user": false
+ },
+ "1038": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "reuse_modularity",
+   "library_integration"
+  ],
+  "reason": "A bespoke six-line derivation of `(τ ω).untopA ≤ n` (ne_top, lift, untopD_coe, cast) is replaced by the library lemma `WithTop.untopA_le` (earlier availability unverified).",
+  "difficult_for_user": false
+ },
+ "1049": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "One `rw [div_le_div_iff₀]` step removed because `field_simp` now normalises it; tactic-behaviour adaptation.",
+  "difficult_for_user": false
+ },
+ "1056": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "automation_fit",
+   "explanatory_clarity"
+  ],
+  "reason": "The skeleton (h₁, h₂, the n<#X ∨ n<#(Y\\X) split) is kept but every justification, including the inclusion–exclusion lemma `card_union_add_card_inter`, becomes `grind`; unclear whether hiding the cited lemmas behind grind while keeping the intermediate claims is a loss or immaterial.",
+  "difficult_for_user": false
+ },
+ "1106": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "argument_abstraction",
+   "explanatory_clarity"
+  ],
+  "reason": "The earlier extracts an exponent via `Option.ne_none_iff_exists'`, exposing the Option implementation of ℤᵐ⁰, and ends in a long rw chain; the final states the key fact v(ϖ) = exp(1)⁻¹ as a named `have`, uses the `log` API for the exponent, and closes with `mul_inv_le_one_of_le₀` and `le_exp_log`.",
+  "difficult_for_user": false
+ },
+ "1118": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "argument_abstraction",
+   "reuse_modularity"
+  ],
+  "reason": "The earlier duplicates the whole support/tsum argument once for the base point and once for nearby points; the final uses `congr'` with the base point's membership, so the argument appears once (duplicated construction removed).",
+  "difficult_for_user": false
+ },
+ "1124": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "automation_fit",
+   "explanatory_clarity"
+  ],
+  "reason": "Two `grind` calls become explicit: a `linear_combination` with the algebraic certificate and `(H₁ 1 zero_lt_one).ne'`, plus a simp-order tweak; open question is whether exposing the certificate is a material clarity/automation-fit gain or just a solver swap.",
+  "difficult_for_user": false
+ },
+ "1145": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`use`/`intro`/`specialize`/`simp only ... at`/`assumption` becomes `exact ⟨0, C, by simpa using hC⟩`; same content.",
+  "difficult_for_user": false
+ },
+ "1199": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`field_simp; ring_nf` replaced by `field`; convention (calibration 1203).",
+  "difficult_for_user": false
+ },
+ "1218": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "Manual `smul_assoc`/`smul_eq_mul` simp lemmas + `ring_nf` replaced by `module`; an appropriately scoped normaliser, but no material change to the argument.",
+  "difficult_for_user": false
+ },
+ "1233": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`simp` with two lemmas becomes a `rw` chain with three; simp vs rw convention.",
+  "difficult_for_user": false
+ },
+ "1241": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit",
+   "explanatory_clarity"
+  ],
+  "reason": "The case split is reorganised (positive `by_cases hz : z ∈ U`) and the `simp only`/`simp_all`/`aesop` sequence replaced by targeted simps with the key lemma `meromorphicOrderAt_pow`; tidier, but the same argument.",
+  "difficult_for_user": false
+ },
+ "1255": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "mixed_changes",
+  "dimensions": [
+   "argument_abstraction",
+   "robustness_maintenance"
+  ],
+  "reason": "The earlier proves IsOpenImmersion explicitly (QuasiCompact, `delta`-unfolded IsIso of imageι, toImage_imageι); the final ends with `constructor` after IsImmersion, which suggests IsQuasiAffine's definition or the instance library changed in the PR. Whether this is better depends on that unseen API change.",
+  "difficult_for_user": false
+ },
+ "1260": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "explanatory_clarity"
+  ],
+  "reason": "The norm/neg manipulation is reorganised around `‖z‖ = r` with a single `simpa`; same lemmas and argument.",
+  "difficult_for_user": false
+ },
+ "1273": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "explanatory_clarity"
+  ],
+  "reason": "`by_contra!`/obtain becomes a direct `ext x; simpa using h {x}`; small direct-vs-contradiction presentation change.",
+  "difficult_for_user": false
+ },
+ "1274": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "robustness_maintenance"
+  ],
+  "reason": "`rotate_left` side goals are inlined as arguments (with `by finiteness` for the `≠ ⊤`); presentation only.",
+  "difficult_for_user": false
+ },
+ "1321": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "`simp only [disc_fin_two, trace_fin_two, det_fin_two, hm]; ring` becomes `grind` with the same lemmas; routine polynomial identity.",
+  "difficult_for_user": false
+ },
+ "1334": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "A short explicit term for a trivial logical equivalence is replaced by `grind [Irreflexive, Subrelation]`; no mathematical content hidden.",
+  "difficult_for_user": false
+ },
+ "1342": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "Case-specific `grind` calls with hints collapse to `induction ... <;> grind`; both are grind-driven, so no material change.",
+  "difficult_for_user": false
+ },
+ "1343": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "Some explicit `have`s and grind hints are dropped in favour of `rcases ... <;> grind`, keeping the monotonicity fact; both proofs are grind-based.",
+  "difficult_for_user": false
+ },
+ "1359": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "mixed_changes",
+  "dimensions": [
+   "reuse_modularity"
+  ],
+  "reason": "The earlier is the one-liner `log_prod' hf`; the final reproves via `prod_map_toList` and `log_list_prod`. If `log_prod'` was available and kept, the earlier is better reuse; if the PR inverted the dependency or removed it, the change is required. Earlier availability unverified.",
+  "difficult_for_user": false
+ },
+ "1448": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "automation_fit",
+   "library_integration"
+  ],
+  "reason": "`grind` with API lemmas (`inftyValuation_of_nonzero`) is replaced by an explicit `rw` that unfolds `inftyValuationDef` and its `if`; explicit but it unfolds a definition rather than using its API, so the direction is unclear.",
+  "difficult_for_user": false
+ },
+ "1462": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "reuse_modularity"
+  ],
+  "reason": "An inline induction with a long condExp/germ term is replaced by applying the general `eq_zero_of_predictable` (earlier availability unverified); a useful general-lemma reuse.",
+  "difficult_for_user": false
+ },
+ "1514": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "robustness_maintenance",
+   "library_integration"
+  ],
+  "reason": "The earlier (flagged `-- WTF`) unfolds several definitions in simp (`finsuppLEquivDirectSum`, `finsuppLequivDFinsupp`, `IsBaseChange.equiv`) and finishes with `rfl`; the final uses characterising lemmas (`symm_apply_eq`, `baseChange_tmul`, `equiv_tmul`, `lmap_finsuppLEquivDirectSum_eq`), removing dependence on internal definitions.",
+  "difficult_for_user": false
+ },
+ "1515": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "Repetitive additivity cases handled by long `map_add`/`add_apply` rw chains are replaced by `grind`; the mechanical bookkeeping carried no mathematical insight.",
+  "difficult_for_user": false
+ },
+ "1548": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "explanatory_clarity",
+   "argument_abstraction"
+  ],
+  "reason": "A three-way trichotomy with two contrapositive branches is replaced by `le_antisymm` with two symmetric direct inequalities (each maxDegree ≤ the other via the iso), exposing the main idea.",
+  "difficult_for_user": false
+ },
+ "1557": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "reuse_modularity"
+  ],
+  "reason": "Both proofs are one-line library applications (the general `Commute.pow_add_mul_le_add_pow_of_sq_nonneg` vs the specialised `one_add_mul_le_pow_of_sq_nonneg`); no material difference.",
+  "difficult_for_user": false
+ },
+ "1562": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "reuse_modularity",
+   "library_integration"
+  ],
+  "reason": "The earlier comment says `mul_invOf_eq_iff_eq_mul_right` is missing and works around it with `conv`/`congr_arg₂`; the final uses the library lemma `Matrix.mul_right_eq_iff_eq_mul_invOf` directly, removing the workaround.",
+  "difficult_for_user": false
+ },
+ "1611": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`lt_iff_val_lt_val`→`lt_def` and `omega`→`lia`; rename/tactic migration.",
+  "difficult_for_user": false
+ },
+ "1638": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "automation_fit",
+   "explanatory_clarity"
+  ],
+  "reason": "Reduction via `yonedaEquiv.injective`, ext and `fin_cases ... rfl` is replaced by bare `decide`; unclear whether the explicit Yoneda reduction is meaningful explanation or just a manual finite check (cf. 1617).",
+  "difficult_for_user": false
+ },
+ "1650": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "robustness_maintenance"
+  ],
+  "reason": "`show ...; rw [← oreEqv_iff_r]; rfl` becomes `exact congr($(oreEqv_eq_r S M) ...)`; same identification of relations, different form.",
+  "difficult_for_user": false
+ },
+ "1672": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "`to_subtype.instDiscreteTopology` replaced by `isDiscrete.to_subtype`; API change.",
+  "difficult_for_user": false
+ },
+ "1714": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "reuse_modularity"
+  ],
+  "reason": "A bespoke pointwise derivation of DifferentiableOn on the closed ball is replaced by the library lemma `differentiableOn_cuspFunction_ball` with `mono` (earlier availability unverified).",
+  "difficult_for_user": false
+ },
+ "1720": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "Tactic proof becomes an equivalent term with `let`-destructuring.",
+  "difficult_for_user": false
+ },
+ "1756": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "`grind` replaced by `cases h; rfl` for a trivial fact; negligible.",
+  "difficult_for_user": false
+ },
+ "1765": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "Mono + Epi + `isIso_of_mono_of_epi` becomes `isIso_iff_bijective` with injective/surjective; same content repackaged.",
+  "difficult_for_user": false
+ },
+ "1792": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "A `simp only` list is replaced by `suffices ... by simpa`; convention.",
+  "difficult_for_user": false
+ },
+ "1815": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "A short explicit `if_neg`/contrapose side argument is replaced by `aesop`; routine side condition (cf. calibration 1381).",
+  "difficult_for_user": false
+ },
+ "1822": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`by_cases` + `rw [not_not]` replaced by `by_cases!`; syntax.",
+  "difficult_for_user": false
+ },
+ "1872": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "reuse_modularity",
+   "explanatory_clarity"
+  ],
+  "reason": "The earlier derives the two dist triangle inequalities by hand from `edist_triangle` with ENat coercion juggling (`coe_toNat`, `edist_ne_top_iff_reachable`); the final cites `Reachable.dist_triangle_right/left` (earlier availability unverified).",
+  "difficult_for_user": false
+ },
+ "1902": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "`suffices 0 < exp x by linarith; positivity` becomes `grind [exp_pos]`; trivial positivity step.",
+  "difficult_for_user": false
+ },
+ "1908": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "An explicit sign trichotomy before `all_goals grind` is dropped; grind does the split.",
+  "difficult_for_user": false
+ },
+ "1953": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "`delta` + ext + a membership fact + simp is replaced by `grind` unfolding the same two definitions; both rely on unfolding, no material change.",
+  "difficult_for_user": false
+ },
+ "1955": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "split_ifs and an algebraic rw chain become `grind` given the key lemma `weierstrassPExcept_add`; the key mathematical step stays visible.",
+  "difficult_for_user": false
+ },
+ "1961": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "explanatory_clarity",
+   "library_integration"
+  ],
+  "reason": "Large cleanup: an auxiliary `v`, several redundant instance `have`s and `use` steps are removed, `basisSingleOne.constr` becomes `linearCombination`, and the final step uses `map_linearCombination`; the mathematical route (basis at the prime, spread to D(g)) is unchanged.",
+  "difficult_for_user": false
+ },
+ "1967": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`abel_nf` replaced by `congr; abel`; tactic choice.",
+  "difficult_for_user": false
+ },
+ "1969": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "reuse_modularity",
+   "argument_abstraction"
+  ],
+  "reason": "The earlier's long ε-style argument (abs_by_cases, csInf bounds with (n+1)⁻¹) is replaced by the characterisation `stdPart_eq` and library bounds `exists_int_lt/gt_of_mk_nonneg`, so the proof reduces to two inequalities about sInf (earlier availability unverified).",
+  "difficult_for_user": false
+ },
+ "2016": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`rw [symm_apply_eq]; ext; simp` merged into one `simp`; convention.",
+  "difficult_for_user": false
+ },
+ "2017": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "automation_fit",
+   "explanatory_clarity"
+  ],
+  "reason": "Large explicit derivations (z_nonneg, n₀ ≤ z, the f z = c₂ f z step, calc bounds for the induction hypothesis) are replaced by `grind`, with hypotheses introduced anonymously; it is unclear whether hiding these routine but non-trivial inequality chains is a clarity loss or acceptable brevity.",
+  "difficult_for_user": true,
+  "question": "When `grind` replaces long but routine explicit inequality/bookkeeping derivations (and hypotheses become anonymous), should that count as earlier_better (explicit argument lost), final_better, or no material preference?"
+ },
+ "2065": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "reuse_modularity",
+   "argument_abstraction"
+  ],
+  "reason": "The earlier proves continuity of `toIocDiv · • p` through filter manipulations (tendsto_pure, eventuallyEq.fun_comp); the final composes the library fact `continuousWithinAt_toIocDiv_Iic` with `smul` (earlier availability unverified).",
+  "difficult_for_user": false
+ },
+ "2098": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "explanatory_clarity"
+  ],
+  "reason": "A type ascription is added to an existing `have`; minor annotation.",
+  "difficult_for_user": false
+ },
+ "2153": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`.of_dense _` replaced by `by simp`; trivial side argument.",
+  "difficult_for_user": false
+ },
+ "2159": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`constructor`/bullets restructured into `refine ⟨fun hT ↦ ?_, ...⟩`; layout.",
+  "difficult_for_user": false
+ },
+ "2161": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "Trailing semicolons removed; syntax.",
+  "difficult_for_user": false
+ },
+ "2167": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "A case split on `x = 0` and a nonzero proof for `x ∘ e` are added because `mulHeight_eq` now takes a nonvanishing hypothesis; required API adaptation.",
+  "difficult_for_user": false
+ },
+ "2170": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "`simp`→`rw [inv_zero]`, `funext`→`ext1`, and an extra explicit argument; syntax/API adaptation.",
+  "difficult_for_user": false
+ },
+ "2171": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "The `![x,1] ≠ 0` side proof disappears because `mulHeight_pow`'s arguments changed; API adaptation.",
+  "difficult_for_user": false
+ },
+ "2214": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "`simp` with an rfl-computed divisor set replaced by `decide`; numeric fact either way.",
+  "difficult_for_user": false
+ },
+ "2215": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "A partly structured check (unfold Weird/Abundant, enumerate subsets by `fin_cases`) is replaced by `decide +kernel`; a concrete numeric fact where the explicit structure gives little insight.",
+  "difficult_for_user": false
+ },
+ "2226": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "reuse_modularity",
+   "argument_abstraction"
+  ],
+  "reason": "A bespoke 18-line argument via irreducible closed sets and vanishing ideals is replaced by the equivalence `minimalPrimes.equivIrreducibleComponents` plus `NoetherianSpace.finite_irreducibleComponents`, the right general abstraction (earlier availability unverified).",
+  "difficult_for_user": false
+ },
+ "2284": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "mixed_changes",
+  "dimensions": [
+   "reuse_modularity",
+   "explanatory_clarity"
+  ],
+  "reason": "The earlier delegates to `isEquivalent_of_tendsto_one_aux`; the final inlines the reduction via `isEquivalent_iff_exists_eq_mul` and `div_mul_cancel_of_imp`. Whether this is better depends on whether the `_aux` lemma was a single-use helper removed by the PR.",
+  "difficult_for_user": false
+ },
+ "2313": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "mixed_changes",
+  "dimensions": [
+   "reuse_modularity"
+  ],
+  "reason": "The forward direction's chain of helper lemmas (dvd_of_hyp, m_lt_twice_n, n_lt_m, m_n_eq) is moved into a lemma `proof_body` not visible here; whether that factoring helps cannot be judged from the declaration alone.",
+  "difficult_for_user": false
+ },
+ "2325": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "robustness_maintenance"
+  ],
+  "reason": "An explicit rw chain with an `rfl`-proved `have` becomes one `simpa` with the named lemma `imageFactorisation_F_m` and the same pullback pasting; same argument.",
+  "difficult_for_user": false
+ },
+ "2329": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "A duplicated `by_cases hb` is removed and the zero case closed by `simp_all`; draft cleanup.",
+  "difficult_for_user": false
+ },
+ "2374": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "Unused lemmas removed from a `simp only` list.",
+  "difficult_for_user": false
+ },
+ "2376": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "Anonymous `have := ...fintype` becomes typed `have : Fintype _`, `simpa` becomes `simp only; exact`; convention.",
+  "difficult_for_user": false
+ }
+}

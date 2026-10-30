@@ -2,6 +2,77 @@
 
 2026-10-30. Continues the user-requested direct pass (round 1 by Codex, archived at `fast-screen/archive-initial-pass/FAST-SCREENING.round1.md`). The approved rubric v0.3 (`RUBRIC.md`, sha256 `bc072e19…cdb8`) is applied directly through its dimensions, materiality and support levels. No rubric amendment. Training inclusion is **not decided**.
 
+## Current state after the Stage A cross-check
+
+This section supersedes the round-2 counts further down, which are kept as history.
+
+**Current counts.**
+
+| Decision | Final better | Earlier better | No meaningful difference | Unresolved | Total |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| retain (meaningful difference) | 258 | 7 | – | – | **265** |
+| exclude | – | – | 2,025 | 4* | **2,029** |
+| unresolved | 1† | – | – | 84 | **85** |
+
+\* Rows withheld by the data-quality check whose quality question was itself open. † Row 445: your final-better verdict is kept, but the row is withheld because of the statement/proof boundary defect.
+
+Earlier-better rows: 739, 765, 1222, 1477, 1764, 1800, 1936.
+
+**What Stage A did (agents only, none of your time).**
+
+- **A1, blind calibration.** Agents re-screened your 20 recorded cases. Each half saw only the *other* half's verdicts as examples, so every tested case was held out. **15 of 20 matched you.**
+  - 2 misses where you preferred the final and the agents said "no difference": 2095 "clearer use of the general fact" and 2124 "simpler presentation".
+  - 2 cases you deferred as hard that the agents called convention: 1574 and 1587.
+  - 1 case where the agents abstained but you preferred the final: 817.
+  - Pattern: agents **under-weight small but concrete clarity gains** that you count. The adjudicators were told this.
+- **A2, independent second screen** of 648 rows. Second screeners did not see the first verdict.
+
+  | Group | Rows | Both screens agree |
+  | --- | ---: | ---: |
+  | Pairs where this pass differs from Spencer | 318 | 308 |
+  | Random sample of decided pairs | 150 | 147 |
+  | Earlier-better pairs | 5 | 5 |
+  | Unresolved pairs | 176 | 60 |
+
+  Decided verdicts are stable at about 97–98%. Unresolved rows are where readers diverge.
+- **A3, adjudication.** A third agent decided all 129 disagreements, seeing the two views in random order. Net change from the first screen:
+
+  | Change | Rows |
+  | --- | ---: |
+  | unresolved → exclude | 73 |
+  | unresolved → retain | 25 |
+  | exclude → retain | 5 |
+  | exclude → unresolved | 2 |
+  | retain → exclude | 0 |
+
+- **A4, clustering.** The 80 remaining agent-side unresolved rows were grouped by the question that would settle them: **8 questions** cover 79 rows, and 1 row (2313) cannot be judged from the stored pair. The question sheet is Part B of `FAST-DISCUSSION.md`, and the viewer's *Hard cases* view shows each question on its representative pair. Your 5 own deferrals stay as you left them.
+
+**Basis of the 265 retained pairs.**
+
+| Basis | Retained pairs |
+| --- | ---: |
+| Two independent readings agree | 80 |
+| Adjudicated | 36 |
+| Your verdict | 6 |
+| A single reading only (61 Codex round 1, 82 Claude round 2) | 143 |
+
+The single-reading rows were outside the A2 sample. Their decided-row stability is estimated from the random sample (147/150), not checked row by row.
+
+**New data issues.** Row 86's final body is truncated, and row 2313's argument moved into a helper that the pair doesn't contain. Both are withheld from the retained set.
+
+**Spencer comparison now.**
+
+| Spencer \\ this pass | retain | exclude | unresolved | total |
+| --- | ---: | ---: | ---: | ---: |
+| retained | 184 | 287 | 68 | 539 |
+| excluded | 81 | 1,742 | 17 | 1,840 |
+
+- 1,926 determinate agreements, 368 determinate changes, 85 abstentions.
+- Of his `construction` rows, 182 are retained, 269 excluded and 68 unresolved.
+- Length bias is still present: the final is shorter in 235 of the 258 final-better rows.
+
+## Round-2 state (before Stage A, kept as history)
+
 ## Coverage
 
 | | Rows |

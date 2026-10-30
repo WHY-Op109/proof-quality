@@ -32,6 +32,8 @@ for f in sorted((BASE/'fast-screen/round2').glob('out-*.json')):
  round2.update(json.loads(f.read_text()))
 for k,v in round2.items():
  assert (v['decision'],v['direction'])in{('retain','final_better'),('retain','earlier_better'),('exclude','no_material_preference'),('unresolved','unresolved')},(k,v)
+stage_a_path=BASE/'fast-screen/stage-a/final.json';stage_a=json.loads(stage_a_path.read_text()) if stage_a_path.exists() else {}
+clusters_path=BASE/'fast-screen/stage-a/clusters.json';clusters=json.loads(clusters_path.read_text()) if clusters_path.exists() else {}
 flags={d['source_line_1based']:d for d in map(json.loads,(BASE/'human-review/meeting-flags.jsonl').read_text().splitlines())}
 disagree={}
 for c in map(json.loads,(BASE/'comparison.jsonl').read_text().splitlines()):
@@ -80,6 +82,15 @@ for pos,(r,inv) in enumerate(zip(original,idx),1):
   individual=round2[str(pos)];assert mode=='automated_rule_application',pos
   decision=individual['decision'];category=individual['category'];direction=individual['direction'];reason=individual['reason'];mode='individual_diff_examination';rule='R8';assessor='claude-code-round2';dims=individual.get('dimensions',[])
   if individual.get('difficult_for_user'):flag={'source':'agent_suggestion','why':individual['reason'],'question':individual.get('question')}
+ if clusters:flag=None
+ first_screen=None;stage=None
+ if str(pos) in stage_a:
+  first_screen={'decision':decision,'direction':direction,'reason':reason,'assessor':assessor};stage=stage_a[str(pos)]
+  decision,direction,category,reason=stage['decision'],stage['direction'],stage['category'],stage['reason'];rule='R9'
+  if stage['outcome']=='adjudicated':assessor='claude-code-adjudicator'
+ cluster=clusters.get(str(pos))
+ if cluster and decision=='unresolved':
+  if cluster.get('representative'):flag={'source':'agent_cluster','why':cluster['summary'],'question':cluster['question'],'cluster_id':cluster['cluster_id'],'cluster_size':cluster['size']}
  automated_proposal={'decision':decision,'direction':direction,'rule':rule}
  human=latest.get(inv['sample_id']);human_disagreement=None
  if human:
@@ -95,19 +106,21 @@ for pos,(r,inv) in enumerate(zip(original,idx),1):
  if re.search(r'\b(sorry|admit)\b',a+'\n'+z):usability.append('explicit_admission_in_code')
  if re.search(r'\bletI\s*:=\s*$',r['prompt']):usability.append('statement_proof_boundary_defect')
  if any(re.fullmatch(r'\s*(by)?\s*',x) for x in (r['chosen'],r['rejected'])):usability.append('empty_proof_body')
+ # Individually observed extraction defects that no generic check catches.
+ if pos in {86}:usability.append('truncated_proof_body')
  quality_decision=decision
  if usability:
   decision='unresolved' if 'statement_proof_boundary_defect' in usability and human else 'exclude';category='usability_problem';reason+=' Separately: '+', '.join(usability)+'. Original data not repaired.'
  if human and human.get('decision_status')=='deferred_pending_meeting':flag={'source':'user_flagged','why':human['user_decision_verbatim']}
  elif pos in flags:flag={'source':'user_flagged','why':flags[pos]['user_instruction_verbatim']}
- if not flag and pos in (106,1095,2218):flag={'source':'agent_suggestion','why':'Earlier Codex pass: '+reason}
+ if not flag and not clusters and pos in (106,1095,2218):flag={'source':'agent_suggestion','why':'Earlier Codex pass: '+reason}
  agent_dis=[]
  if pos in disagree:
   dp=disagree[pos]['direction_patterns']
   for agent,pattern in dp.items():
    implied={'final_only':'final_better','earlier_only':'earlier_better','none_directional':'no_material_preference'}.get(pattern,pattern)
    if (direction!='unresolved' and implied!=direction) or disagree[pos]['disagreement_types']!=['agreement']:agent_dis.append({'agent':agent+'-checkpoint-01','view':pattern,'fast_direction':direction,'disagreement_types':disagree[pos]['disagreement_types']})
- res={'schema_version':'fast-screen-1.1','sample_id':inv['sample_id'],'dataset_sha256':identity,'source_line_1based':pos,'source_key':inv['source_key'],'spencer_retained':key(r) in oldkeys,'spencer_class':inv['historical_filter_class'],'decision':decision,'quality_classification':category,'preference_direction':direction,'quality_decision_before_usability_gate':quality_decision,'reason':reason,'assessment_method':mode,'assessor':'user' if human else assessor,'dimensions':dims,'discussion':flag,'agent_disagreements':agent_dis,'rule':rule,'human_decision_id':human['decision_id'] if human else None,'human_verbatim':human['user_decision_verbatim'] if human else None,'human_disagreement':human_disagreement,'usability_flags':usability,'features':{'earlier_tokens':len(at),'final_tokens':len(zt),'final_to_earlier_token_ratio':round(ratio,4),'token_similarity':round(sim,4)},'verification':{'compiled':False,'profiled':False,'earlier_lemma_availability':'not_newly_verified_in_fast_pass','scope':'Extracted scripts in their respective snapshot roles; underlying environments may differ'},'assessment_scope':continuation.get(str(pos),{}).get('assessment_scope','See assessment_method and verification scope'),'training_inclusion':'not_decided','original_viewer_url':'http://127.0.0.1:8737/#'+__import__('urllib.parse',fromlist=['quote']).quote(str(r['metadata']['pr_number'])+'/'+r['metadata']['declaration_name'],safe='')}
+ res={'schema_version':'fast-screen-1.1','sample_id':inv['sample_id'],'dataset_sha256':identity,'source_line_1based':pos,'source_key':inv['source_key'],'spencer_retained':key(r) in oldkeys,'spencer_class':inv['historical_filter_class'],'decision':decision,'quality_classification':category,'preference_direction':direction,'quality_decision_before_usability_gate':quality_decision,'reason':reason,'assessment_method':mode,'assessor':'user' if human else assessor,'dimensions':dims,'discussion':flag,'cluster':cluster if decision=='unresolved' else None,'first_screen':first_screen,'stage_a':{k:v for k,v in stage.items() if k in ('outcome','second_screen','strata')} if stage else None,'agent_disagreements':agent_dis,'rule':rule,'human_decision_id':human['decision_id'] if human else None,'human_verbatim':human['user_decision_verbatim'] if human else None,'human_disagreement':human_disagreement,'usability_flags':usability,'features':{'earlier_tokens':len(at),'final_tokens':len(zt),'final_to_earlier_token_ratio':round(ratio,4),'token_similarity':round(sim,4)},'verification':{'compiled':False,'profiled':False,'earlier_lemma_availability':'not_newly_verified_in_fast_pass','scope':'Extracted scripts in their respective snapshot roles; underlying environments may differ'},'assessment_scope':continuation.get(str(pos),{}).get('assessment_scope','See assessment_method and verification scope'),'training_inclusion':'not_decided','original_viewer_url':'http://127.0.0.1:8737/#'+__import__('urllib.parse',fromlist=['quote']).quote(str(r['metadata']['pr_number'])+'/'+r['metadata']['declaration_name'],safe='')}
  results.append(res)
 save(BASE/'FAST-SCREENING.jsonl',results)
 for choice,fn in [('retain','fast-retained.pairs.jsonl'),('unresolved','fast-unresolved.pairs.jsonl'),('exclude','fast-excluded.pairs.jsonl')]:save(BASE/fn,[r for r,s in zip(original,results) if s['decision']==choice])
@@ -117,6 +130,6 @@ for choice in ('retain','unresolved','exclude'):
  for j,s in enumerate([s for s in results if s['decision']==choice],1):nav.append({'sample_id':s['sample_id'],'dataset_sha256':identity,'original_full_file_row':s['source_line_1based'],'view':choice,'viewer_row':j,'url':f'http://127.0.0.1:8740/'+('' if choice=='retain' else choice+'/')+s['original_viewer_url'].split('/',3)[3],'explanation_url':f'http://127.0.0.1:8740/explanation/{s["source_line_1based"]}'})
 save(BASE/'fast-navigation.jsonl',nav)
 counts=Counter(s['decision'] for s in results);cross={str(k):sum(s['spencer_retained']==k[0] and s['decision']==k[1] for s in results) for k in [(o,c) for o in (True,False) for c in ('retain','exclude','unresolved')]}
-manifest={'created_utc':datetime.now(timezone.utc).isoformat(),'population':len(original),'spencer_retained':len(old),'counts':dict(counts),'method_counts':dict(Counter(s['assessment_method'] for s in results)),'cross_table':cross,'unprocessed_rows':0,'agent_disagreement_rows':sum(bool(s['agent_disagreements']) for s in results),'discussion_rows':sum(bool(s['discussion']) for s in results),'individually_unexamined_rows':sum(s['assessment_method']=='automated_rule_application' for s in results),'human_record_lines':len(humans),'human_unique_cases':len(latest),'human_finalized':sum(d.get('decision_status')!='deferred_pending_meeting' for d in latest.values()),'inputs':{str(p.relative_to(BASE)) if p.is_relative_to(BASE) else str(p):digest(p) for p in [raw,REPO/'data/mathlibpr/pairs.substantive.jsonl',BASE/'human-decisions.jsonl',BASE/'sample-index.jsonl',BASE/'fast-screen/individual-assessments.json',BASE/'fast-screen/expansion-assessments.json',BASE/'fast-screen/continuation-assessments.json',*sorted((BASE/'fast-screen/round2').glob('out-*.json')),Path(__file__)]},'output_hashes':{f:digest(BASE/f) for f in ['FAST-SCREENING.jsonl','fast-retained.pairs.jsonl','fast-unresolved.pairs.jsonl','fast-excluded.pairs.jsonl','fast-navigation.jsonl']}}
+manifest={'created_utc':datetime.now(timezone.utc).isoformat(),'population':len(original),'spencer_retained':len(old),'counts':dict(counts),'method_counts':dict(Counter(s['assessment_method'] for s in results)),'cross_table':cross,'unprocessed_rows':0,'agent_disagreement_rows':sum(bool(s['agent_disagreements']) for s in results),'discussion_rows':sum(bool(s['discussion']) for s in results),'individually_unexamined_rows':sum(s['assessment_method']=='automated_rule_application' for s in results),'human_record_lines':len(humans),'human_unique_cases':len(latest),'human_finalized':sum(d.get('decision_status')!='deferred_pending_meeting' for d in latest.values()),'inputs':{str(p.relative_to(BASE)) if p.is_relative_to(BASE) else str(p):digest(p) for p in [raw,REPO/'data/mathlibpr/pairs.substantive.jsonl',BASE/'human-decisions.jsonl',BASE/'sample-index.jsonl',BASE/'fast-screen/individual-assessments.json',BASE/'fast-screen/expansion-assessments.json',BASE/'fast-screen/continuation-assessments.json',*sorted((BASE/'fast-screen/round2').glob('out-*.json')),*[x for x in (stage_a_path,clusters_path) if x.exists()],Path(__file__)]},'output_hashes':{f:digest(BASE/f) for f in ['FAST-SCREENING.jsonl','fast-retained.pairs.jsonl','fast-unresolved.pairs.jsonl','fast-excluded.pairs.jsonl','fast-navigation.jsonl']}}
 (BASE/'fast-screen/manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print(json.dumps({k:v for k,v in manifest.items() if k not in ('inputs','output_hashes')},indent=2))

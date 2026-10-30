@@ -1,0 +1,447 @@
+{
+ "63": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "Step-by-step simp only/show/rw/rfl coercion transport becomes one simp call with the same lemmas (reversed homeoOfIso coercions); both are opaque coercion bookkeeping with no mathematical content, simp-set convention.",
+  "chose": "X"
+ },
+ "147": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "Explicit two-direction ext proof compressed to an anonymous constructor with aesop for the trivial direction; the substantive step (h2 at (f x) y) stays visible in both.",
+  "chose": "X"
+ },
+ "168": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "simp_rw + tauto replaced by rw and explicit Or.inl/Or.inr witnesses for a trivial set inclusion; propositional bookkeeping only.",
+  "chose": "X"
+ },
+ "180": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "explanatory_clarity"
+  ],
+  "reason": "Card computation moved into goals after apply isCyclic_of_prime_card (p := 2), Fact have dropped, rfl -> decide; same argument, presentation only.",
+  "chose": "Y"
+ },
+ "211": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "DFunLike.coe_injective.eq_iff replaced by `by simp`; both are one-line closes of the same injectivity iff.",
+  "chose": "X"
+ },
+ "230": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "Draft 'should this be a lemma?' comment removed and contDiffOn_id.prod hα replaced by fun_prop for a routine side goal; comment removal plus equivalent small automation swap.",
+  "chose": "X"
+ },
+ "273": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "explanatory_clarity",
+   "robustness_maintenance"
+  ],
+  "reason": "In the by_cases hp'0 negative branch `p' ≠ 0` is already in context, so the earlier 3-line re-derivation via inv_strictAnti₀ is a redundant detour; final closes it by assumption (full body checked, signature unchanged).",
+  "chose": "X"
+ },
+ "311": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "explanatory_clarity",
+   "reuse_modularity"
+  ],
+  "reason": "Since f_meas := ⟨f, hf_meas⟩ coerces back to f, the earlier two duplicated a.e.-transport sub-proofs are needless; final discharges both side goals directly from the unchanged hypotheses, removing duplicated derivation (signature unchanged, full body checked).",
+  "chose": "X"
+ },
+ "393": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "explanatory_clarity"
+  ],
+  "reason": "Witness 1/(n+1) changed to n⁻¹ in the same refine; equally simple, same argument, no visible quality effect.",
+  "chose": "Y"
+ },
+ "407": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "explanatory_clarity"
+  ],
+  "reason": "Final adds a substantive overview of the metric-comparison strategy and step comments, and names C for the repeated ‖G‖^2 throughout the calc; a concrete readability gain with mathematics unchanged.",
+  "chose": "Y"
+ },
+ "423": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "Two-step rw + Set.mem_range_self replaced by simp for a trivial membership fact.",
+  "chose": "X"
+ },
+ "442": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "rw chain plus intro/simp replaced by one simp +contextual with the same key facts (prod_subset_prod_iff, h.ne_empty); both opaque rewriting of the same characterization.",
+  "chose": "Y"
+ },
+ "446": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "explanatory_clarity"
+  ],
+  "reason": "In Geck case 2 the final states via `suffices` the exact sum identity that chainBotCoeff_mul_chainTopCoeff addresses, instead of hiding it behind a long simp only list; the first branch's simp only+aesop becomes configured aesop (equally opaque) and other edits are layout.",
+  "chose": "X"
+ },
+ "486": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "IsAcc.isLimit -> isSuccLimit and not_lt -> not_gt deprecation migrations, plus refine-tuple -> use/constructor/subst restructuring of the same successor-case argument.",
+  "chose": "Y"
+ },
+ "497": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "rw ... at hp then grind folded into grind with the same named lemmas; the facts used remain visible, convention-level change.",
+  "chose": "Y"
+ },
+ "531": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "reuse_modularity"
+  ],
+  "reason": "Classification h.eq_Iio_or_univ replaced by closedness of the complementary upper set; both are one-line appeals to sibling library facts with no clear quality difference.",
+  "chose": "X"
+ },
+ "608": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "Lemma rename (...ToProd) and trailing rfl replaced by an expanded simp only list; API migration.",
+  "chose": "X"
+ },
+ "688": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "Switch to exists_subset_injOn_image_eq_of_surjOn plus a one-line card_image_of_injOn step and the _span_finset variant; API change with no visible effect on the height argument (earlier availability unverified).",
+  "chose": "X"
+ },
+ "721": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "grind replaced by an explicit simp only list for a trivial support set equality; automation swap with no mathematical content.",
+  "chose": "Y"
+ },
+ "765": {
+  "decision": "retain",
+  "direction": "earlier_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "explanatory_clarity",
+   "reuse_modularity"
+  ],
+  "reason": "Earlier reduces transparently to the ℕ case via Int.isCoprime_iff_nat_coprime, natAbs and norm_natCast_eq_one_iff; final negates and uses a large simp with lemma exclusions over gcd/divisibility, obscuring the reduction (earlier availability unverified).",
+  "chose": "X"
+ },
+ "803": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "Nine lines of dif_pos/dif_neg set-membership bookkeeping replaced by grind, plus intros->intro; the removed part is routine side bookkeeping (cf. aesop replacing a side condition, 1381).",
+  "chose": "Y"
+ },
+ "891": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "simp_all with add_comm_of_disjoint becomes convert add_single + addCommute_of_disjoint + simp_all; API adaptation with the same idea (disjoint supports commute).",
+  "chose": "Y"
+ },
+ "944": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "toColex unwrapping dropped with toColex_lt_toColex_iff_exists_forall_lt -> lt_iff_exists_forall_lt and omega -> cutsat; API/tactic migration with the same argument.",
+  "chose": "Y"
+ },
+ "1010": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "rw chain + exact mk_image_le replaced by simpa using mk_image_le with a simp set; same key lemma.",
+  "chose": "X"
+ },
+ "1084": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "library_integration",
+   "robustness_maintenance"
+  ],
+  "reason": "Final rewrites with the characterization isLocalization_iff instead of unfolding the IsLocalization definition through Submonoid.isLocalizationMap_iff, reusing the characterization rather than definition internals (cf. 1759; earlier availability unverified).",
+  "chose": "Y"
+ },
+ "1132": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "explanatory_clarity",
+   "automation_fit"
+  ],
+  "reason": "A five-step calc (1 * _, ‖z⁻¹‖=1, norm_mul, mul_sub, inv_mul_cancel) is collapsed to two steps closed by simp/field_simp; this is the calc-granularity class the user deferred in 1128.",
+  "chose": "X",
+  "open_question": "Does collapsing the explicit norm/arith calc steps into simp/field_simp count as a simpler presentation (cf. 2124) or as lost detail (cf. deferred 1128)?"
+ },
+ "1241": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "explanatory_clarity"
+  ],
+  "reason": "Earlier n=0 case uses a long simp only list, an ad hoc meromorphicOrderAt_const_ofNat fact, simp_all and aesop; final is a clean case split (n=0, z∈U, z∉U) with one targeted simp each using meromorphicOrderAt_pow, a simpler presentation (cf. 2124).",
+  "chose": "X"
+ },
+ "1277": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "Adds a type ascription and compl_compl transport to adapt to an API change of isDiscrete_of_codiscreteWithin; same argument.",
+  "chose": "Y"
+ },
+ "1325": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "robustness_maintenance",
+   "library_integration"
+  ],
+  "reason": "Earlier unfolds the instance name instNegPart (plus le_def); final rewrites with the API lemma negPart_def, removing dependence on instance internals (mechanism_documented; earlier availability unverified).",
+  "chose": "X"
+ },
+ "1342": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "automation_fit",
+   "explanatory_clarity"
+  ],
+  "reason": "Explicit induction with a cases k split and per-case grind hints (simplicialEvalσ_of_le_mem, isAdmissible_cons) becomes `induction ... <;> grind`; this is the hint/visibility-inside-grind class the user deferred (cf. 1574).",
+  "chose": "X",
+  "open_question": "Are the per-case structure and named grind hints meaningful guidance about which facts drive each case, or is the hint-free `<;> grind` equally informative?"
+ },
+ "1589": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "Mostly simp only -> simp, dropped WithTop. prefixes, and a simpler coe_ne_top side condition for untopA_eq_untop; the τ/σ/σ≤τ case structure is unchanged.",
+  "chose": "Y"
+ },
+ "1639": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "Yoneda injectivity + ext + fin_cases + rfl replaced by decide; both are finite computations with no exposed mathematics.",
+  "chose": "Y"
+ },
+ "1802": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "reuse_modularity",
+   "argument_abstraction"
+  ],
+  "reason": "A 30-line four-way sign case analysis with by_contra and toReal_coe_eq_self_add/sub_two_pi_iff is replaced by appeals to general lemmas toReal_add_of_sign_pos_sign_neg and toReal_add_of_sign_eq_neg_sign, factoring the argument into reusable facts (cf. 817/445; earlier availability unverified).",
+  "chose": "X"
+ },
+ "1899": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "explanatory_clarity",
+   "automation_fit"
+  ],
+  "reason": "Matrix-literal f with a decided range lemma replaces per-membership fin_cases, while simp only + linarith becomes simp + grind; small effects in both directions on the same finite verification, no net material difference.",
+  "chose": "Y"
+ },
+ "1924": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "Adds rw [show p + q = ⟨p.toFinsupp + q.toFinsupp⟩ from rfl] before the same Finsupp.sum_add_index term; compatibility adjustment, argument unchanged.",
+  "chose": "Y"
+ },
+ "1961": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "library_integration",
+   "explanatory_clarity"
+  ],
+  "reason": "Final drops the auxiliary v and several redundant instance haves, uses the standard Finsupp.linearCombination instead of basisSingleOne.constr and map_linearCombination for the final step, so the route (basis at the prime spread to D(g)) reads more directly; instance redundancy in the earlier environment unverified.",
+  "chose": "own"
+ },
+ "2020": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "automation_fit",
+   "explanatory_clarity"
+  ],
+  "reason": "Duplicated parity case splits with long simp only lists and helper haves become `by_cases Even n <;> simp_all` with the key division identity; this matches the deferred by_cases <;> simp class (1587).",
+  "chose": "Y",
+  "open_question": "Is removing the duplicated per-parity simp only branches in favour of `by_cases <;> simp_all` a simpler presentation, or does it hide which parity facts are used (as in deferred 1587)?"
+ },
+ "2047": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "reuse_modularity"
+  ],
+  "reason": "Two-step colon calc replaced by simpa with Ideal.colon_span in a side case; small rewriting change with the same content.",
+  "chose": "X"
+ },
+ "2125": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "dist_single_single now takes explicit values, so the rewrite is wrapped in show ... by simp; API-driven adjustment of the same dist_le_diam_of_mem argument.",
+  "chose": "X"
+ },
+ "2146": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "rw then simp merged into one simp [...] with the same lemma; layout.",
+  "chose": "Y"
+ },
+ "2221": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "explanatory_clarity"
+  ],
+  "reason": "grind [realize_sentence_iff] is replaced by an explicit argument: models satisfy consequences, and conversely completeness (h.2 φ) gives T ⊨ φ or T ⊨ ¬φ, the latter contradicting M ⊨ φ; this exposes the theorem's key use of completeness that grind hid.",
+  "chose": "X"
+ },
+ "2303": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "reuse_modularity",
+   "library_integration"
+  ],
+  "reason": "Earlier derives endpoint equality by hand from two Ioc_subset_Ioc_iff inclusions and emptiness reasoning; final rewrites with the characterization Ioc_eq_Ioc_iff, replacing a bespoke derivation (cf. 1759; earlier availability unverified).",
+  "chose": "Y"
+ },
+ "2329": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "explanatory_clarity"
+  ],
+  "reason": "Earlier contains a redundant second by_cases hb : b = 0 (dead after the first split); final removes the duplicated case split and closes the zero case with simp_all, a cleaner structure.",
+  "chose": "X"
+ }
+}

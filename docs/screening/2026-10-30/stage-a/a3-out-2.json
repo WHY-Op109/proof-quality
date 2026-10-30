@@ -1,0 +1,453 @@
+{
+ "87": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "robustness_maintenance"
+  ],
+  "reason": "Only the simp config flag (-zeta to -eta) and line layout change; the same simp only set drives the same tensor-determinant argument.",
+  "chose": "X"
+ },
+ "149": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "One library rewrite chain through relindex/comap lemmas replaces another (relindex_map_equiv + simp only + rfl vs comap/map_symm + relindex_map_map_of_injective); same transport argument, API-level difference.",
+  "chose": "X"
+ },
+ "169": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "explanatory_clarity",
+   "robustness_maintenance"
+  ],
+  "reason": "Positional conv_rhs rewriting plus simp_rw coercion juggling becomes a single simpa using the Set lemma neighborSet_subset_between_union, making visible that the Finset statement is just the Set lemma transported and removing fragile positional rewriting (small but concrete simpler presentation).",
+  "chose": "X"
+ },
+ "183": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "library_integration",
+   "explanatory_clarity"
+  ],
+  "reason": "A bespoke pow_add + Nat.dvd_mul_left derivation of 2^3 ∣ 2^(n+3) is replaced by the general monotonicity fact pow_dvd_pow; small but concrete clearer use of the general fact (cf. 2095).",
+  "chose": "Y"
+ },
+ "220": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "reuse_modularity",
+   "library_integration"
+  ],
+  "reason": "An inline rw/isIso_of_reflects_iso argument is replaced by the named lemma adj.functorCategory_inverseImage_isomorphisms_counit, factoring the fact into a reusable statement (earlier availability unverified).",
+  "chose": "X"
+ },
+ "265": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "by_contra h'; exact hi h' is replaced by assumption for a trivial closing step; no argument content changes.",
+  "chose": "X"
+ },
+ "295": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "The impossible empty-list branch is closed by assumption instead of destructing the membership and eliminating False; a trivial case-closing change with no mathematical content.",
+  "chose": "Y"
+ },
+ "325": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "The hp41 derivation and decide disappear because ZMod.exists_sq_eq_neg_one_iff now takes p % 4 ≠ 3 directly; API adaptation, the quadratic-residue argument is unchanged.",
+  "chose": "Y"
+ },
+ "394": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "library_integration",
+   "explanatory_clarity"
+  ],
+  "reason": "A 6-line conversion detour turning ENNReal.exists_inv_nat_lt into a 1/(n+1) < δ bound is removed and the library lemma is used directly; full bodies show the signature is unchanged and the gain comes from aligning the exceptional-set threshold with the library lemma (environment change, earlier availability unverified).",
+  "chose": "Y"
+ },
+ "418": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "Picard-Lindelöf call migrates to the restated API via dot notation and show becomes change; same argument, API migration.",
+  "chose": "X"
+ },
+ "424": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "fun _ _ ↦ vonNeumann_subset_vonNeumann_iff.symm becomes by simp for the same simp-lemma fact; one-line convention swap.",
+  "chose": "Y"
+ },
+ "443": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "A long simp only list plus rw [sum_ite_of_false ...] collapses into one simp with the same key lemmas (aux₁, aux₂, ite_and); simp only→simp style change with no visible effect on the argument.",
+  "chose": "Y"
+ },
+ "452": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "argument_abstraction",
+   "automation_fit"
+  ],
+  "reason": "The successor/limit case split collapses to simpa using le_succ o, which presumably goes through a pred/succ characterisation in the simp set; the structural simplification is clear but the fact used is invisible and may depend on a changed simp API.",
+  "chose": "Y",
+  "open_question": "Which simp lemma turns pred o ≤ o into o ≤ succ o (e.g. a pred_le_iff_le_succ characterisation), and was it available and simp-tagged in the earlier snapshot?"
+ },
+ "492": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "A hand-built continuity term for the max of norms becomes by continuity, plus a PadicAlg→PadicAlgCl rename; routine side condition (cf. 1381).",
+  "chose": "Y"
+ },
+ "498": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "simp only [L]; grind becomes grind [L] with the identical lemma list still visible; only tactic packaging changes.",
+  "chose": "X"
+ },
+ "580": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "Unpack/exists_between/use f c becomes simpa [...] using fun _ _ ↦ exists_between; both make exists_between and hf.lt_iff_lt the core, the difference is quantifier bookkeeping.",
+  "chose": "Y"
+ },
+ "634": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "mixed_changes",
+  "dimensions": [
+   "library_integration",
+   "robustness_maintenance"
+  ],
+  "reason": "RatFunc.coe_* rewrites migrate to generic map_* lemmas, but the final also adds an apparently unused have (algebraMap 1 = 1) and splits the rw around simp only [map_one]; full bodies confirm the have is not referenced, so this mixes a likely forced API migration with needless noise.",
+  "chose": "X",
+  "open_question": "Were the RatFunc.coe_* lemmas removed/deprecated at the final snapshot (forcing the migration), and should an unused have in an otherwise forced migration count as earlier_better?"
+ },
+ "689": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "Switches to exists_subset_injOn_image_eq_of_surjOn and height_le_card_of_mem_minimalPrimes_span_finset with a compensating card_image_of_injOn step; API change, same height argument.",
+  "chose": "Y"
+ },
+ "736": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "The strong-induction step keeps csInf_le and states the monotonicity fact f k < f n explicitly, with grind replacing the lt_of_le_of_lt chain; not_forall simp→push_neg. Main idea remains visible, only bookkeeping automated.",
+  "chose": "Y"
+ },
+ "767": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "intro; have := le_of_mono θ; omega becomes grind [→ le_of_mono]; the same single key fact is named in both.",
+  "chose": "Y"
+ },
+ "844": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "robustness_maintenance"
+  ],
+  "reason": "Adds a have deriving trace^2 = 4 det from the discriminant hypothesis, plausibly adapting to a changed hypothesis form; the rewrite argument is otherwise identical.",
+  "chose": "X"
+ },
+ "927": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit",
+   "explanatory_clarity"
+  ],
+  "reason": "The explicit analytic-combinator term is replaced by stating the function (h z)⁻¹^r • j (g z) in a have and closing it with fun_prop; both expose the same decomposition, plus simp/rw redistribution.",
+  "chose": "Y"
+ },
+ "970": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "robustness_maintenance"
+  ],
+  "reason": "Adds an explicit n = 0 case split around the same factorial_mul_prodRange rewrite, plausibly tracking a definition change; core argument unchanged.",
+  "chose": "X"
+ },
+ "1048": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "explanatory_clarity"
+  ],
+  "reason": "A suffices restating the unfolded categorical composite + simpa becomes two simp calls with generic comments; both are mechanical unfolding with no exposed mathematical idea.",
+  "chose": "Y"
+ },
+ "1102": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "automation_fit",
+   "explanatory_clarity"
+  ],
+  "reason": "aesop is replaced by split_ifs <;> simp after unfolding σ, making the conjugation case split explicit; this is the case-split-visibility class the user deferred (1587, reverse direction).",
+  "chose": "X",
+  "open_question": "Does making an if-then-else case split explicit (split_ifs <;> simp) versus leaving it to aesop count as a quality difference?"
+ },
+ "1167": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "automation_fit",
+   "explanatory_clarity"
+  ],
+  "reason": "rw [nextCoeff, ...] + split_ifs <;> simp is replaced by a single grind with the same lemma hints, hiding the case split; same deferred class as 1587.",
+  "chose": "X",
+  "open_question": "Does hiding a short unfolding + split_ifs case analysis inside grind (with the lemmas still named) lose meaningful visibility?"
+ },
+ "1243": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "automation_fit",
+   "explanatory_clarity"
+  ],
+  "reason": "An explicit two-direction membership proof with witness transport via 𝒰.exists_eq becomes a dense ⟨… simp; grind, simp; grind⟩ term; resembles the deferred explicit-witness-transport→automation case (1617).",
+  "chose": "Y",
+  "open_question": "Is the explicit rintro/witness construction for the image/union equality worth keeping over simp; grind with the key 𝒰.exists_eq hint?"
+ },
+ "1283": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "argument_abstraction",
+   "library_integration"
+  ],
+  "reason": "The earlier proves only p ≤ q via valuation_lt_one_iff_dvd/dvd_span_singleton and then needs the dimension-one fact prime_le_prime_iff_eq; the final uses the direct characterisation valuation_lt_one_iff_mem with Ideal.ext_iff, so the dimension-one detour disappears (compressed into simp_all; earlier availability unverified).",
+  "chose": "X"
+ },
+ "1327": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "A rw chain through expect/smul_eq_zero/card_eq_zero becomes simp +contextual with the same key lemma sum_eq_zero_iff_of_nonpos; the empty-set case is bookkeeping.",
+  "chose": "X"
+ },
+ "1515": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "Repetitive additivity branches closed by long map_add/add_apply rw chains are replaced by grind; the tensor induction and the leibniz_lie case are unchanged, the removed steps are mechanical bookkeeping.",
+  "chose": "X"
+ },
+ "1619": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "mixed_changes",
+  "dimensions": [
+   "reuse_modularity",
+   "explanatory_clarity"
+  ],
+  "reason": "The final reuses LinearIsometryEquiv.inner_map_eq_flip in place of the f.symm (f y) rewrite detour, but replaces a readable two-direction ext proof with a dense term-mode closing.",
+  "chose": "Y",
+  "open_question": "Does reusing inner_map_eq_flip outweigh the loss of readability from compressing the two-direction proof into a dense term?"
+ },
+ "1686": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "Adds one rewrite with adjoin_toSubalgebra_of_isAlgebraic to adapt to an API change; same argument.",
+  "chose": "Y"
+ },
+ "1814": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "automation_fit",
+   "explanatory_clarity"
+  ],
+  "reason": "The explicit witness (use 1: the divisor 1 contributes to σ), which is the whole content of the nonzero case, is replaced by simp only [sigma_apply]; aesop; resembles the deferred witness-to-automation class (1617).",
+  "chose": "X",
+  "open_question": "When the only mathematical content of a lemma is an explicit witness, does hiding it inside aesop make the proof worse, or is it harmless brevity?"
+ },
+ "1900": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "fin_cases <;> decide → decide +kernel, small named helper bounds dropped in favour of simp + nlinarith, and branches reordered; this is a computational verification with no mathematical insight changed.",
+  "chose": "Y"
+ },
+ "1953": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "delta/ext + a one-line membership fact + simp becomes grind unfolding the same two definitions; the hidden fact is a trivial membership consequence.",
+  "chose": "X"
+ },
+ "1995": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "automation_fit"
+  ],
+  "reason": "A by_cases on finiteness with a choose_spec projection is replaced by grind [minimalCover]; definitional unfolding of a dite, no mathematical content lost.",
+  "chose": "Y"
+ },
+ "2021": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "automation_fit",
+   "explanatory_clarity"
+  ],
+  "reason": "Duplicated parity branches with many grind-proved haves and long simp only lists collapse to by_cases Even n <;> simp_all, keeping the one nontrivial /2 arithmetic fact; this is the by_cases <;> simp class the user deferred (1587), though here duplication removal is substantial.",
+  "chose": "X",
+  "open_question": "Does collapsing duplicated explicit parity branches into by_cases <;> simp_all (while keeping the key arithmetic have) count as a material simplification or a convention change?"
+ },
+ "2056": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "Route changes from fract = id - floor with floor locally constant to continuousOn_fract on Ico ⌊x⌋ (⌊x⌋+1); both are two-line compositions of library facts with comparable clarity.",
+  "chose": "X"
+ },
+ "2144": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "argument_abstraction",
+   "library_integration"
+  ],
+  "reason": "The earlier transports along complexRingEquiv via sqrt_complexRingEquiv; the final unfolds sqrt_eq_ite with dif_pos and RingEquiv.symm_apply_eq, likely after an API change.",
+  "chose": "X",
+  "open_question": "Was sqrt redefined (or sqrt_complexRingEquiv removed) at the final snapshot, i.e. is unfolding the definition a forced adaptation or a loss of abstraction?"
+ },
+ "2167": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [
+   "library_integration"
+  ],
+  "reason": "A zero/nonzero split and a nonvanishing proof for x ∘ e are added because mulHeight_eq now takes a nonvanishing hypothesis; required API adaptation.",
+  "chose": "Y"
+ },
+ "2287": {
+  "decision": "retain",
+  "direction": "final_better",
+  "category": "clear_quality_difference",
+  "dimensions": [
+   "explanatory_clarity",
+   "automation_fit"
+  ],
+  "reason": "Both keep the key facts y ≤ exp(y-1) and the multiplied inequality as named haves, but the final replaces manual mul_le_mul_of_nonneg_right/exp_pos with gcongr and a 3-step calc with simpa [← exp_add], and drops a noisy simpa rewrite list; a concrete simpler presentation of the same argument (cf. 2124).",
+  "chose": "own"
+ },
+ "2304": {
+  "decision": "unresolved",
+  "direction": "unresolved",
+  "category": "difficult_preference",
+  "dimensions": [
+   "argument_abstraction",
+   "explanatory_clarity"
+  ],
+  "reason": "The earlier uses the API lemma onIocAux_apply via an inhabit/Ioc default default = ∅ trick; the final unfolds onIocAux with dite_eq_right_iff and grind.",
+  "chose": "Y",
+  "open_question": "Is unfolding the definition and using grind preferable to the API-based but roundabout inhabit trick?"
+ },
+ "2376": {
+  "decision": "exclude",
+  "direction": "no_material_preference",
+  "category": "little_apparent_mathematical_effect",
+  "dimensions": [],
+  "reason": "Anonymous haves become typed Fintype haves and simpa becomes simp only + exact; convention, same use of Set.card_lt_card.",
+  "chose": "Y"
+ }
+}

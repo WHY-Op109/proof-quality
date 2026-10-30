@@ -1,0 +1,650 @@
+[
+ {
+  "row": 9,
+  "decl": "Algebra.PreSubmersivePresentation.jacobiMatrix_comp_₂₂_det",
+  "reason": "The polynomial constant and variable cases switch evaluation/composition rewrite interfaces. The induction is unchanged, but changed presentation definitions make a quality preference unsafe without historical context.",
+  "second_screen_reason": "Two `erw` steps (eval₂_C, Generators.comp_val) are replaced by simp calls fed explicit comp lemmas (`← Generators.comp_vars`, `toPresentation_comp`); the mathematics is unchanged, and whether removing defeq-dependent `erw` is a material robustness gain or just convention is open.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 41,
+  "decl": "DerivedCategory.singleFunctorsPostcompQIso_hom_hom",
+  "reason": "Final adds explicit functor reductions and category identity rewrites; environment/definitional behavior may have changed. No mathematical preference established.",
+  "second_screen_reason": "One `simp [..]` replaced by `dsimp` unfolding plus `rw`/`erw [Category.id_comp]`; the explicit chain adds a fragile `erw` but may have been forced by upstream definition changes. Open: was the simp call broken upstream, or is the earlier single simp the more robust proof?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 64,
+  "decl": "AlgebraicGeometry.Scheme.Hom.copyBase_eq",
+  "reason": "The category identity equality changes from explicit convert/ext/simp to aesop_cat. This is the same automation-versus-explicit issue the user deferred.",
+  "second_screen_reason": "Replaces `convert Category.comp_id _; ext; simp; rfl` with `aesop_cat`. The earlier steps name the identity-composition fact, but they are mostly bookkeeping, so it is unclear whether hiding them in categorical automation loses anything (similar to the deferred 1617 class).",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 86,
+  "decl": "FDRep.scalar_product_char_eq_finrank_equivariant",
+  "reason": "The finrank/invariants rewrite block disappears after the same character conversion. Definitions or previous lemmas may now expose the target directly; without that context this deletion is not evidence of better mathematics.",
+  "second_screen_reason": "The final body shown (pairs.jsonl line 86) is only the conv_lhs line, dropping the rw/finrank_eq/rfl steps; this looks like a truncated or mis-extracted final, so the real difference cannot be judged. Open question: is the final extraction complete?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 106,
+  "decl": "IsCyclotomicExtension.subsingleton_iff",
+  "reason": "Longer final script inspected as an expansion countercheck. The change concerns explicit steps, implementation/API compatibility, automation or local presentation; no clear quality direction established without further context.",
+  "second_screen_reason": "Earlier is a short rewrite chain through the bespoke `subsingleton_iff_aux`; final gives a direct primitive-root argument (uniqueness of roots in a subsingleton ring). Open question: was the aux lemma removed/generalised in this PR (earlier availability and role unverified), and is a direct argument preferable to delegating to it?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 107,
+  "decl": "IsCyclotomicExtension.iff_union_singleton_one",
+  "reason": "Final splits the degenerate cyclotomic case explicitly while reusing a union criterion elsewhere; helper-lemma removal versus useful self-containment needs context.",
+  "second_screen_reason": "Earlier rewrites through the bespoke `iff_union_singleton_one_aux` with set-algebra haves; final splits on whether S has a nonzero element, using the general `iff_union_of_dvd` in the main case and an explicit adjoin argument in the degenerate case. Open question: whether replacing the aux lemma by a general lemma plus a longer explicit degenerate case is an improvement depends on the aux lemma's status (unverified).",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 357,
+  "decl": "FDRep.Iso.conj_ρ",
+  "reason": "Explicit functor/category identity rewrites become cat_disch; the category reasoning is hidden in automation and the user has deferred similar preferences.",
+  "second_screen_reason": "Explicit FullSubcategory/Action bookkeeping rewrites replaced by cat_disch. Open question: is hiding category bookkeeping behind cat_disch neutral or a loss (close to the deferred 1617 case)?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 390,
+  "decl": "EuclideanSpace.volume_preserving_measurableEquiv",
+  "reason": "Earlier is a one-line reuse of `measurePreserving_measurableOfLp`; final is the Haar/basis proof (metadata: proof_reverted=true). Reuse would favour earlier only if that lemma is independent of this one; earlier availability unverified.",
+  "second_screen_reason": "Earlier is a one-line reuse of `EuclideanSpace.measurePreserving_measurableOfLp`; final re-derives measure preservation from scratch via `addHaarMeasure`/parallelepiped rewrites. If the lemma was available (earlier availability unverified), the earlier proof avoids duplicating a library argument.",
+  "open_question": "Was `EuclideanSpace.measurePreserving_measurableOfLp` an independent library lemma in the final environment, or was it removed/derived from this declaration (making the reverted direct proof necessary)?",
+  "usability": []
+ },
+ {
+  "row": 396,
+  "decl": "RingHom.finitePresentation_respectsIso",
+  "reason": "The isomorphism finite-presentation proof switches from algebraizing an equivalence to surjectivity plus a finitely generated zero kernel. Both are short general arguments; neither is clearly preferable without the surrounding API goal.",
+  "second_screen_reason": "Earlier proves iso-invariance via `algebraize` + `Algebra.FinitePresentation.equiv` (the direct 'invariant under isomorphism' fact); final uses the more general `of_surjective` with finitely generated (zero) kernel in term mode. Open: is the shorter but slightly indirect surjective-with-fg-kernel route preferable to the direct equivalence lemma?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 397,
+  "decl": "Int.isSquare_sign_iff",
+  "reason": "Longer final script inspected as an expansion countercheck. The change concerns explicit steps, implementation/API compatibility, automation or local presentation; no clear quality direction established without further context.",
+  "second_screen_reason": "Earlier closes the negative case via the library fact not_isSquare_of_neg; final (after the declaration moved from Data/Int/Order/Lemmas to Algebra/Group/Int/Even) uses norm_cast, a long simp only list and a pattern-match on IsSquare. Source-wise the earlier is clearer, but the move suggests the library lemma may be unavailable at the new import level; open question: does a forced lower-import context excuse the more ad hoc proof?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 398,
+  "decl": "contMDiffOn_projIcc",
+  "reason": "The final adds a chartwise explanation and changes a sub_left_inj rewrite to sub_right_inj. Whether this corrects a local mistake or follows changed context is unresolved; comment value also needs a reader criterion.",
+  "second_screen_reason": "Final adds a three-line strategy comment (check smoothness separately in each of the two charts via explicit formulas) to a long chart computation, plus a lemma-name fix sub_left_inj->sub_right_inj. Open question: does a roadmap comment in a long computational proof count as a material clarity gain?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 450,
+  "decl": "Ordinal.isInitial_succ",
+  "reason": "The same finite-versus-infinite ordinal successor characterization is compressed into a term with contraposition and substitution. No clearly different argument or meaningful preference established.",
+  "second_screen_reason": "An explicit case split on `o < ω`, with the infinite case shown via `card_succ` and `add_one_of_aleph0_le`, becomes a dense term golf (`Function.mtr`, `simp_all [ord_card_le]`, `.rec`). The golf hides the key cardinal-arithmetic step, which may make the earlier proof better, but both prove the same thing.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 452,
+  "decl": "Ordinal.pred_le_self",
+  "reason": "The successor/limit case split collapses to simpa using le_succ o, which presumably goes through a pred/succ characterisation in the simp set; the structural simplification is clear but the fact used is invisible and may depend on a changed simp API.",
+  "second_screen_reason": "Case split on successor/limit replaced by `simpa using le_succ o`; the case analysis carried no real mathematical content for this trivial inequality.",
+  "open_question": "Which simp lemma turns pred o ≤ o into o ≤ succ o (e.g. a pred_le_iff_le_succ characterisation), and was it available and simp-tagged in the earlier snapshot?",
+  "usability": []
+ },
+ {
+  "row": 500,
+  "decl": "MeasureTheory.tendsto_Lp_finite_of_tendsto_ae",
+  "reason": "A grind closure of almost-everywhere convergence is replaced with explicit equality transport and extensionality. This is a reverse automation example requiring the unsettled reader/engineering criterion.",
+  "second_screen_reason": "A closing `grind` is replaced by explicit `rw [← hxg_eq]; convert hx_tendsto using 1; ext1 n; exact (hxf_eq n).symm`; open question is whether spelling out this pointwise transport is a material clarity gain over the solver or merely the reverse convention.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 501,
+  "decl": "WeierstrassCurve.Projective.nonsingular_smul",
+  "reason": "A grind step is replaced by three explicit linear combinations. Concrete coefficients are exposed, but significance, tactic cost and reader benefit are unmeasured.",
+  "second_screen_reason": "`grind` is replaced by three explicit `linear_combination (norm := ring1) u ^ 2 * ...` steps, which expose that each partial-derivative equation scales by u^2. It is unclear whether this explicit homogeneity content is a material clarity gain over the opaque solver or only a verbose equivalent.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 567,
+  "decl": "Nat.choose_eq_one_iff",
+  "reason": "Earlier proves both iff directions explicitly (choose_mono, choose_succ_self_right); final case-splits on trichotomy and closes with grind. Open: does the grind version lose the explicit monotonicity argument or just bookkeeping?",
+  "second_screen_reason": "Earlier proves both directions with an explicit monotonicity argument and `omega`; final cases on trichotomy once and closes with `grind`, keeping the same key fact (`choose_succ_self_right` ≤ `choose_mono`). Open: does merging the two directions under `grind` simplify or obscure the iff?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 634,
+  "decl": "LaurentSeries.exists_ratFunc_val_lt",
+  "reason": "RatFunc.coe_* rewrites migrate to generic map_* lemmas, but the final also adds an apparently unused have (algebraMap 1 = 1) and splits the rw around simp only [map_one]; full bodies confirm the have is not referenced, so this mixes a likely forced API migration with needless noise.",
+  "second_screen_reason": "Migrates `RatFunc.coe_*` rewrites to generic `map_*` lemmas, splitting one `rw` into three steps and adding an apparently unused `have`; API migration with minor noise, no change to the argument.",
+  "open_question": "Were the RatFunc.coe_* lemmas removed/deprecated at the final snapshot (forcing the migration), and should an unused have in an otherwise forced migration count as earlier_better?",
+  "usability": []
+ },
+ {
+  "row": 692,
+  "decl": "Submodule.spanFinrank_span_le_encard",
+  "reason": "Earlier splits finite/infinite and uses the `ncard` bound; final unfolds `spanFinrank`/`encard`/`ENat.card` and reuses the cardinal-level `spanRank_span_le_card`. Open question: is reusing the general spanRank bound worth unfolding definitions instead of the case split?",
+  "second_screen_reason": "Earlier splits finite/infinite and uses spanFinrank_span_le_ncard_of_finite plus ncard_le_encard; final unfolds spanFinrank/encard/ENat.card and applies the general cardinal bound spanRank_span_le_card through toENat monotonicity. Open question: is the uniform general-bound argument worth the definition unfolding versus the case split through the API?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 727,
+  "decl": "Real.rpowIntegrand₀₁_eqOn_mul_rpowIntegrand₀₁_one",
+  "reason": "Calc chain collapses from five to three steps; final drops the explicit intermediate `rpowIntegrand₀₁ p 1 (x*t⁻¹)` step into a closing simp. Open question: is the lost intermediate step meaningful exposition or just bookkeeping (same class as deferred 1128)?",
+  "second_screen_reason": "The calc chain drops its intermediate steps (`1⁻¹ - ...` and `rpowIntegrand₀₁ p 1 (x * t⁻¹)`) and merges the `rw/congr/field_simp` steps into single `field_simp`/`simp` calls. Brevity versus losing visible intermediate forms, the mirror of the deferred 1128 class.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 740,
+  "decl": "CategoryTheory.Limits.colimitLimitToLimitColimit_surjective",
+  "reason": "Three `by grind` membership side goals replaced by explicit witness terms and long `rw [PSigma.mk.injEq, heq_eq_eq, ...]` chains, justified by a comment about heartbeat variance; is performance stability worth replacing a one-word discharge with an unreadable rewrite chain?",
+  "second_screen_reason": "Three closing `by grind` membership checks become explicit `Finset.mem_biUnion` terms and long positional `rw [PSigma.mk.injEq, heq_eq_eq, ...]` chains. The added comment cites heartbeat variance for `simp`, not `grind`. The final has no extra mathematical content and is more brittle-looking, but the performance motivation is unverified.",
+  "open_question": "Should replacing short automation (`grind`/`simp`) with long explicit rewrite chains, done for performance/heartbeat stability, count as earlier_better (readability), final_better (robustness), or no preference?",
+  "usability": []
+ },
+ {
+  "row": 774,
+  "decl": "Nat.Prime.dvd_mul",
+  "reason": "A short prime-divisibility lemma call becomes an explicit coprimality argument; helper availability/removal is not checked.",
+  "second_screen_reason": "The earlier proof delegates the forward direction to the general `dvd_or_dvd pp`, and the final re-derives Euclid's lemma via `coprime_iff_not_dvd` and `dvd_of_dvd_mul_left`. Reuse would favour the earlier version, but in this foundational Defs file it is unclear whether `dvd_or_dvd` was usable without circular or upward dependencies (earlier availability unverified).",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 875,
+  "decl": "ack_three",
+  "reason": "Earlier closes `2*3 ≤ 2*2^(n+3)` via `H.trans`, `mul_le_mul_iff_right₀` and `pow_right_mono₀`; final writes a two-step calc with `gcongr`. Small presentation gain from the displayed intermediate bound versus explicit monotonicity lemmas; unclear if material.",
+  "second_screen_reason": "The `have H; apply H.trans; rw [mul_le_mul_iff_right₀]; exact pow_right_mono₀ ...` chain becomes a two-step `calc` with `gcongr`. The bound is easier to read, but the gain is small presentation only, the same class as the deferred 1128.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 924,
+  "decl": "List.filterMap_eq_map_iff_forall_eq_some",
+  "reason": "The explicit `simpa` using `length_filterMap_le` is replaced by a `have` length claim plus two `grind` calls; the final names the key length fact but hides which library bound gives the contradiction.",
+  "second_screen_reason": "The earlier proof makes the key contradiction explicit, namely that `filterMap` cannot be longer than the list (`List.length_filterMap_le`). The final asserts the length equation and closes with two `grind` calls. Whether hiding this key fact in grind loses meaningful explanation, or is acceptable brevity, is unclear.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 979,
+  "decl": "Polynomial.resultant_deriv",
+  "reason": "The `finCongr` reindexing disappears because the renamed `sylvesterDeriv_updateRow` now has matching dimensions; whether this is a real simplification depends on a definition change outside the proof.",
+  "second_screen_reason": "The `finCongr` reindexing step disappears because the renamed `sylvesterDeriv_updateRow` presumably has the matching dimension; API/statement adaptation.",
+  "open_question": "Does the new `sylvesterDeriv` definition genuinely absorb the dimension cast (a real simplification of the argument), or is the same reindexing bookkeeping merely moved into the definition?",
+  "usability": []
+ },
+ {
+  "row": 1046,
+  "decl": "iteratedDerivWithin_scomp_three",
+  "reason": "An explicitly stated intermediate goal is omitted; simp and abel carry the same calculation. Reader preference is unsettled.",
+  "second_screen_reason": "Drops an explicit `suffices` that spelled out the Faà di Bruno terms combining (1+2 = 3 copies) in favour of `simp [...]; abel`. The removed statement documented the combination but was a hard-coded simp normal form, so it is unclear whether this is lost explanation or fragile duplication.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1056,
+  "decl": "Finset.exists_subset_or_subset_of_two_mul_lt_card",
+  "reason": "The intermediate `have` statements (`#(X ∩ (Y \\ X)) = 0`, `#(X ∪ Y) = #X + #(Y \\ X)`) and the case split are kept. Their explicit justifications (`inter_sdiff_self`, `card_union_add_card_inter`, `union_sdiff_self_eq_union`, `sdiff_subset`) are all replaced by `grind`. The skeleton still shows the mathematics, but the cited set-theoretic facts disappear.",
+  "second_screen_reason": "The skeleton (h₁, h₂, the n<#X ∨ n<#(Y\\X) split) is kept but every justification, including the inclusion–exclusion lemma `card_union_add_card_inter`, becomes `grind`; unclear whether hiding the cited lemmas behind grind while keeping the intermediate claims is a loss or immaterial.",
+  "open_question": "When a proof keeps its intermediate `have` statements but replaces each one's explicit lemma-chain justification with `grind`, is that no material difference (the skeleton carries the mathematics), or is the loss of named lemmas a quality loss?",
+  "usability": []
+ },
+ {
+  "row": 1079,
+  "decl": "Complex.cos_eq_two_mul_tan_half_div_one_sub_tan_half_sq",
+  "reason": "Earlier applies the primed helper `cos_eq_two_mul_tan_half_div_one_sub_tan_half_sq'`; final inlines the double-angle/tan computation. This is duplication only if the primed lemma survives in the final environment (unverified).",
+  "second_screen_reason": "The earlier proof applies the general primed lemma `cos_eq_two_mul_tan_half_div_one_sub_tan_half_sq'` with only the side condition discharged. The final re-derives the double-angle/tangent computation inline with `conv`, `inv_one_add_tan_sq` and `ring`, which is a bespoke recomputation (availability of the primed lemma in the final environment unverified).",
+  "open_question": "Does `cos_eq_two_mul_tan_half_div_one_sub_tan_half_sq'` exist in the final environment (making the inline computation a duplicate), or was the helper removed and merged into this statement?",
+  "usability": []
+ },
+ {
+  "row": 1095,
+  "decl": "ArchimedeanClass.mk_le_mk_iff_denselyOrdered",
+  "reason": "Longer final script inspected as an expansion countercheck. The change concerns explicit steps, implementation/API compatibility, automation or local presentation; no clear quality direction established without further context.",
+  "second_screen_reason": "Earlier splits on the sign of y and delegates to the primed helper `mk_le_mk_iff_denselyOrdered'`; final gives a self-contained Archimedean argument (nsmul bounds in both directions). If the helper was removed in this PR, the final inlines its content; otherwise it duplicates it. Earlier availability unverified.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1102,
+  "decl": "UpperHalfPlane.σ_conj",
+  "reason": "aesop is replaced by split_ifs <;> simp after unfolding σ, making the conjugation case split explicit; this is the case-split-visibility class the user deferred (1587, reverse direction).",
+  "second_screen_reason": "`aesop` → `split_ifs <;> simp` for a trivial conjugation case split.",
+  "open_question": "Does making an if-then-else case split explicit (split_ifs <;> simp) versus leaving it to aesop count as a quality difference?",
+  "usability": []
+ },
+ {
+  "row": 1124,
+  "decl": "imo2008_q4",
+  "reason": "A closing `grind` becomes an explicit `linear_combination` certificate, a `grind` becomes the term `(H₁ 1 zero_lt_one).ne'`, and `simp [field, ...]` becomes `simp only`. Open question: does the explicit algebraic certificate count as a material gain over `grind`?",
+  "second_screen_reason": "Two `grind` calls become explicit: a `linear_combination` with the algebraic certificate and `(H₁ 1 zero_lt_one).ne'`, plus a simp-order tweak; open question is whether exposing the certificate is a material clarity/automation-fit gain or just a solver swap.",
+  "open_question": "When a closing `grind` is replaced by an explicit `linear_combination` certificate for the same algebraic identity, should that count as final_better (explicit, robust certificate) or as no material difference?",
+  "usability": []
+ },
+ {
+  "row": 1132,
+  "decl": "circleAverage_log_norm_sub_const₀",
+  "reason": "A five-step calc (1 * _, ‖z⁻¹‖=1, norm_mul, mul_sub, inv_mul_cancel) is collapsed to two steps closed by simp/field_simp; this is the calc-granularity class the user deferred in 1128.",
+  "second_screen_reason": "A clumsy five-step calc (`1 * _`, `norm_mul`, `mul_sub`, `inv_mul_cancel₀`) collapsed to two steps closed by `simp`/`field_simp`; arithmetic bookkeeping only, the same identity ‖z⁻¹(z−a)‖ = ‖1 − z⁻¹a‖ is shown either way.",
+  "open_question": "Does collapsing the explicit norm/arith calc steps into simp/field_simp count as a simpler presentation (cf. 2124) or as lost detail (cf. deferred 1128)?",
+  "usability": []
+ },
+ {
+  "row": 1165,
+  "decl": "Polynomial.degree_map_eq_of_leadingCoeff_ne_zero",
+  "reason": "Earlier closes the goal with one `simp` given the key lemmas (`degree_map_le.antisymm`, `le_degree_of_ne_zero`, ...); final spells out the same argument explicitly (antisymmetry, degree = natDegree, nonzero leading coefficient of the image). Same mathematics either way; unclear whether the explicit structure is a material clarity gain or just verbosity.",
+  "second_screen_reason": "A one-line `simp` with the lemma list (`degree_map_le.antisymm`, `degree_eq_natDegree`, `le_degree_of_ne_zero`) becomes a structured proof applying those same lemmas step by step. Explicit versus automation where both name the same mathematics.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1167,
+  "decl": "Polynomial.nextCoeff_map_of_leadingCoeff_ne_zero",
+  "reason": "rw [nextCoeff, ...] + split_ifs <;> simp is replaced by a single grind with the same lemma hints, hiding the case split; same deferred class as 1587.",
+  "second_screen_reason": "`rw` + `split_ifs <;> simp` replaced by `grind` with the same lemma hints; automation swap for a short unfolding proof.",
+  "open_question": "Does hiding a short unfolding + split_ifs case analysis inside grind (with the lemmas still named) lose meaningful visibility?",
+  "usability": []
+ },
+ {
+  "row": 1186,
+  "decl": "Fin.find_eq_iff",
+  "reason": "Earlier rewrites with `le_antisymm_iff` and the characterisations `find_le_iff`/`le_find_iff` before grind; final uses an anonymous-constructor refine with `find_le_of_pos` and grind. Earlier looks cleaner but may rest on lemmas no longer available.",
+  "second_screen_reason": "`rw [le_antisymm_iff, find_le_iff, le_find_iff]; grind` becomes a `refine` with `Fin.find_le_of_pos` and `grind`. Both are grind-closed variants of the same characterisation, with little effect.",
+  "open_question": "Were `Fin.find_le_iff`/`Fin.le_find_iff` still available in the final environment; if so, is the characterisation-based earlier proof preferable to the refine+grind form?",
+  "usability": []
+ },
+ {
+  "row": 1243,
+  "decl": "AlgebraicGeometry.IsOpenImmersion.of_openCover_source",
+  "reason": "An explicit two-direction membership proof with witness transport via 𝒰.exists_eq becomes a dense ⟨… simp; grind, simp; grind⟩ term; resembles the deferred explicit-witness-transport→automation case (1617).",
+  "second_screen_reason": "Explicit two-direction image/union membership proof replaced by `simp; grind` with the key `𝒰.exists_eq` hint kept visible; removed steps are set bookkeeping.",
+  "open_question": "Is the explicit rintro/witness construction for the image/union equality worth keeping over simp; grind with the key 𝒰.exists_eq hint?",
+  "usability": []
+ },
+ {
+  "row": 1252,
+  "decl": "mul_lt_mul_iff_of_le_of_le",
+  "reason": "grind with three named lemmas replaced by an explicit refine/rcases that shows which lemma closes which case; both expose the same mathematics.",
+  "second_screen_reason": "`grind [lt_or_lt_of_mul_lt_mul, mul_lt_mul_of_lt_of_le, mul_lt_mul_of_le_of_lt]` becomes an explicit `refine`/`rcases` applying those same three lemmas. Explicit versus automation where both expose the same mathematics.",
+  "open_question": "When grind is given exactly the lemmas used, is an explicit case-by-case application of those lemmas a material clarity gain, or convention (same class as 1265, 1448)?",
+  "usability": []
+ },
+ {
+  "row": 1255,
+  "decl": "AlgebraicGeometry.Scheme.IsQuasiAffine.of_isImmersion",
+  "reason": "Explicit argument (quasi-compactness, imageι iso, IsOpenImmersion) disappears and constructor closes after IsImmersion; open question: did the IsQuasiAffine definition/instances change, or does instance search now hide a meaningful argument? Needs historical context.",
+  "second_screen_reason": "The earlier proves IsOpenImmersion explicitly (QuasiCompact, `delta`-unfolded IsIso of imageι, toImage_imageι); the final ends with `constructor` after IsImmersion, which suggests IsQuasiAffine's definition or the instance library changed in the PR. Whether this is better depends on that unseen API change.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1342,
+  "decl": "SimplexCategoryGenRel.IsAdmissible.simplicialEvalσ_succ_getElem",
+  "reason": "Explicit induction with a cases k split and per-case grind hints (simplicialEvalσ_of_le_mem, isAdmissible_cons) becomes `induction ... <;> grind`; this is the hint/visibility-inside-grind class the user deferred (cf. 1574).",
+  "second_screen_reason": "Case-specific `grind` calls with hints collapse to `induction ... <;> grind`; both are grind-driven, so no material change.",
+  "open_question": "Are the per-case structure and named grind hints meaningful guidance about which facts drive each case, or is the hint-free `<;> grind` equally informative?",
+  "usability": []
+ },
+ {
+  "row": 1344,
+  "decl": "SimplexCategoryGenRel.lt_and_eval_eq_eval_add_one_of_mem_isAdmissible",
+  "reason": "Destructuring membership via `mem_iff_getElem` and naming `getElem_lt`/`simplicialEvalσ_succ_getElem` replaced by `grind [List.mem_iff_getElem]`; does hiding which admissibility facts are used matter, or is this routine automation?",
+  "second_screen_reason": "Explicit rcases + the two key facts hL.getElem_lt and simplicialEvalσ_succ_getElem replaced by grind [List.mem_iff_getElem]. Open question: does hiding the main lemmas (not just side conditions) behind grind lose clarity?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1355,
+  "decl": "SimpleGraph.IsAcyclic.isAcyclic_sup_fromEdgeSet_of_not_reachable",
+  "reason": "A one-line application of `isAcyclic_sup_fromEdgeSet_of_notMem_reachabilitySet` becomes `grind` over a bridge characterisation and five lemmas. Open question: if the earlier lemma still exists, is direct reuse better than a grind proof that exposes the bridge argument?",
+  "second_screen_reason": "Earlier is a one-line application of the sibling isAcyclic_sup_fromEdgeSet_of_notMem_reachabilitySet; final proves it by grind over the bridge characterisation (isAcyclic_iff_forall_edge_isBridge, IsBridge.sup_fromEdgeSet_of_not_reachable...). Open question: was the sibling lemma removed or re-derived from this one (earlier availability unverified), i.e. is this a dependency reorganisation rather than a quality loss?",
+  "open_question": "When a direct application of a named library lemma is replaced by `grind` over a characterisation plus a lemma list, should the direct reuse be considered better (earlier_better), or is this neutral if the old lemma was deprecated?",
+  "usability": []
+ },
+ {
+  "row": 1359,
+  "decl": "Real.log_prod",
+  "reason": "Earlier is `log_prod' hf` (one lemma); final reproves via `prod_map_toList` and `log_list_prod`; whether `log_prod'` was removed/deprecated (API change) needs historical context — if available, earlier reuse would be better.",
+  "second_screen_reason": "The earlier is the one-liner `log_prod' hf`; the final reproves via `prod_map_toList` and `log_list_prod`. If `log_prod'` was available and kept, the earlier is better reuse; if the PR inverted the dependency or removed it, the change is required. Earlier availability unverified.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1405,
+  "decl": "Equiv.eq_or_eq_of_swap_apply_ne_self",
+  "reason": "One-line `grind` replaced by `contrapose! h; exact swap_apply_of_ne_of_ne h.1 h.2`, which names the key fact (swap fixes points other than a, b). Open question: is naming the key lemma a material clarity gain over grind?",
+  "second_screen_reason": "grind replaced by contrapose! + swap_apply_of_ne_of_ne, naming the one fact used. Open question: is naming the key lemma in a one-step contrapositive a material clarity gain over grind?",
+  "open_question": "When a one-line `grind` is replaced by a two-line explicit proof that names the key lemma (contrapositive of `swap_apply_of_ne_of_ne`), do you count the explicit version as better?",
+  "usability": []
+ },
+ {
+  "row": 1448,
+  "decl": "FunctionField.inftyValuation.polynomial",
+  "reason": "grind with API lemmas (inftyValuation_of_nonzero) replaced by rw unfolding inftyValuationDef with if_neg. Open: is the explicit rewrite clearer, or worse for unfolding a definition instead of using API?",
+  "second_screen_reason": "`grind` with API lemmas (`inftyValuation_of_nonzero`) is replaced by an explicit `rw` that unfolds `inftyValuationDef` and its `if`; explicit but it unfolds a definition rather than using its API, so the direction is unclear.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1458,
+  "decl": "AlgebraicGeometry.exists_preimage_eq",
+  "reason": "Rebuilt around `exists_finite_of_isCompact` with `choose` and an attached-finset index, then closed with a different simp set; longer with more bookkeeping, but `rfl` removes a separate final equation. Open question: does the basis-characterisation route improve the structure, or only migrate an API with extra indexing overhead?",
+  "second_screen_reason": "Restructured around a different basis lemma (`isBasis_preimage_isAffineOpen ... exists_finite_of_isCompact`) and `choose`, with the final equality proved at the scheme level (`Scheme.Hom.preimage_iSup`, `comp_preimage`) instead of through `TopCat.hom_comp` and `comp_base`. Some changes raise the abstraction level while others add Finset/attach bookkeeping, and the net effect depends on the changed API.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1503,
+  "decl": "Module.supportDim_le_supportDim_quotSMulTop_succ_of_mem_jacobson",
+  "reason": "Explicit calc replaced by a `grw` chain that unfolds `supportDim`/`Order.krullDim`. Open: is the shorter grw chain clearer, or does unfolding definitions make it less readable and more fragile than the calc?",
+  "second_screen_reason": "Besides `.2`→`.mpr`, a two-step `calc` (cast bound, then `le_iSup` with `q'`) becomes a `grw` chain that unfolds `supportDim` and `Order.krullDim`. It is unclear whether the shorter `grw` is clearer or more definition-dependent than the calc.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1532,
+  "decl": "hasMFDerivAt_sumSwap",
+  "reason": "Earlier derives the statement in two lines from `hasMFDerivWithinAt_sumSwap` via `univ`; final proves it directly by a chart computation. Open question: was the dependency inverted (the within-version now derived from this one), in which case nothing is duplicated, or is the chart argument now repeated?",
+  "second_screen_reason": "Earlier derives the At-version from the Within-version via hasMFDerivWithinAt_univ; final proves it directly from charts (fun_prop, writtenInExtChartAt_sumSwap_eventuallyEq_id, mfld_simps). Likely a dependency reversal (Within derived from At), so the net effect depends on file organisation not visible here.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1558,
+  "decl": "EuclideanGeometry.dist_lt_of_sbtw_of_inner_eq_zero",
+  "reason": "Auxiliary facts moved into the subproof and dist-based library lemmas used, but explicit mul_lt_of_lt_one_left+linarith replaced by nlinarith. Open: does the better scoping outweigh the less explicit final inequality step?",
+  "second_screen_reason": "Earlier states the key inequality t²‖c−a‖² < ‖c−a‖² via `mul_lt_of_lt_one_left` and finishes with `linarith`; final rewrites with the (changed-signature) distance lemmas and lets `nlinarith` with hints find it. Open: is hiding the one real inequality step in `nlinarith` acceptable, or is the earlier explicit step better?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1619,
+  "decl": "Submodule.map_orthogonal",
+  "reason": "The final reuses LinearIsometryEquiv.inner_map_eq_flip in place of the f.symm (f y) rewrite detour, but replaces a readable two-direction ext proof with a dense term-mode closing.",
+  "second_screen_reason": "A `constructor`/`rintro` proof with an explicit `f.symm` witness becomes `simp only [..., LinearIsometryEquiv.inner_map_eq_flip]` plus a compact term. Same isometry-transport argument with similar transparency.",
+  "open_question": "Does reusing inner_map_eq_flip outweigh the loss of readability from compressing the two-direction proof into a dense term?",
+  "usability": []
+ },
+ {
+  "row": 1638,
+  "decl": "SSet.stdSimplex.faceSingletonIso_zero_hom_comp_ι_eq_δ",
+  "reason": "The explicit Yoneda reduction (`yonedaEquiv.injective`, ext, fin_cases, rfl) is replaced by bare `decide`; like the deferred 1617, automation changes how much of the categorical reduction is explicit.",
+  "second_screen_reason": "Reduction via `yonedaEquiv.injective`, ext and `fin_cases ... rfl` is replaced by bare `decide`; unclear whether the explicit Yoneda reduction is meaningful explanation or just a manual finite check (cf. 1617).",
+  "open_question": "Is the explicit Yoneda reduction to a finite check meaningful explanation worth keeping, or is `decide` on a finite computation equally good?",
+  "usability": []
+ },
+ {
+  "row": 1664,
+  "decl": "Matrix.l2_opNorm_diagonal",
+  "reason": "The same diagonal-operator upper/lower bound argument is reorganised; reuse and presentation changes are mixed.",
+  "second_screen_reason": "Earlier states named intermediate estimates (hnorm_sq, hsum, explicit calc); final compresses to simp/grw with an underscore calc. Open question: are the named intermediate estimates worth more than the brevity?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1675,
+  "decl": "Nat.log_lt_iff_lt_pow",
+  "reason": "The final extracts specification inequalities and proves both comparison cases explicitly; the earlier specification theorem may have changed.",
+  "second_screen_reason": "The earlier one-liner uses the iff component of `log.go_spec`. The final destructures `go_spec` into bounds `H₁`, `H₂` and re-derives the iff with explicit case analysis and `pow_le_pow_right`. Whether this is a regression or is forced by a changed `go_spec` statement needs historical context.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1676,
+  "decl": "Nat.clog_le_iff_le_pow",
+  "reason": "The final proves the ceiling-log cases from explicit specification bounds instead of invoking the previous packaged consequence. Historical interface compatibility is unresolved.",
+  "second_screen_reason": "Earlier closes case1 directly from a component of clog.go_spec; final re-derives the iff by explicit case analysis. Open question: did go_spec's statement change (forcing this), and is the explicit derivation a loss?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1762,
+  "decl": "CategoryTheory.Limits.Types.isPullback_iff",
+  "reason": "Earlier proves the comparison map φ is bijective explicitly: injectivity from h₁ (via Subtype/Prod ext) and surjectivity from h₂; final closes it with `grind [Function.Bijective, Function.Injective, Function.Surjective]`. This is the core step of the pullback characterisation, so the automation hides which hypothesis gives which half; unclear whether that is a material loss of explanation or acceptable brevity.",
+  "second_screen_reason": "Earlier proves bijectivity of the comparison map explicitly: injectivity from h₁ and surjectivity from h₂; final replaces this with `grind [Function.Bijective, Function.Injective, Function.Surjective]`, hiding which hypothesis gives which half. Open question whether this explicit component is meaningful mathematics or routine unfolding.",
+  "open_question": "When grind/aesop replaces an explicit proof of the *main* step of a characterisation (here: h₁ gives injectivity, h₂ gives surjectivity of the comparison map), should the explicit earlier proof count as better, or is this the same no-difference automation case as a side condition (cf. 1381)?",
+  "usability": []
+ },
+ {
+  "row": 1803,
+  "decl": "Real.Angle.abs_toReal_add_eq_two_pi_sub_abs_toReal_add_abs_toReal_aux",
+  "reason": "Changes to real-representative/divisibility reasoning are mixed with grind; preference requires mathematical/context review.",
+  "second_screen_reason": "Earlier is a long explicit argument (derive positivity of toReal, split on θ+ψ = π, compute the coerced sum minus 2π by hand, trichotomy on sign); final reorganises around an integer winding offset k from `angle_eq_iff_two_pi_dvd_sub`, pinned by `int_eq_of_mul_mem_Ioo`, with most steps closed by `grind`. Open: the new k-pinning idea is arguably cleaner, but the reasoning is largely hidden in `grind`; is that a net gain over the explicit derivation?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1804,
+  "decl": "Real.Angle.abs_toReal_add_eq_two_pi_sub_abs_toReal_add_abs_toReal",
+  "reason": "Explicit sign-zero case analysis and negation rewrites replaced by `grind [sign_eq_zero_iff, coe_pi_add_coe_pi]` and `all_goals simp`. Open: is the hidden degenerate-case argument meaningful?",
+  "second_screen_reason": "The explicit up-front `sign = 0` case split (both angles 0 or π) is dropped. That case is closed by `grind [sign_eq_zero_iff, coe_pi_add_coe_pi]` inside the trichotomy, the negated-sign facts move into one `grind`, and two rewrite branches become one `simp`. The proof is shorter, but the degenerate-case reasoning is no longer visible.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1814,
+  "decl": "ArithmeticFunction.sigma_eq_zero",
+  "reason": "The explicit witness (use 1: the divisor 1 contributes to σ), which is the whole content of the nonzero case, is replaced by simp only [sigma_apply]; aesop; resembles the deferred witness-to-automation class (1617).",
+  "second_screen_reason": "iff_of_false/simp_rw/use 1 -> simp only [sigma_apply]; aesop; same small fact.",
+  "open_question": "When the only mathematical content of a lemma is an explicit witness, does hiding it inside aesop make the proof worse, or is it harmless brevity?",
+  "usability": []
+ },
+ {
+  "row": 1955,
+  "decl": "PeriodPair.ite_eq_one_sub_sq_mul_weierstrassP",
+  "reason": "`split_ifs` plus an explicit field-arithmetic rw chain is replaced by `grind [L.weierstrassPExcept_add ...]`; the key lemma stays visible but the case split and algebra are hidden, the same class as deferred 1587.",
+  "second_screen_reason": "split_ifs and an algebraic rw chain become `grind` given the key lemma `weierstrassPExcept_add`; the key mathematical step stays visible.",
+  "open_question": "Is the hidden split_ifs case analysis and algebraic rewrite chain material when the key lemma remains cited in grind (same class as 1587)?",
+  "usability": []
+ },
+ {
+  "row": 1957,
+  "decl": "LinearMap.BilinForm.linearIndependent_of_pairwise_le_zero",
+  "reason": "Mixed: two `suffices` now state the reduced goals (`B x y ≤ 0` and an explicit double-sum nonnegativity), which helps the reader, but the explicit `mul_nonneg_iff`/`mul_nonpos_iff` sign-case term becomes `grind [...]`; net quality direction unclear.",
+  "second_screen_reason": "Final states the reduced goals explicitly via suffices (clarity gain) but replaces the explicit sign argument by grind. Open question: does the stated-goal gain outweigh the hidden sign reasoning (cf. deferred 1128)?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1962,
+  "decl": "Algebra.Smooth.exists_span_eq_top_isStandardSmooth",
+  "reason": "Earlier shows the basic opens cover Spec S by exhibiting p for each prime and applying hf₁, and the membership part via hf₂; final uses simp with ext lemmas plus two grind calls. Open: automation versus explicit covering argument.",
+  "second_screen_reason": "An explicit proof that the basic opens `D(f p)` cover `Spec S` (via `iSup_basicOpen_eq_top_iff`, `use p`, `hf₁`) and that each `f p` is standard smooth (`hf₂`) becomes `simp [...]` plus two `grind`s. Brevity versus hiding which hypothesis does which job.",
+  "open_question": "When grind/simp replaces a short explicit witness-based argument (here: covering Spec by basic opens), should this be treated as no difference, final better (less bookkeeping), or earlier better (hides the witness)?",
+  "usability": []
+ },
+ {
+  "row": 1980,
+  "decl": "ContinuousLinearMap.toSpanSingleton_pow",
+  "reason": "Earlier is a one-line reuse of `smulRight_one_pow`; final proves the `toSpanSingleton` power formula by explicit induction. Open: was `smulRight_one_pow` being deprecated in favour of this new primary statement (so the induction is the canonical proof), or is the final reproving an existing lemma? Earlier availability unverified.",
+  "second_screen_reason": "Earlier one-line smulRight_one_pow; final reproves by induction. Open question: is the sibling lemma being deprecated/reversed in dependency order, making the induction necessary?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 1997,
+  "decl": "Metric.maximalSeparatedSet_subset",
+  "reason": "Explicit `by_cases` on the `dite` in `maximalSeparatedSet` (chosen set ⊆ A vs empty set) is replaced by `grind [maximalSeparatedSet]`; same split-to-automation class as deferred 1587.",
+  "second_screen_reason": "by_cases with choose_spec projection replaced by grind [maximalSeparatedSet]; routine dite unfolding.",
+  "open_question": "Does hiding the two-case structure of the definition behind grind lose meaningful explicitness, or is it trivial dite unfolding (same class as 1587)?",
+  "usability": []
+ },
+ {
+  "row": 2017,
+  "decl": "AkraBazziRecurrence.GrowsPolynomially.eventually_atTop_nonneg_or_nonpos",
+  "reason": "The long induction step is largely hidden in grind; related automation policy is deferred.",
+  "second_screen_reason": "Large explicit derivations (z_nonneg, n₀ ≤ z, the f z = c₂ f z step, calc bounds for the induction hypothesis) are replaced by `grind`, with hypotheses introduced anonymously; it is unclear whether hiding these routine but non-trivial inequality chains is a clarity loss or acceptable brevity.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 2020,
+  "decl": "Polynomial.Chebyshev.T_eval_zero",
+  "reason": "Duplicated parity case splits with long simp only lists and helper haves become `by_cases Even n <;> simp_all` with the key division identity; this matches the deferred by_cases <;> simp class (1587).",
+  "second_screen_reason": "Duplicated parity case splits with long simp only lists and helper haves replaced by by_cases <;> simp_all keeping the key division identity; same case split, difference is simp-set verbosity.",
+  "open_question": "Is removing the duplicated per-parity simp only branches in favour of `by_cases <;> simp_all` a simpler presentation, or does it hide which parity facts are used (as in deferred 1587)?",
+  "usability": []
+ },
+ {
+  "row": 2021,
+  "decl": "Polynomial.Chebyshev.U_eval_zero",
+  "reason": "Duplicated parity branches with many grind-proved haves and long simp only lists collapse to by_cases Even n <;> simp_all, keeping the one nontrivial /2 arithmetic fact; this is the by_cases <;> simp class the user deferred (1587), though here duplication removal is substantial.",
+  "second_screen_reason": "Duplicated parity branches with many `grind`-proved `have`s and long `simp only` lists collapsed into `by_cases Even n <;> simp_all [...]`, keeping the one needed arithmetic fact about `/ 2`; parity bookkeeping automated, same argument.",
+  "open_question": "Does collapsing duplicated explicit parity branches into by_cases <;> simp_all (while keeping the key arithmetic have) count as a material simplification or a convention change?",
+  "usability": []
+ },
+ {
+  "row": 2031,
+  "decl": "IsScalarTower.algebraMap_eq",
+  "reason": "Earlier is a one-line appeal to `algebraMap_comp_algebraMap`; final proves the identity directly by `RingHom.ext` and smul rewriting. Open question: is this a dependency inversion (the sibling lemma now derived from this one), making it neutral, or a loss of reuse?",
+  "second_screen_reason": "Earlier is a term via the library fact algebraMap_comp_algebraMap.symm; final proves it from scratch with ext and smul_assoc. Likely the dependency was reversed so the sibling is derived from this foundational lemma; open question: is this file reorganisation a quality change?",
+  "open_question": "When a final proof replaces a one-line appeal to a sibling lemma with a direct proof, most likely because the dependency was inverted so the sibling is now derived from this one, should that count as earlier_better (lost reuse) or no material preference?",
+  "usability": []
+ },
+ {
+  "row": 2048,
+  "decl": "reindex_mem_doublyStochastic",
+  "reason": "Explicit doubly-stochastic row/column-sum transport is replaced by grind; mathematical content is hidden rather than shown changed.",
+  "second_screen_reason": "A 15-line explicit proof becomes bare `grind`. The earlier proof checks nonnegativity and reindexes row and column sums with `Finset.sum_equiv` and the doubly-stochastic API, and none of this structure remains visible in the final.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 2091,
+  "decl": "Hyperreal.archimedeanClassMk_epsilon_pos",
+  "reason": "Earlier argues via `archimedeanClassMk_pos_of_tendsto` and ε→0 along the hyperfilter; final is `simp [← inv_omega]`; unclear whether hiding the tendsto argument behind simp lemmas about ω is a loss or appropriate reuse.",
+  "second_screen_reason": "Earlier gives an explicit reason (ε is represented by 1/n → 0, via `archimedeanClassMk_pos_of_tendsto`); final is `simp [← inv_omega]`, relying on simp lemmas about ω's class. Open question: does the final reuse a characterisation of ω (good reuse) or merely hide the explicit tendsto argument?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 2144,
+  "decl": "RCLike.sqrt_of_nonneg",
+  "reason": "The earlier transports along complexRingEquiv via sqrt_complexRingEquiv; the final unfolds sqrt_eq_ite with dif_pos and RingEquiv.symm_apply_eq, likely after an API change.",
+  "second_screen_reason": "Earlier transports along complexRingEquiv using sqrt_complexRingEquiv; final unfolds sqrt_eq_ite with dif_pos and RingEquiv.symm_apply_eq. Open question: is unfolding the definition a loss of abstraction relative to the transport lemma, or just an API adaptation?",
+  "open_question": "Was sqrt redefined (or sqrt_complexRingEquiv removed) at the final snapshot, i.e. is unfolding the definition a forced adaptation or a loss of abstraction?",
+  "usability": []
+ },
+ {
+  "row": 2145,
+  "decl": "RCLike.sqrt_neg_of_nonneg",
+  "reason": "Earlier transports through `complexRingEquiv` using the characterisation `sqrt_complexRingEquiv`; final unfolds `sqrt_eq_ite`/`dif_pos` and uses `RingEquiv.symm_apply_eq`. Direction depends on whether the definition/API changed.",
+  "second_screen_reason": "`apply_fun complexRingEquiv` route replaced by unfolding via `sqrt_eq_ite` and `RingEquiv.symm_apply_eq`; adaptation to the definition's API, same reduction to the complex case.",
+  "open_question": "Did the definition of `RCLike.sqrt` change so that unfolding `sqrt_eq_ite` is the intended API, or does the final lose a cleaner transport characterisation still available?",
+  "usability": []
+ },
+ {
+  "row": 2195,
+  "decl": "Submodule.CoFG.of_cofg_le",
+  "reason": "The earlier closes via the API lemma `hS.sup T`, while the final proves it from `Module.Finite.equiv (quotientQuotientEquivQuotientSup S T)`; whether this is a needless re-derivation or a forced change (e.g. `CoFG.sup` now depending on this lemma) needs historical context.",
+  "second_screen_reason": "Earlier applies the closure lemma hS.sup T; final constructs finiteness via quotientQuotientEquivQuotientSup. Likely dependency reversal (CoFG.sup possibly derived from this); open question as for other sibling-lemma replacements.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 2205,
+  "decl": "TendstoLocallyUniformlyOn.comp",
+  "reason": "A filter-characterization composition proof becomes an explicit neighbourhood witness proof. Different abstraction levels are visible; audience preference is unsettled.",
+  "second_screen_reason": "Earlier is a one-line filter argument via the characterisation tendstoLocallyUniformlyOn_iff_filter; final gives an elementary neighbourhood argument (preimage_mem_nhdsWithin'). Open question: is the filter-characterisation proof (more abstract, reuses the iff) better than the explicit set-level argument (more transparent to non-experts)?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 2218,
+  "decl": "Finset.memberSubfamily_union_nonMemberSubfamily",
+  "reason": "A grind proof becomes explicit membership witnesses; user has not settled a general automation-versus-explicit preference.",
+  "second_screen_reason": "grind replaced by an explicit insert/erase case proof. Open question: does the explicit proof aid understanding enough, or is it a longer replacement (possibly for performance) of an equally clear automated proof?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 2219,
+  "decl": "Finset.mem_sigmaLift",
+  "reason": "A grind proof becomes explicit dependent-index cases and membership witnesses; preference remains unsettled.",
+  "second_screen_reason": "Earlier proves the membership characterisation with `grind [sigmaLift]`; final is a 15-line explicit case analysis on `i = j` unfolding `sigmaLift` (dite) in each direction. Open: for a whole (non-side-condition) lemma whose content is a definitional case split, is the explicit unfolding or the one-line automation preferable?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 2220,
+  "decl": "Equiv.Perm.support_swap_mul_eq",
+  "reason": "A grind proof becomes explicit permutation cases; no speed or reliability measurement establishes a preference.",
+  "second_screen_reason": "grind with the key lemma hint replaced by a four-level by_cases/simp case bash. Open question: is the explicit but unilluminating case split better or worse than the hinted grind?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 2243,
+  "decl": "MeasureTheory.isProbabilityMeasure_bind",
+  "reason": "Structural proof (bind = join of map, each preserves probability measures via isProbabilityMeasure_join) replaced by a direct computation of (μ.bind f) univ via bind_apply and lintegral_eq_const; open question: is the structural composition or the direct computation the better argument?",
+  "second_screen_reason": "Earlier uses the structural decomposition bind = join ∘ map with `isProbabilityMeasure_join` and `ae_map_iff` (with an @-explicit instance); final directly computes `(μ.bind f) univ = ∫ f a univ = 1` via `bind_apply` and `lintegral_eq_const`. Open question: is reusing the join/map structure or the direct evaluation the better route here.",
+  "open_question": "When a structural proof composing library preservation lemmas (with explicit @-instance plumbing) is replaced by a short direct computation of the measure of univ, which do you prefer?",
+  "usability": []
+ },
+ {
+  "row": 2260,
+  "decl": "Height.mulHeight₁_sum_le",
+  "reason": "The same height-product estimates are reorganised through gcongr rather than calc; a direction is not established.",
+  "second_screen_reason": "Earlier presents the bound as a three-step calc (archimedean factor, nonarchimedean factor, regrouping); final regroups first with an opaque reverse rw chain, then gcongr produces the four component bounds. Open question: is the calc's stated intermediate shape clearer than the gcongr decomposition, or vice versa?",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 2284,
+  "decl": "Asymptotics.isEquivalent_of_tendsto_one",
+  "reason": "The same eventual zero implication is stated inline using an equivalence characterization rather than invoking an auxiliary lemma. Self-containment versus reuse is mixed.",
+  "second_screen_reason": "The earlier delegates to `isEquivalent_of_tendsto_one_aux`; the final inlines the reduction via `isEquivalent_iff_exists_eq_mul` and `div_mul_cancel_of_imp`. Whether this is better depends on whether the `_aux` lemma was a single-use helper removed by the PR.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 2304,
+  "decl": "MeasureTheory.AddContent.onIocAux_empty",
+  "reason": "The earlier uses the API lemma onIocAux_apply via an inhabit/Ioc default default = ∅ trick; the final unfolds onIocAux with dite_eq_right_iff and grind.",
+  "second_screen_reason": "inhabit-based argument via onIocAux_apply replaced by unfolding onIocAux into dite_eq_right_iff and grind with Ioc_eq_empty_iff; small proof of a degenerate case.",
+  "open_question": "Is unfolding the definition and using grind preferable to the API-based but roundabout inhabit trick?",
+  "usability": []
+ },
+ {
+  "row": 2313,
+  "decl": "Imo2002Q3.result",
+  "reason": "Forward direction's four explicit helper steps replaced by a single `proof_body` lemma and backward direction tidied; whether bundling the chain (defined outside the diff) helps or hides the archive proof's structure is unclear.",
+  "second_screen_reason": "The forward direction's chain of helper lemmas (dvd_of_hyp, m_lt_twice_n, n_lt_m, m_n_eq) is moved into a lemma `proof_body` not visible here; whether that factoring helps cannot be judged from the declaration alone.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 2319,
+  "decl": "BoundedVariationOn.exists_tendsto_left",
+  "reason": "Earlier gets the left limit in one line by order duality from `exists_tendsto_right`; final proves it directly from the filter-general `exists_tendsto_left_of_filter` with an emptiness case split. Open question: is the duality reduction or the direct use of the general filter lemma the better structure (likely depends on how the right version is now proved)?",
+  "second_screen_reason": "Earlier is the duality transport hf.ofDual.exists_tendsto_right (toDual x); final is a direct proof via exists_tendsto_left_of_filter with an empty/nonempty split. Possibly a dependency reorganisation; open question whether losing the symmetric transport is a quality loss.",
+  "open_question": null,
+  "usability": []
+ },
+ {
+  "row": 2377,
+  "decl": "Set.Finite.ecard_lt_ecard",
+  "reason": "The final expands the same cardinal-subtraction argument into several suffices statements. Extra scaffolding could help or hinder reading; no clear direction established.",
+  "second_screen_reason": "Earlier is a backward `rw` chain; final restates it as a cascade of `suffices` making each intermediate inequality explicit. Like 1128, a presentation gain of uncertain materiality versus added verbosity.",
+  "open_question": null,
+  "usability": []
+ }
+]

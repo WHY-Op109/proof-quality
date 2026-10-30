@@ -1,0 +1,260 @@
+<title>Mathlib Proof Pair Screen</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  /* Layout: sticky top bar with view tabs; a pair list on the left, the selected pair on the right (stacked on phones). */
+  :root {
+    --bg: #f5f7f8; --panel: #ffffff; --ink: #18232b; --muted: #5a6b76; --line: #d9e1e6;
+    --accent: #0f6e7d; --accent-ink: #ffffff; --accent-soft: #e0f0f2;
+    --earlier: #9a5b13; --earlier-soft: #fbf0e0;
+    --human: #6b4bb5; --human-soft: #efeafb;
+    --del: #fde8e6; --del-mark: #f6c3be; --add: #e3f6e8; --add-mark: #a9e3b8; --empty: #eef2f4;
+    --display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+    --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg: #0f161a; --panel: #162026; --ink: #e2eaee; --muted: #93a6b1; --line: #2a3a43;
+    --accent: #4fb8c6; --accent-ink: #062126; --accent-soft: #173840;
+    --earlier: #e0a458; --earlier-soft: #3a2a14; --human: #b39bf0; --human-soft: #2b2342;
+    --del: #3b1f1f; --del-mark: #6e2f2c; --add: #17331f; --add-mark: #2a6a3c; --empty: #1b272e; color-scheme: dark; } }
+  :root[data-theme="dark"] {
+    --bg: #0f161a; --panel: #162026; --ink: #e2eaee; --muted: #93a6b1; --line: #2a3a43;
+    --accent: #4fb8c6; --accent-ink: #062126; --accent-soft: #173840;
+    --earlier: #e0a458; --earlier-soft: #3a2a14; --human: #b39bf0; --human-soft: #2b2342;
+    --del: #3b1f1f; --del-mark: #6e2f2c; --add: #17331f; --add-mark: #2a6a3c; --empty: #1b272e; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--body); }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--panel); }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--panel); border-bottom: 1px solid var(--line); }
+  .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.25rem; padding-block: 0.7rem; }
+  h1 { font: 600 1.15rem/1.2 var(--display); margin: 0; letter-spacing: 0.01em; text-wrap: balance; }
+  h1 small { display: block; font: 400 0.78rem/1.3 var(--body); color: var(--muted); letter-spacing: 0; }
+  nav.tabs { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  nav.tabs button { font: 500 0.85rem var(--body); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 0.25rem 0.75rem; cursor: pointer; }
+  nav.tabs button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  nav.tabs .n { font-variant-numeric: tabular-nums; opacity: 0.8; margin-left: 0.3rem; }
+  .layout { display: grid; grid-template-columns: minmax(15rem, 20rem) minmax(0, 1fr); gap: 1.25rem; padding-block: 1rem 3rem; align-items: start; }
+  aside { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 4.2rem); display: flex; flex-direction: column; gap: 0.6rem; max-height: calc(100vh - 5.5rem); min-width: 0; }
+  .filters { display: flex; flex-direction: column; gap: 0.45rem; }
+  .filters input, .filters select { width: 100%; font: 0.85rem var(--body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 0.35rem 0.5rem; }
+  .filters .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem; }
+  .viewnote { font-size: 0.8rem; color: var(--muted); margin: 0; }
+  ol.list { list-style: none; margin: 0; padding: 0; overflow-y: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); min-height: 6rem; }
+  ol.list li button { display: grid; grid-template-columns: 1fr auto; gap: 0.1rem 0.5rem; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--line); padding: 0.45rem 0.6rem; color: var(--ink); cursor: pointer; font: inherit; }
+  ol.list li button[aria-current="true"] { background: var(--accent-soft); }
+  ol.list .decl { font: 0.8rem/1.3 var(--mono); overflow-wrap: anywhere; min-width: 0; }
+  ol.list .sub { grid-column: 1 / -1; font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .chip { display: inline-block; font: 600 0.68rem/1.5 var(--body); letter-spacing: 0.04em; text-transform: uppercase; padding: 0 0.45rem; border-radius: 4px; white-space: nowrap; align-self: start; }
+  .chip.final { background: var(--accent-soft); color: var(--accent); }
+  .chip.earlier { background: var(--earlier-soft); color: var(--earlier); }
+  .chip.none, .chip.open { background: var(--empty); color: var(--muted); }
+  .chip.human { background: var(--human-soft); color: var(--human); }
+  main { min-width: 0; display: flex; flex-direction: column; gap: 0.9rem; }
+  .pairhead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.9rem; }
+  .pairhead h2 { font: 600 1.05rem/1.3 var(--mono); margin: 0; overflow-wrap: anywhere; min-width: 0; }
+  .pairhead .meta { font-size: 0.8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .pager { display: flex; gap: 0.4rem; margin-left: auto; align-items: center; }
+  .pager button, .toggle { font: 500 0.82rem var(--body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 0.25rem 0.6rem; cursor: pointer; }
+  .pager button:disabled { opacity: 0.4; cursor: default; }
+  .toggle[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+  .verdict { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 0.85rem 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .verdict .line1 { display: flex; flex-wrap: wrap; gap: 0.4rem 0.6rem; align-items: center; font: 600 1rem var(--display); }
+  .verdict p { margin: 0; max-width: 72ch; }
+  .verdict .dims { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .verdict .dims span { font: 0.72rem var(--mono); border: 1px solid var(--line); border-radius: 4px; padding: 0 0.35rem; color: var(--muted); }
+  .verdict .you { border-left: 3px solid var(--human); padding-left: 0.6rem; }
+  .verdict .small { font-size: 0.8rem; color: var(--muted); }
+  .statement { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; }
+  .statement summary { cursor: pointer; padding: 0.5rem 1rem; font: 600 0.78rem var(--body); letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+  pre { margin: 0; font: 12.5px/1.55 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+  .statement pre { padding: 0 1rem 0.85rem; }
+  .cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0.9rem; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; min-width: 0; }
+  .card.pref { border: 2px solid var(--accent); }
+  .card.pref.earlier { border-color: var(--earlier); }
+  .card h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.5rem; margin: 0; padding: 0.6rem 0.9rem; font: 600 0.92rem var(--display); border-bottom: 1px solid var(--line); }
+  .card h3 small { font: 400 0.75rem var(--body); color: var(--muted); }
+  .card h3 code { font: 0.72rem var(--mono); }
+  .code { padding-block: 0.35rem; overflow-x: auto; }
+  .code.plain pre { padding: 0 0.9rem; }
+  .ln { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); }
+  .ln > span { color: var(--muted); text-align: right; padding-right: 0.5rem; font: 11px/1.55 var(--mono); user-select: none; }
+  .ln > code { font: 12.5px/1.55 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; padding-right: 0.7rem; }
+  .ln.del { background: var(--del); } .ln.add { background: var(--add); } .ln.empty { background: var(--empty); }
+  .ln.del mark { background: var(--del-mark); color: inherit; border-radius: 2px; }
+  .ln.add mark { background: var(--add-mark); color: inherit; border-radius: 2px; }
+  .empty-state { background: var(--panel); border: 1px dashed var(--line); border-radius: 10px; padding: 2rem 1rem; color: var(--muted); text-align: center; }
+  footer { font-size: 0.78rem; color: var(--muted); padding-block: 0 2rem; max-width: 90ch; }
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: minmax(0, 1fr); }
+    aside { position: static; max-height: none; }
+    ol.list { max-height: 16rem; }
+    .cols { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (prefers-reduced-motion: no-preference) { ol.list li button { transition: background 0.12s; } }
+</style>
+
+<header>
+  <div class="wrap bar">
+    <h1>Mathlib Proof Pair Screen <small id="subtitle"></small></h1>
+    <nav class="tabs" aria-label="Views" id="tabs"></nav>
+  </div>
+</header>
+<div class="wrap layout">
+  <aside aria-label="Pairs">
+    <p class="viewnote" id="viewnote"></p>
+    <div class="filters">
+      <input id="q" type="search" placeholder="Search declaration, lemma or reason" aria-label="Search">
+      <div class="row2">
+        <select id="dir" aria-label="Preferred side"><option value="">Any direction</option><option value="final_better">Final better</option><option value="earlier_better">Earlier better</option></select>
+        <select id="dim" aria-label="Quality dimension"><option value="">Any dimension</option></select>
+      </div>
+      <select id="sp" aria-label="Spencer's filter"><option value="">Spencer: any</option><option value="agree">Spencer agrees</option><option value="differs">Spencer differs</option></select>
+    </div>
+    <ol class="list" id="list"></ol>
+  </aside>
+  <main id="main"></main>
+</div>
+<footer class="wrap" id="footer"></footer>
+
+<script id="data" type="application/json">/*__DATA__*/</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const $ = (id) => document.getElementById(id);
+const VIEWS = {
+  meaningful: { label: 'Meaningful difference', note: 'Pairs with a material, source-visible quality difference. The preferred side is outlined; most prefer the final revision, a few the earlier one.', test: (r) => r.decision === 'retain' },
+  hard: { label: 'Hard cases', note: 'Cases you flagged or the agents could not settle. They stay unresolved until you decide them.', test: (r) => !!r.discussion },
+  unresolved: { label: 'Unresolved', note: 'Examined individually, but no quality direction was established. Each row says what is still open.', test: (r) => r.decision === 'unresolved' },
+  excluded: { label: 'No meaningful difference', note: 'Examined individually: surface, convention or API changes with little apparent effect on quality.', test: (r) => r.decision === 'exclude' },
+};
+const DIR = { final_better: ['Final revision is better', 'final'], earlier_better: ['Earlier revision is better', 'earlier'], no_material_preference: ['No meaningful difference', 'none'], unresolved: ['Unresolved', 'open'] };
+let view = 'meaningful', rows = [], idx = 0, highlight = true;
+
+function esc(s) { return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]); }
+function el(tag, attrs = {}, ...kids) { const e = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (k === 'class') e.className = v; else if (k === 'text') e.textContent = v; else e.setAttribute(k, v); } for (const k of kids) if (k != null) e.append(k); return e; }
+function chip(dir) { const [label, cls] = DIR[dir] || [dir, 'open']; return el('span', { class: 'chip ' + cls, text: cls === 'final' ? 'final' : cls === 'earlier' ? 'earlier' : cls === 'none' ? 'same' : 'open' , title: label }); }
+
+/* Line LCS, then token LCS inside paired changed lines (same approach as tools/triplet_view). */
+function tokens(s) { return s.match(/\s+|[A-Za-z0-9_'.₀-₉]+|./gu) || []; }
+function lcs(a, b) { const n = a.length, m = b.length, dp = Array.from({ length: n + 1 }, () => new Uint16Array(m + 1)); for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]); return dp; }
+function tokenDiff(l, r) {
+  const a = tokens(l), b = tokens(r); if (a.length * b.length > 60000) return [esc(l), esc(r)];
+  const dp = lcs(a, b); let i = 0, j = 0, L = '', R = ''; const mk = (t) => '<mark>' + esc(t) + '</mark>';
+  while (i < a.length && j < b.length) { if (a[i] === b[j]) { L += esc(a[i]); R += esc(b[j]); i++; j++; } else if (dp[i + 1][j] >= dp[i][j + 1]) L += mk(a[i++]); else R += mk(b[j++]); }
+  while (i < a.length) L += mk(a[i++]); while (j < b.length) R += mk(b[j++]); return [L, R];
+}
+function diffLines(x, y) {
+  const a = x.split(/\r?\n/), b = y.split(/\r?\n/), dp = lcs(a, b), ops = []; let i = 0, j = 0;
+  while (i < a.length && j < b.length) { if (a[i] === b[j]) { ops.push(['eq', a[i], b[j]]); i++; j++; } else if (dp[i + 1][j] >= dp[i][j + 1]) ops.push(['del', a[i++]]); else ops.push(['ins', null, b[j++]]); }
+  while (i < a.length) ops.push(['del', a[i++]]); while (j < b.length) ops.push(['ins', null, b[j++]]);
+  const out = [];
+  for (let k = 0; k < ops.length;) {
+    if (ops[k][0] === 'eq') { out.push(['same', ops[k][1], ops[k][2]]); k++; continue; }
+    const dels = [], ins = []; while (k < ops.length && ops[k][0] !== 'eq') { if (ops[k][0] === 'del') dels.push(ops[k][1]); else ins.push(ops[k][2]); k++; }
+    const p = Math.min(dels.length, ins.length);
+    for (let t = 0; t < p; t++) { const [L, R] = tokenDiff(dels[t], ins[t]); out.push(['chg', dels[t], ins[t], L, R]); }
+    for (let t = p; t < dels.length; t++) out.push(['del', dels[t], null]); for (let t = p; t < ins.length; t++) out.push(['ins', null, ins[t]]);
+  }
+  return out;
+}
+function lineEl(kind, no, html) { const d = el('div', { class: 'ln ' + kind }); d.append(el('span', { text: no ? String(no) : '' })); const c = el('code'); c.innerHTML = html; d.append(c); return d; }
+function renderCode(left, right, r) {
+  left.replaceChildren(); right.replaceChildren();
+  if (!highlight) { left.className = right.className = 'code plain'; left.append(el('pre', { text: r.earlier })); right.append(el('pre', { text: r.final })); return; }
+  left.className = right.className = 'code'; let ln = 0, rn = 0;
+  for (const [k, a, b, L, R] of diffLines(r.earlier, r.final)) {
+    if (a != null) ln++; if (b != null) rn++;
+    if (k === 'same') { left.append(lineEl('same', ln, esc(a))); right.append(lineEl('same', rn, esc(b))); }
+    else if (k === 'del') { left.append(lineEl('del', ln, esc(a))); right.append(lineEl('empty', 0, '')); }
+    else if (k === 'ins') { left.append(lineEl('empty', 0, '')); right.append(lineEl('add', rn, esc(b))); }
+    else { left.append(lineEl('del', ln, L)); right.append(lineEl('add', rn, R)); }
+  }
+}
+
+function filtered() {
+  const q = $('q').value.trim().toLowerCase(), dir = $('dir').value, dim = $('dim').value, sp = $('sp').value;
+  return D.rows.filter((r) => VIEWS[view].test(r)
+    && (!dir || r.direction === dir) && (!dim || r.dims.includes(dim))
+    && (!sp || (sp === 'agree') === (r.spencer === (r.decision === 'retain')))
+    && (!q || (r.decl + ' ' + r.reason + ' ' + r.earlier + ' ' + r.final).toLowerCase().includes(q)));
+}
+function renderTabs() {
+  const t = $('tabs'); t.replaceChildren();
+  for (const [k, v] of Object.entries(VIEWS)) {
+    const b = el('button', { type: 'button', 'aria-pressed': String(k === view) }, v.label, el('span', { class: 'n', text: String(D.rows.filter(v.test).length) }));
+    b.addEventListener('click', () => { view = k; idx = 0; location.hash = k; refresh(); }); t.append(b);
+  }
+}
+function refresh(keepRow) {
+  renderTabs(); $('viewnote').textContent = VIEWS[view].note; rows = filtered();
+  if (keepRow != null) { const f = rows.findIndex((r) => r.row === keepRow); idx = f >= 0 ? f : 0; }
+  idx = Math.max(0, Math.min(idx, rows.length - 1));
+  const list = $('list'); list.replaceChildren();
+  rows.forEach((r, i) => {
+    const b = el('button', { type: 'button', 'aria-current': String(i === idx) }, el('span', { class: 'decl', text: r.decl }), chip(r.direction), el('span', { class: 'sub', text: `row ${r.row} · PR ${r.pr}` + (r.human ? ' · your verdict' : '') }));
+    b.addEventListener('click', () => { idx = i; show(); }); list.append(el('li', {}, b));
+  });
+  show();
+}
+function show() {
+  const main = $('main'); main.replaceChildren();
+  [...$('list').querySelectorAll('button')].forEach((b, i) => b.setAttribute('aria-current', String(i === idx)));
+  const cur = $('list').querySelectorAll('button')[idx]; if (cur) cur.scrollIntoView({ block: 'nearest' });
+  if (!rows.length) { main.append(el('div', { class: 'empty-state', text: 'No pairs match these filters. Clear the search or pick another direction.' })); return; }
+  const r = rows[idx];
+  const prev = el('button', { type: 'button', text: '← Previous' }), next = el('button', { type: 'button', text: 'Next →' }), tog = el('button', { type: 'button', class: 'toggle', 'aria-pressed': String(highlight), text: 'Highlight differences' });
+  prev.disabled = idx === 0; next.disabled = idx === rows.length - 1;
+  prev.onclick = () => { idx--; show(); }; next.onclick = () => { idx++; show(); }; tog.onclick = () => { highlight = !highlight; show(); };
+  main.append(el('div', { class: 'pairhead' }, el('h2', { text: r.decl }), el('span', { class: 'meta', text: `Row ${r.row} of 2,379 · ${idx + 1} of ${rows.length} in view` }), el('div', { class: 'pager' }, tog, prev, next)));
+
+  const v = el('section', { class: 'verdict', 'aria-label': 'Screening verdict' });
+  const [dlabel] = DIR[r.direction] || [r.direction];
+  v.append(el('div', { class: 'line1' }, chip(r.direction), el('span', { text: dlabel })));
+  v.append(el('p', { text: r.reason }));
+  if (r.dims.length) v.append(el('div', { class: 'dims' }, ...r.dims.map((d) => el('span', { text: d }))));
+  if (r.human) v.append(el('p', { class: 'you' }, el('span', { class: 'chip human', text: 'your verdict' }), ' “' + r.human + '”' + (r.decision === 'unresolved' ? ' (deferred for discussion)' : '')));
+  if (r.discussion) v.append(el('p', { class: 'you' }, el('span', { class: 'chip human', text: r.discussion.source === 'user_flagged' ? 'you flagged' : 'question for you' }), ' ' + (r.discussion.question || r.discussion.why) + (r.discussion.cluster_size > 1 ? ` Your answer would settle ${r.discussion.cluster_size} pairs with the same question.` : '')));
+  else if (r.cluster && r.cluster.representative_row) { const a = el('a', { href: '#r' + r.cluster.representative_row, text: 'row ' + r.cluster.representative_row }); v.append(el('p', { class: 'small' }, `Open question shared with ${r.cluster.size - 1} other pairs; asked once at `, a, `: ${r.cluster.question}`)); }
+  else if (r.cluster) v.append(el('p', { class: 'small', text: 'Needs historical context or a data repair before anyone can judge it: ' + r.cluster.summary }));
+  const basis = r.human ? 'your recorded judgment' : r.check ? r.check : `one individual reading (${r.assessor})`;
+  const pr = el('a', { href: `https://github.com/leanprover-community/mathlib4/pull/${r.pr}`, target: '_blank', rel: 'noopener', text: `PR #${r.pr}` });
+  v.append(el('p', { class: 'small' }, `Basis: ${basis}. Spencer's filter: ${r.spencer ? 'retained' : 'excluded'} (${r.spencer_class}). `, pr, ' · ', el('a', { href: r.earlier_url, target: '_blank', rel: 'noopener', text: 'earlier source' }), ' · ', el('a', { href: r.final_url, target: '_blank', rel: 'noopener', text: 'final source' }), r.flags.length ? ` · Data issue: ${r.flags.join(', ')}` : ''));
+  main.append(v);
+
+  const st = el('details', { class: 'statement' }); st.open = true; st.append(el('summary', { text: 'Statement' }), el('pre', { text: r.statement })); main.append(st);
+  const lc = el('div'), rc = el('div');
+  const card = (side, title, field, body) => {
+    const pref = (side === 'earlier' && r.direction === 'earlier_better') || (side === 'final' && r.direction === 'final_better');
+    const h = el('h3', {}, title, el('small', {}, side === 'earlier' ? 'historically rejected · ' : 'historically accepted · ', el('code', { text: field })));
+    if (pref) h.append(el('span', { class: 'chip ' + side, text: 'preferred' }));
+    return el('section', { class: 'card' + (pref ? ' pref ' + side : '') }, h, body);
+  };
+  main.append(el('div', { class: 'cols' }, card('earlier', 'Earlier revision', 'rejected', lc), card('final', 'Final revision', 'chosen', rc)));
+  renderCode(lc, rc, r);
+  history.replaceState(null, '', '#r' + r.row);
+}
+
+function route() {
+  const h = location.hash.replace(/^#/, '');
+  if (VIEWS[h]) { view = h; idx = 0; refresh(); return; }
+  const m = /^r(\d+)$/.exec(h);
+  if (m) { const r = D.rows.find((x) => x.row === Number(m[1])); if (r) { view = Object.keys(VIEWS).find((k) => k !== 'hard' && VIEWS[k].test(r)) || view; $('q').value = ''; $('dir').value = $('dim').value = $('sp').value = ''; refresh(r.row); return; } }
+  refresh();
+}
+for (const d of D.dimensions) $('dim').append(el('option', { value: d, text: d.replace(/_/g, ' ') }));
+for (const id of ['q', 'dir', 'dim', 'sp']) $(id).addEventListener('input', () => { idx = 0; refresh(); });
+document.addEventListener('keydown', (e) => {
+  if (e.target.closest('input, select, textarea')) return;
+  if ((e.key === 'ArrowRight' || e.key === 'j') && idx < rows.length - 1) { idx++; show(); }
+  else if ((e.key === 'ArrowLeft' || e.key === 'k') && idx > 0) { idx--; show(); }
+});
+window.addEventListener('hashchange', () => { const h = location.hash.replace(/^#/, ''); if ((VIEWS[h] && h !== view) || (/^r\d+$/.test(h) && rows[idx] && 'r' + rows[idx].row !== h)) route(); });
+$('subtitle').textContent = D.subtitle;
+$('footer').textContent = D.footer;
+route();
+</script>

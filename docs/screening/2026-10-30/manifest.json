@@ -1,11 +1,11 @@
 {
-  "created_utc": "2026-10-30T16:54:35.406735+00:00",
+  "created_utc": "2026-10-30T17:20:05.279965+00:00",
   "population": 2379,
   "spencer_retained": 539,
   "counts": {
-    "exclude": 1963,
-    "unresolved": 181,
-    "retain": 235
+    "exclude": 2029,
+    "unresolved": 85,
+    "retain": 265
   },
   "method_counts": {
     "individual_diff_examination": 2229,
@@ -13,16 +13,16 @@
     "recorded_human_judgment": 20
   },
   "cross_table": {
-    "(True, 'retain')": 166,
-    "(True, 'exclude')": 253,
-    "(True, 'unresolved')": 120,
-    "(False, 'retain')": 69,
-    "(False, 'exclude')": 1710,
-    "(False, 'unresolved')": 61
+    "(True, 'retain')": 184,
+    "(True, 'exclude')": 287,
+    "(True, 'unresolved')": 68,
+    "(False, 'retain')": 81,
+    "(False, 'exclude')": 1742,
+    "(False, 'unresolved')": 17
   },
   "unprocessed_rows": 0,
   "agent_disagreement_rows": 40,
-  "discussion_rows": 27,
+  "discussion_rows": 13,
   "individually_unexamined_rows": 0,
   "human_record_lines": 21,
   "human_unique_cases": 20,
@@ -47,13 +47,15 @@
     "fast-screen/round2/out-09.json": "5b09f3351405cef5c0ae0f5e94a732378b53430bf2adccddfd29574c54001ca9",
     "fast-screen/round2/out-10.json": "d442153771a98b89f31f85dc122a5be65ed8a379b6bc7b91d58f1b711a3559af",
     "fast-screen/round2/out-11.json": "0ee42c6b2e45957f9c532e15b00e3ec7d1e604d556a03118282853fbbc018668",
-    "fast-screen/run.py": "cfeaac97f536f3c91e31ee07858a22ffc2e6047922112766b40ad623bda5e227"
+    "fast-screen/stage-a/final.json": "73daa0c6f22981e04dbc4fda7975e490b3daeb8d8caf23f293796ef8bbf58485",
+    "fast-screen/stage-a/clusters.json": "69b375391a2da18444b3f4e09337d2f9d102d8370fac33624f544c6c875cf32f",
+    "fast-screen/run.py": "afb9907f3f871f4a676503625f378d2a63886884b575143e191b4b13657bcc64"
   },
   "output_hashes": {
-    "FAST-SCREENING.jsonl": "4932dc58c9bf13b70ba1d3c3a0243b1a732900e17181c93ed441e681383f758b",
-    "fast-retained.pairs.jsonl": "2840a90e3b565eece3ab4a6eb9c302bb01bc79d74374ef4248a9129efb19c48f",
-    "fast-unresolved.pairs.jsonl": "ebb0612a317fd2e5cb1c5d4cbf33ccea444df83992879f6faf7f2fa4518a8f1e",
-    "fast-excluded.pairs.jsonl": "1de712dc01277d486a7df1b9ea2b2cbc7fd48d12b899abdf2f72b3bd4b8b3189",
-    "fast-navigation.jsonl": "de9284d665edcfdaf4354ad917c8b90f949e7d3858c490273bc96d4984deef0f"
+    "FAST-SCREENING.jsonl": "130e2176c729b33816cf408e20eed5912b8fc5f481e738488e7ab193034fca83",
+    "fast-retained.pairs.jsonl": "e48ea95094407fd350a81d84d492995964cd357f2f62431ca4a5c4b77ec371b1",
+    "fast-unresolved.pairs.jsonl": "09655087bda5d3d3af3a5e03a4a995ab79ee921279f133f0274a1d194772b31b",
+    "fast-excluded.pairs.jsonl": "17046375f114d79406fb94741f355e2cb41598ad4d2125ee395cb4f55ea54a95",
+    "fast-navigation.jsonl": "cd3070b0471b925e574e1141a8f3a08f0c3055af51a5408739dbddc3f752c69b"
   }
 }

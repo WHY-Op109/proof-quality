@@ -1,0 +1,650 @@
+{
+ "106": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "107": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "390": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "397": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "774": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "1079": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "1095": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "1355": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "1359": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": true
+ },
+ "1532": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "1675": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "1676": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "1980": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "2031": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "2195": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "2284": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "2319": {
+  "cluster_id": "sibling-reuse-vs-rederivation",
+  "question": "When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?",
+  "summary": "Earlier delegates to one named sibling/helper/spec lemma (often a one-liner); final re-derives the result directly. Each row is open only because it is unverified whether the helper still exists independently in the final environment (dependency inversion, helper removal, import move, changed spec statement).",
+  "size": 17,
+  "representative_row": 1359,
+  "representative": false
+ },
+ "9": {
+  "cluster_id": "api-interface-adaptation",
+  "question": "When the argument is unchanged and the final only switches the interface used to carry it out (erw vs simp, unfolding a definition vs a transport/API lemma, coe_* vs generic map_* lemmas), apparently following an upstream definition or API change, is there no difference?",
+  "summary": "Same mathematical argument; the rewrite/unfolding interface changes (erw→simp, transport lemma→sqrt_eq_ite/dif_pos, RatFunc.coe_*→map_*, API lemma vs definition unfolding, a reindexing or argument absorbed by a changed definition), most likely forced by API changes outside the proof.",
+  "size": 10,
+  "representative_row": 2144,
+  "representative": false
+ },
+ "41": {
+  "cluster_id": "api-interface-adaptation",
+  "question": "When the argument is unchanged and the final only switches the interface used to carry it out (erw vs simp, unfolding a definition vs a transport/API lemma, coe_* vs generic map_* lemmas), apparently following an upstream definition or API change, is there no difference?",
+  "summary": "Same mathematical argument; the rewrite/unfolding interface changes (erw→simp, transport lemma→sqrt_eq_ite/dif_pos, RatFunc.coe_*→map_*, API lemma vs definition unfolding, a reindexing or argument absorbed by a changed definition), most likely forced by API changes outside the proof.",
+  "size": 10,
+  "representative_row": 2144,
+  "representative": false
+ },
+ "634": {
+  "cluster_id": "api-interface-adaptation",
+  "question": "When the argument is unchanged and the final only switches the interface used to carry it out (erw vs simp, unfolding a definition vs a transport/API lemma, coe_* vs generic map_* lemmas), apparently following an upstream definition or API change, is there no difference?",
+  "summary": "Same mathematical argument; the rewrite/unfolding interface changes (erw→simp, transport lemma→sqrt_eq_ite/dif_pos, RatFunc.coe_*→map_*, API lemma vs definition unfolding, a reindexing or argument absorbed by a changed definition), most likely forced by API changes outside the proof.",
+  "size": 10,
+  "representative_row": 2144,
+  "representative": false
+ },
+ "979": {
+  "cluster_id": "api-interface-adaptation",
+  "question": "When the argument is unchanged and the final only switches the interface used to carry it out (erw vs simp, unfolding a definition vs a transport/API lemma, coe_* vs generic map_* lemmas), apparently following an upstream definition or API change, is there no difference?",
+  "summary": "Same mathematical argument; the rewrite/unfolding interface changes (erw→simp, transport lemma→sqrt_eq_ite/dif_pos, RatFunc.coe_*→map_*, API lemma vs definition unfolding, a reindexing or argument absorbed by a changed definition), most likely forced by API changes outside the proof.",
+  "size": 10,
+  "representative_row": 2144,
+  "representative": false
+ },
+ "1186": {
+  "cluster_id": "api-interface-adaptation",
+  "question": "When the argument is unchanged and the final only switches the interface used to carry it out (erw vs simp, unfolding a definition vs a transport/API lemma, coe_* vs generic map_* lemmas), apparently following an upstream definition or API change, is there no difference?",
+  "summary": "Same mathematical argument; the rewrite/unfolding interface changes (erw→simp, transport lemma→sqrt_eq_ite/dif_pos, RatFunc.coe_*→map_*, API lemma vs definition unfolding, a reindexing or argument absorbed by a changed definition), most likely forced by API changes outside the proof.",
+  "size": 10,
+  "representative_row": 2144,
+  "representative": false
+ },
+ "1255": {
+  "cluster_id": "api-interface-adaptation",
+  "question": "When the argument is unchanged and the final only switches the interface used to carry it out (erw vs simp, unfolding a definition vs a transport/API lemma, coe_* vs generic map_* lemmas), apparently following an upstream definition or API change, is there no difference?",
+  "summary": "Same mathematical argument; the rewrite/unfolding interface changes (erw→simp, transport lemma→sqrt_eq_ite/dif_pos, RatFunc.coe_*→map_*, API lemma vs definition unfolding, a reindexing or argument absorbed by a changed definition), most likely forced by API changes outside the proof.",
+  "size": 10,
+  "representative_row": 2144,
+  "representative": false
+ },
+ "1448": {
+  "cluster_id": "api-interface-adaptation",
+  "question": "When the argument is unchanged and the final only switches the interface used to carry it out (erw vs simp, unfolding a definition vs a transport/API lemma, coe_* vs generic map_* lemmas), apparently following an upstream definition or API change, is there no difference?",
+  "summary": "Same mathematical argument; the rewrite/unfolding interface changes (erw→simp, transport lemma→sqrt_eq_ite/dif_pos, RatFunc.coe_*→map_*, API lemma vs definition unfolding, a reindexing or argument absorbed by a changed definition), most likely forced by API changes outside the proof.",
+  "size": 10,
+  "representative_row": 2144,
+  "representative": false
+ },
+ "2144": {
+  "cluster_id": "api-interface-adaptation",
+  "question": "When the argument is unchanged and the final only switches the interface used to carry it out (erw vs simp, unfolding a definition vs a transport/API lemma, coe_* vs generic map_* lemmas), apparently following an upstream definition or API change, is there no difference?",
+  "summary": "Same mathematical argument; the rewrite/unfolding interface changes (erw→simp, transport lemma→sqrt_eq_ite/dif_pos, RatFunc.coe_*→map_*, API lemma vs definition unfolding, a reindexing or argument absorbed by a changed definition), most likely forced by API changes outside the proof.",
+  "size": 10,
+  "representative_row": 2144,
+  "representative": true
+ },
+ "2145": {
+  "cluster_id": "api-interface-adaptation",
+  "question": "When the argument is unchanged and the final only switches the interface used to carry it out (erw vs simp, unfolding a definition vs a transport/API lemma, coe_* vs generic map_* lemmas), apparently following an upstream definition or API change, is there no difference?",
+  "summary": "Same mathematical argument; the rewrite/unfolding interface changes (erw→simp, transport lemma→sqrt_eq_ite/dif_pos, RatFunc.coe_*→map_*, API lemma vs definition unfolding, a reindexing or argument absorbed by a changed definition), most likely forced by API changes outside the proof.",
+  "size": 10,
+  "representative_row": 2144,
+  "representative": false
+ },
+ "2304": {
+  "cluster_id": "api-interface-adaptation",
+  "question": "When the argument is unchanged and the final only switches the interface used to carry it out (erw vs simp, unfolding a definition vs a transport/API lemma, coe_* vs generic map_* lemmas), apparently following an upstream definition or API change, is there no difference?",
+  "summary": "Same mathematical argument; the rewrite/unfolding interface changes (erw→simp, transport lemma→sqrt_eq_ite/dif_pos, RatFunc.coe_*→map_*, API lemma vs definition unfolding, a reindexing or argument absorbed by a changed definition), most likely forced by API changes outside the proof.",
+  "size": 10,
+  "representative_row": 2144,
+  "representative": false
+ },
+ "64": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "357": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "452": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "567": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "727": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "1046": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "1132": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "1167": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "1243": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "1342": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "1503": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "1638": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "1664": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "1955": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "1997": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": true
+ },
+ "2020": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "2021": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "2260": {
+  "cluster_id": "automation-hides-routine-steps",
+  "question": "When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?",
+  "summary": "Earlier spells out routine work (split_ifs/by_cases on a dite, witness/identity bookkeeping, per-case grind hints, duplicated parity branches, multi-step calc or named intermediate estimates); final hands it to grind/simp/aesop_cat/cat_disch/decide/gcongr/grw. Covers the deferred split_ifs→by_cases<;>simp, witness transport→cat_disch, simp-set-inside-grind and calc-granularity classes.",
+  "size": 18,
+  "representative_row": 1997,
+  "representative": false
+ },
+ "450": {
+  "cluster_id": "automation-hides-main-step",
+  "question": "When automation (grind, aesop, nlinarith or a golfed term) replaces the explicit proof of the lemma's main step, so the decisive lemma, hypothesis or witness is no longer visible, is the earlier proof better?",
+  "summary": "Earlier explicitly proves the core step (which hypothesis gives injectivity/surjectivity, the key witness, the key length bound, inclusion–exclusion, the key inequality or cardinal step); final closes it with automation and the deciding fact disappears from the text.",
+  "size": 11,
+  "representative_row": 1344,
+  "representative": false
+ },
+ "924": {
+  "cluster_id": "automation-hides-main-step",
+  "question": "When automation (grind, aesop, nlinarith or a golfed term) replaces the explicit proof of the lemma's main step, so the decisive lemma, hypothesis or witness is no longer visible, is the earlier proof better?",
+  "summary": "Earlier explicitly proves the core step (which hypothesis gives injectivity/surjectivity, the key witness, the key length bound, inclusion–exclusion, the key inequality or cardinal step); final closes it with automation and the deciding fact disappears from the text.",
+  "size": 11,
+  "representative_row": 1344,
+  "representative": false
+ },
+ "1056": {
+  "cluster_id": "automation-hides-main-step",
+  "question": "When automation (grind, aesop, nlinarith or a golfed term) replaces the explicit proof of the lemma's main step, so the decisive lemma, hypothesis or witness is no longer visible, is the earlier proof better?",
+  "summary": "Earlier explicitly proves the core step (which hypothesis gives injectivity/surjectivity, the key witness, the key length bound, inclusion–exclusion, the key inequality or cardinal step); final closes it with automation and the deciding fact disappears from the text.",
+  "size": 11,
+  "representative_row": 1344,
+  "representative": false
+ },
+ "1344": {
+  "cluster_id": "automation-hides-main-step",
+  "question": "When automation (grind, aesop, nlinarith or a golfed term) replaces the explicit proof of the lemma's main step, so the decisive lemma, hypothesis or witness is no longer visible, is the earlier proof better?",
+  "summary": "Earlier explicitly proves the core step (which hypothesis gives injectivity/surjectivity, the key witness, the key length bound, inclusion–exclusion, the key inequality or cardinal step); final closes it with automation and the deciding fact disappears from the text.",
+  "size": 11,
+  "representative_row": 1344,
+  "representative": true
+ },
+ "1558": {
+  "cluster_id": "automation-hides-main-step",
+  "question": "When automation (grind, aesop, nlinarith or a golfed term) replaces the explicit proof of the lemma's main step, so the decisive lemma, hypothesis or witness is no longer visible, is the earlier proof better?",
+  "summary": "Earlier explicitly proves the core step (which hypothesis gives injectivity/surjectivity, the key witness, the key length bound, inclusion–exclusion, the key inequality or cardinal step); final closes it with automation and the deciding fact disappears from the text.",
+  "size": 11,
+  "representative_row": 1344,
+  "representative": false
+ },
+ "1762": {
+  "cluster_id": "automation-hides-main-step",
+  "question": "When automation (grind, aesop, nlinarith or a golfed term) replaces the explicit proof of the lemma's main step, so the decisive lemma, hypothesis or witness is no longer visible, is the earlier proof better?",
+  "summary": "Earlier explicitly proves the core step (which hypothesis gives injectivity/surjectivity, the key witness, the key length bound, inclusion–exclusion, the key inequality or cardinal step); final closes it with automation and the deciding fact disappears from the text.",
+  "size": 11,
+  "representative_row": 1344,
+  "representative": false
+ },
+ "1804": {
+  "cluster_id": "automation-hides-main-step",
+  "question": "When automation (grind, aesop, nlinarith or a golfed term) replaces the explicit proof of the lemma's main step, so the decisive lemma, hypothesis or witness is no longer visible, is the earlier proof better?",
+  "summary": "Earlier explicitly proves the core step (which hypothesis gives injectivity/surjectivity, the key witness, the key length bound, inclusion–exclusion, the key inequality or cardinal step); final closes it with automation and the deciding fact disappears from the text.",
+  "size": 11,
+  "representative_row": 1344,
+  "representative": false
+ },
+ "1814": {
+  "cluster_id": "automation-hides-main-step",
+  "question": "When automation (grind, aesop, nlinarith or a golfed term) replaces the explicit proof of the lemma's main step, so the decisive lemma, hypothesis or witness is no longer visible, is the earlier proof better?",
+  "summary": "Earlier explicitly proves the core step (which hypothesis gives injectivity/surjectivity, the key witness, the key length bound, inclusion–exclusion, the key inequality or cardinal step); final closes it with automation and the deciding fact disappears from the text.",
+  "size": 11,
+  "representative_row": 1344,
+  "representative": false
+ },
+ "1962": {
+  "cluster_id": "automation-hides-main-step",
+  "question": "When automation (grind, aesop, nlinarith or a golfed term) replaces the explicit proof of the lemma's main step, so the decisive lemma, hypothesis or witness is no longer visible, is the earlier proof better?",
+  "summary": "Earlier explicitly proves the core step (which hypothesis gives injectivity/surjectivity, the key witness, the key length bound, inclusion–exclusion, the key inequality or cardinal step); final closes it with automation and the deciding fact disappears from the text.",
+  "size": 11,
+  "representative_row": 1344,
+  "representative": false
+ },
+ "2017": {
+  "cluster_id": "automation-hides-main-step",
+  "question": "When automation (grind, aesop, nlinarith or a golfed term) replaces the explicit proof of the lemma's main step, so the decisive lemma, hypothesis or witness is no longer visible, is the earlier proof better?",
+  "summary": "Earlier explicitly proves the core step (which hypothesis gives injectivity/surjectivity, the key witness, the key length bound, inclusion–exclusion, the key inequality or cardinal step); final closes it with automation and the deciding fact disappears from the text.",
+  "size": 11,
+  "representative_row": 1344,
+  "representative": false
+ },
+ "2048": {
+  "cluster_id": "automation-hides-main-step",
+  "question": "When automation (grind, aesop, nlinarith or a golfed term) replaces the explicit proof of the lemma's main step, so the decisive lemma, hypothesis or witness is no longer visible, is the earlier proof better?",
+  "summary": "Earlier explicitly proves the core step (which hypothesis gives injectivity/surjectivity, the key witness, the key length bound, inclusion–exclusion, the key inequality or cardinal step); final closes it with automation and the deciding fact disappears from the text.",
+  "size": 11,
+  "representative_row": 1344,
+  "representative": false
+ },
+ "500": {
+  "cluster_id": "explicit-replaces-automation-no-insight",
+  "question": "When the final replaces short automation with a longer explicit proof that adds no mathematical insight (case bashes, rewrite or witness plumbing), is the earlier proof better?",
+  "summary": "Reverse automation direction: grind/aesop is replaced by explicit case analysis, membership witnesses, positional rw chains or pointwise transport that expose bookkeeping rather than an idea (sometimes motivated by performance).",
+  "size": 6,
+  "representative_row": 2220,
+  "representative": false
+ },
+ "740": {
+  "cluster_id": "explicit-replaces-automation-no-insight",
+  "question": "When the final replaces short automation with a longer explicit proof that adds no mathematical insight (case bashes, rewrite or witness plumbing), is the earlier proof better?",
+  "summary": "Reverse automation direction: grind/aesop is replaced by explicit case analysis, membership witnesses, positional rw chains or pointwise transport that expose bookkeeping rather than an idea (sometimes motivated by performance).",
+  "size": 6,
+  "representative_row": 2220,
+  "representative": false
+ },
+ "1102": {
+  "cluster_id": "explicit-replaces-automation-no-insight",
+  "question": "When the final replaces short automation with a longer explicit proof that adds no mathematical insight (case bashes, rewrite or witness plumbing), is the earlier proof better?",
+  "summary": "Reverse automation direction: grind/aesop is replaced by explicit case analysis, membership witnesses, positional rw chains or pointwise transport that expose bookkeeping rather than an idea (sometimes motivated by performance).",
+  "size": 6,
+  "representative_row": 2220,
+  "representative": false
+ },
+ "2218": {
+  "cluster_id": "explicit-replaces-automation-no-insight",
+  "question": "When the final replaces short automation with a longer explicit proof that adds no mathematical insight (case bashes, rewrite or witness plumbing), is the earlier proof better?",
+  "summary": "Reverse automation direction: grind/aesop is replaced by explicit case analysis, membership witnesses, positional rw chains or pointwise transport that expose bookkeeping rather than an idea (sometimes motivated by performance).",
+  "size": 6,
+  "representative_row": 2220,
+  "representative": false
+ },
+ "2219": {
+  "cluster_id": "explicit-replaces-automation-no-insight",
+  "question": "When the final replaces short automation with a longer explicit proof that adds no mathematical insight (case bashes, rewrite or witness plumbing), is the earlier proof better?",
+  "summary": "Reverse automation direction: grind/aesop is replaced by explicit case analysis, membership witnesses, positional rw chains or pointwise transport that expose bookkeeping rather than an idea (sometimes motivated by performance).",
+  "size": 6,
+  "representative_row": 2220,
+  "representative": false
+ },
+ "2220": {
+  "cluster_id": "explicit-replaces-automation-no-insight",
+  "question": "When the final replaces short automation with a longer explicit proof that adds no mathematical insight (case bashes, rewrite or witness plumbing), is the earlier proof better?",
+  "summary": "Reverse automation direction: grind/aesop is replaced by explicit case analysis, membership witnesses, positional rw chains or pointwise transport that expose bookkeeping rather than an idea (sometimes motivated by performance).",
+  "size": 6,
+  "representative_row": 2220,
+  "representative": true
+ },
+ "398": {
+  "cluster_id": "explicit-names-key-content",
+  "question": "When the final replaces automation or a terse chain with explicit steps that name the key lemma, certificate or intermediate bound (or add a roadmap comment) for the same argument, is the final better?",
+  "summary": "Final makes the same argument more legible: grind→explicit linear_combination certificates or named lemmas applied case by case, rw chain→calc/gcongr or suffices cascade, strategy comment added. No change in mathematics; open is whether the added explicitness is material.",
+  "size": 8,
+  "representative_row": 1405,
+  "representative": false
+ },
+ "501": {
+  "cluster_id": "explicit-names-key-content",
+  "question": "When the final replaces automation or a terse chain with explicit steps that name the key lemma, certificate or intermediate bound (or add a roadmap comment) for the same argument, is the final better?",
+  "summary": "Final makes the same argument more legible: grind→explicit linear_combination certificates or named lemmas applied case by case, rw chain→calc/gcongr or suffices cascade, strategy comment added. No change in mathematics; open is whether the added explicitness is material.",
+  "size": 8,
+  "representative_row": 1405,
+  "representative": false
+ },
+ "875": {
+  "cluster_id": "explicit-names-key-content",
+  "question": "When the final replaces automation or a terse chain with explicit steps that name the key lemma, certificate or intermediate bound (or add a roadmap comment) for the same argument, is the final better?",
+  "summary": "Final makes the same argument more legible: grind→explicit linear_combination certificates or named lemmas applied case by case, rw chain→calc/gcongr or suffices cascade, strategy comment added. No change in mathematics; open is whether the added explicitness is material.",
+  "size": 8,
+  "representative_row": 1405,
+  "representative": false
+ },
+ "1124": {
+  "cluster_id": "explicit-names-key-content",
+  "question": "When the final replaces automation or a terse chain with explicit steps that name the key lemma, certificate or intermediate bound (or add a roadmap comment) for the same argument, is the final better?",
+  "summary": "Final makes the same argument more legible: grind→explicit linear_combination certificates or named lemmas applied case by case, rw chain→calc/gcongr or suffices cascade, strategy comment added. No change in mathematics; open is whether the added explicitness is material.",
+  "size": 8,
+  "representative_row": 1405,
+  "representative": false
+ },
+ "1165": {
+  "cluster_id": "explicit-names-key-content",
+  "question": "When the final replaces automation or a terse chain with explicit steps that name the key lemma, certificate or intermediate bound (or add a roadmap comment) for the same argument, is the final better?",
+  "summary": "Final makes the same argument more legible: grind→explicit linear_combination certificates or named lemmas applied case by case, rw chain→calc/gcongr or suffices cascade, strategy comment added. No change in mathematics; open is whether the added explicitness is material.",
+  "size": 8,
+  "representative_row": 1405,
+  "representative": false
+ },
+ "1252": {
+  "cluster_id": "explicit-names-key-content",
+  "question": "When the final replaces automation or a terse chain with explicit steps that name the key lemma, certificate or intermediate bound (or add a roadmap comment) for the same argument, is the final better?",
+  "summary": "Final makes the same argument more legible: grind→explicit linear_combination certificates or named lemmas applied case by case, rw chain→calc/gcongr or suffices cascade, strategy comment added. No change in mathematics; open is whether the added explicitness is material.",
+  "size": 8,
+  "representative_row": 1405,
+  "representative": false
+ },
+ "1405": {
+  "cluster_id": "explicit-names-key-content",
+  "question": "When the final replaces automation or a terse chain with explicit steps that name the key lemma, certificate or intermediate bound (or add a roadmap comment) for the same argument, is the final better?",
+  "summary": "Final makes the same argument more legible: grind→explicit linear_combination certificates or named lemmas applied case by case, rw chain→calc/gcongr or suffices cascade, strategy comment added. No change in mathematics; open is whether the added explicitness is material.",
+  "size": 8,
+  "representative_row": 1405,
+  "representative": true
+ },
+ "2377": {
+  "cluster_id": "explicit-names-key-content",
+  "question": "When the final replaces automation or a terse chain with explicit steps that name the key lemma, certificate or intermediate bound (or add a roadmap comment) for the same argument, is the final better?",
+  "summary": "Final makes the same argument more legible: grind→explicit linear_combination certificates or named lemmas applied case by case, rw chain→calc/gcongr or suffices cascade, strategy comment added. No change in mathematics; open is whether the added explicitness is material.",
+  "size": 8,
+  "representative_row": 1405,
+  "representative": false
+ },
+ "396": {
+  "cluster_id": "different-valid-route",
+  "question": "When both proofs are valid and the final takes a different route of similar length (more general lemma vs direct lemma, abstract characterisation vs elementary argument, structural vs direct computation), is there no difference?",
+  "summary": "The two proofs use genuinely different routes or abstraction levels with no clear simplification either way (equivalence lemma vs surjective+fg kernel, filter characterisation vs neighbourhood witnesses, join/map structure vs direct evaluation, general cardinal bound vs case split, new winding-offset argument).",
+  "size": 8,
+  "representative_row": 396,
+  "representative": true
+ },
+ "692": {
+  "cluster_id": "different-valid-route",
+  "question": "When both proofs are valid and the final takes a different route of similar length (more general lemma vs direct lemma, abstract characterisation vs elementary argument, structural vs direct computation), is there no difference?",
+  "summary": "The two proofs use genuinely different routes or abstraction levels with no clear simplification either way (equivalence lemma vs surjective+fg kernel, filter characterisation vs neighbourhood witnesses, join/map structure vs direct evaluation, general cardinal bound vs case split, new winding-offset argument).",
+  "size": 8,
+  "representative_row": 396,
+  "representative": false
+ },
+ "1458": {
+  "cluster_id": "different-valid-route",
+  "question": "When both proofs are valid and the final takes a different route of similar length (more general lemma vs direct lemma, abstract characterisation vs elementary argument, structural vs direct computation), is there no difference?",
+  "summary": "The two proofs use genuinely different routes or abstraction levels with no clear simplification either way (equivalence lemma vs surjective+fg kernel, filter characterisation vs neighbourhood witnesses, join/map structure vs direct evaluation, general cardinal bound vs case split, new winding-offset argument).",
+  "size": 8,
+  "representative_row": 396,
+  "representative": false
+ },
+ "1619": {
+  "cluster_id": "different-valid-route",
+  "question": "When both proofs are valid and the final takes a different route of similar length (more general lemma vs direct lemma, abstract characterisation vs elementary argument, structural vs direct computation), is there no difference?",
+  "summary": "The two proofs use genuinely different routes or abstraction levels with no clear simplification either way (equivalence lemma vs surjective+fg kernel, filter characterisation vs neighbourhood witnesses, join/map structure vs direct evaluation, general cardinal bound vs case split, new winding-offset argument).",
+  "size": 8,
+  "representative_row": 396,
+  "representative": false
+ },
+ "1803": {
+  "cluster_id": "different-valid-route",
+  "question": "When both proofs are valid and the final takes a different route of similar length (more general lemma vs direct lemma, abstract characterisation vs elementary argument, structural vs direct computation), is there no difference?",
+  "summary": "The two proofs use genuinely different routes or abstraction levels with no clear simplification either way (equivalence lemma vs surjective+fg kernel, filter characterisation vs neighbourhood witnesses, join/map structure vs direct evaluation, general cardinal bound vs case split, new winding-offset argument).",
+  "size": 8,
+  "representative_row": 396,
+  "representative": false
+ },
+ "2091": {
+  "cluster_id": "different-valid-route",
+  "question": "When both proofs are valid and the final takes a different route of similar length (more general lemma vs direct lemma, abstract characterisation vs elementary argument, structural vs direct computation), is there no difference?",
+  "summary": "The two proofs use genuinely different routes or abstraction levels with no clear simplification either way (equivalence lemma vs surjective+fg kernel, filter characterisation vs neighbourhood witnesses, join/map structure vs direct evaluation, general cardinal bound vs case split, new winding-offset argument).",
+  "size": 8,
+  "representative_row": 396,
+  "representative": false
+ },
+ "2205": {
+  "cluster_id": "different-valid-route",
+  "question": "When both proofs are valid and the final takes a different route of similar length (more general lemma vs direct lemma, abstract characterisation vs elementary argument, structural vs direct computation), is there no difference?",
+  "summary": "The two proofs use genuinely different routes or abstraction levels with no clear simplification either way (equivalence lemma vs surjective+fg kernel, filter characterisation vs neighbourhood witnesses, join/map structure vs direct evaluation, general cardinal bound vs case split, new winding-offset argument).",
+  "size": 8,
+  "representative_row": 396,
+  "representative": false
+ },
+ "2243": {
+  "cluster_id": "different-valid-route",
+  "question": "When both proofs are valid and the final takes a different route of similar length (more general lemma vs direct lemma, abstract characterisation vs elementary argument, structural vs direct computation), is there no difference?",
+  "summary": "The two proofs use genuinely different routes or abstraction levels with no clear simplification either way (equivalence lemma vs surjective+fg kernel, filter characterisation vs neighbourhood witnesses, join/map structure vs direct evaluation, general cardinal bound vs case split, new winding-offset argument).",
+  "size": 8,
+  "representative_row": 396,
+  "representative": false
+ },
+ "1957": {
+  "cluster_id": "singleton-1957",
+  "question": "The final states the reduced goals via suffices but replaces the explicit sign-case argument with grind; is the final better overall?",
+  "summary": "Mixed: gains explicit stated goals while hiding the sign reasoning in automation, so it sits between automation-hides-main-step and explicit-names-key-content.",
+  "size": 1,
+  "representative_row": 1957,
+  "representative": true
+ },
+ "86": {
+  "cluster_id": "needs_context",
+  "question": null,
+  "summary": "Blocked by data: row 86's final body appears truncated (only the conv_lhs line); row 2313's change moves the argument into a `proof_body` lemma not visible in the pair.",
+  "size": 2,
+  "representative_row": null,
+  "representative": false
+ },
+ "2313": {
+  "cluster_id": "needs_context",
+  "question": null,
+  "summary": "Blocked by data: row 86's final body appears truncated (only the conv_lhs line); row 2313's change moves the argument into a `proof_body` lemma not visible in the pair.",
+  "size": 2,
+  "representative_row": null,
+  "representative": false
+ }
+}
