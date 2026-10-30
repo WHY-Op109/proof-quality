@@ -1,11 +1,11 @@
 {
-  "created_utc": "2026-10-30T17:42:06.275380+00:00",
+  "created_utc": "2026-10-30T17:46:34.716384+00:00",
   "population": 2379,
   "spencer_retained": 539,
   "counts": {
-    "exclude": 2029,
-    "unresolved": 85,
-    "retain": 265
+    "exclude": 2056,
+    "retain": 265,
+    "unresolved": 58
   },
   "method_counts": {
     "individual_diff_examination": 2229,
@@ -14,16 +14,16 @@
   },
   "cross_table": {
     "(True, 'retain')": 184,
-    "(True, 'exclude')": 287,
-    "(True, 'unresolved')": 68,
+    "(True, 'exclude')": 307,
+    "(True, 'unresolved')": 48,
     "(False, 'retain')": 81,
-    "(False, 'exclude')": 1742,
-    "(False, 'unresolved')": 17
+    "(False, 'exclude')": 1749,
+    "(False, 'unresolved')": 10
   },
   "unprocessed_rows": 0,
   "agent_disagreement_rows": 40,
-  "discussion_rows": 6,
-  "meeting_rows": 73,
+  "discussion_rows": 5,
+  "meeting_rows": 74,
   "individually_unexamined_rows": 0,
   "human_record_lines": 21,
   "human_unique_cases": 20,
@@ -50,14 +50,14 @@
     "fast-screen/round2/out-11.json": "0ee42c6b2e45957f9c532e15b00e3ec7d1e604d556a03118282853fbbc018668",
     "fast-screen/stage-a/final.json": "73daa0c6f22981e04dbc4fda7975e490b3daeb8d8caf23f293796ef8bbf58485",
     "fast-screen/stage-a/clusters.json": "69b375391a2da18444b3f4e09337d2f9d102d8370fac33624f544c6c875cf32f",
-    "fast-screen/human-cluster-answers.jsonl": "e31b1b6243781c9fb3ff20c602147ffba6ef0744047368261ae0d249dcfc8e20",
+    "fast-screen/human-cluster-answers.jsonl": "f87c003b52ad4f42ebe2d85b014968c45bac58f5b5e895a5d67b66bee7d55984",
     "fast-screen/run.py": "70924a6f442459a9d2ebcc77334d49a9562fa4efb068a74122dc4174cdb8e7d8"
   },
   "output_hashes": {
-    "FAST-SCREENING.jsonl": "874ce484f1034107b850964ab2a6a3c6a4368809d39f8bace59a44a9ab2f106f",
+    "FAST-SCREENING.jsonl": "60d4d36531aad037262d0780fc6da0babfaef8ba6ca132fff8dbe586439fca69",
     "fast-retained.pairs.jsonl": "e48ea95094407fd350a81d84d492995964cd357f2f62431ca4a5c4b77ec371b1",
-    "fast-unresolved.pairs.jsonl": "09655087bda5d3d3af3a5e03a4a995ab79ee921279f133f0274a1d194772b31b",
-    "fast-excluded.pairs.jsonl": "17046375f114d79406fb94741f355e2cb41598ad4d2125ee395cb4f55ea54a95",
-    "fast-navigation.jsonl": "cd3070b0471b925e574e1141a8f3a08f0c3055af51a5408739dbddc3f752c69b"
+    "fast-unresolved.pairs.jsonl": "567f449e190569432e4dd5f48e1cc7539265046420cc805457b52439d3566c9d",
+    "fast-excluded.pairs.jsonl": "136e471752fbfa2fe44bfbe9560b300e266d0b1d49759780510cf52a41e457bb",
+    "fast-navigation.jsonl": "4ea2a6e76f6730dbd86e6291fdea14d57a531194764e208e7b08d2c875008961"
   }
 }

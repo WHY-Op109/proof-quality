@@ -88,6 +88,29 @@
   .ln.del { background: var(--del); } .ln.add { background: var(--add); } .ln.empty { background: var(--empty); }
   .ln.del mark { background: var(--del-mark); color: inherit; border-radius: 2px; }
   .ln.add mark { background: var(--add-mark); color: inherit; border-radius: 2px; }
+  .ov { display: flex; flex-direction: column; gap: 1.1rem; max-width: 70rem; }
+  .ov h2 { font: 600 1.35rem/1.25 var(--display); margin: 0; text-wrap: balance; }
+  .ov h3 { font: 600 0.8rem var(--body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.5rem; }
+  .ov p { margin: 0; max-width: 75ch; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0.75rem; }
+  .tile { display: flex; flex-direction: column; gap: 0.15rem; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 0.8rem 1rem; color: var(--ink); text-decoration: none; }
+  a.tile:hover { border-color: var(--accent); }
+  .tile b { font: 600 1.9rem/1.1 var(--display); font-variant-numeric: tabular-nums; }
+  .tile span { font-size: 0.82rem; color: var(--muted); }
+  .tile.accent b { color: var(--accent); }
+  .ovgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; }
+  .ovcard { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 0.9rem 1rem; min-width: 0; overflow-x: auto; }
+  .ovcard ol { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.35rem; }
+  .ovcard table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: 0.88rem; }
+  .ovcard th, .ovcard td { padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--line); text-align: right; }
+  .ovcard th:first-child, .ovcard td:first-child { text-align: left; }
+  .topics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+  .topics a { display: flex; justify-content: space-between; gap: 1rem; text-decoration: none; color: var(--ink); padding: 0.35rem 0.5rem; border-radius: 6px; border: 1px solid var(--line); }
+  .topics a:hover { border-color: var(--accent); }
+  .topics b { font-variant-numeric: tabular-nums; color: var(--accent); }
+  .layout.full { grid-template-columns: minmax(0, 1fr); }
+  .layout.full aside { display: none; }
+  @media (max-width: 860px) { .ovgrid { grid-template-columns: minmax(0, 1fr); } }
   .empty-state { background: var(--panel); border: 1px dashed var(--line); border-radius: 10px; padding: 2rem 1rem; color: var(--muted); text-align: center; }
   footer { font-size: 0.78rem; color: var(--muted); padding-block: 0 2rem; max-width: 90ch; }
   @media (max-width: 860px) {
@@ -128,6 +151,7 @@
 const D = JSON.parse(document.getElementById('data').textContent);
 const $ = (id) => document.getElementById(id);
 const VIEWS = {
+  overview: { label: 'Overview', note: '', test: () => false },
   meaningful: { label: 'Meaningful difference', note: 'Pairs with a material, source-visible quality difference. The preferred side is outlined; most prefer the final revision, a few the earlier one.', test: (r) => r.decision === 'retain' },
   discussion: { label: 'For discussion', note: 'Pairs you marked for the meeting, grouped by topic. Pick a topic below. The highlighted example is the pair each question was asked on.', test: (r) => !!r.meeting },
   hard: { label: 'Awaiting your answer', note: 'Questions you have not answered yet. Each is shown on one example pair and settles the pairs that share it.', test: (r) => !!r.discussion && !r.meeting },
@@ -190,11 +214,43 @@ function filtered() {
 function renderTabs() {
   const t = $('tabs'); t.replaceChildren();
   for (const [k, v] of Object.entries(VIEWS)) {
-    const b = el('button', { type: 'button', 'aria-pressed': String(k === view) }, v.label, el('span', { class: 'n', text: String(D.rows.filter(v.test).length) }));
+    const n = D.rows.filter(v.test).length;
+    if (k === 'hard' && n === 0 && view !== 'hard') continue;
+    const b = el('button', { type: 'button', 'aria-pressed': String(k === view) }, v.label, k === 'overview' ? null : el('span', { class: 'n', text: String(n) }));
     b.addEventListener('click', () => { view = k; idx = 0; location.hash = k; refresh(); }); t.append(b);
   }
 }
+function fmt(n) { return n.toLocaleString('en-US'); }
+function renderOverview() {
+  const S = D.summary, main = $('main'); main.replaceChildren();
+  const tile = (n, label, href, cls) => { const a = el(href ? 'a' : 'div', href ? { class: 'tile ' + (cls || ''), href } : { class: 'tile ' + (cls || '') }, el('b', { text: fmt(n) }), el('span', { text: label })); return a; };
+  const ov = el('section', { class: 'ov', 'aria-label': 'Overview' });
+  ov.append(el('h2', { text: `Which revisions of a Mathlib proof actually improve it? ${fmt(S.total)} historical pairs, screened one by one.` }));
+  ov.append(el('p', { text: `Each pair is the same declaration before and after a Mathlib PR (${fmt(S.prs)} PRs). The accepted revision is not assumed to be better: a pair counts only when the code shows a concrete gain in abstraction, reuse, clarity, automation fit or maintainability, and the preferred side can be either one.` }));
+  ov.append(el('div', { class: 'tiles' },
+    tile(S.retain, `meaningful quality difference (${S.final_better} final better, ${S.earlier_better} earlier better)`, '#meaningful', 'accent'),
+    tile(S.exclude, 'no meaningful difference (renames, conventions, API moves, layout)', '#excluded'),
+    tile(S.unresolved, 'unresolved; most are on the discussion list', '#unresolved'),
+    tile(Object.values(S.topics).reduce((a, b) => a + b, 0), 'pairs for discussion, in five topics', '#discussion')));
+  const method = el('div', { class: 'ovcard' }, el('h3', { text: 'How the pairs were screened' }), el('ol', {},
+    el('li', { text: 'Every pair was read individually against an approved rubric. Its verdict has a stated reason and preferred side.' }),
+    el('li', { text: `Blind calibration: agents re-judged ${S.a1_total} pairs you had already decided, without seeing your verdicts, and matched ${S.a1_match}. They under-weight small clarity gains.` }),
+    el('li', { text: `Risky groups got a second, independent reading. ${fmt(S.two_screens)} pairs agreed; ${S.adjudicated} disagreements were settled by a third reader.` }),
+    el('li', { text: 'What remained was grouped into 8 questions for a human, answered once per group. Your answers moved 27 pairs to "no difference" and put the rest on the discussion list.' }),
+    el('li', { text: 'Not done: Lean compilation, timing, or checking that a reused lemma existed when the earlier proof was written.' })));
+  const sp = S.spencer, row = (label, k) => el('tr', {}, el('td', { text: label }), ...['retain', 'exclude', 'unresolved'].map((d) => el('td', { text: fmt(sp[k + '|' + d]) })), el('td', { text: fmt(['retain', 'exclude', 'unresolved'].reduce((a, d) => a + sp[k + '|' + d], 0)) }));
+  const spencer = el('div', { class: 'ovcard' }, el('h3', { text: "Compared with Spencer's filter (539 kept)" }),
+    el('table', {}, el('thead', {}, el('tr', {}, ...['Spencer', 'Meaningful', 'None', 'Unresolved', 'Total'].map((t) => el('th', { text: t })))), el('tbody', {}, row('Kept', 'true'), row('Dropped', 'false'))),
+    el('p', { class: 'viewnote', text: 'His name-set rules handle renames and layout well. Many of his "construction" pairs turn out to be surface edits, and one-line reuse of a general lemma is often filed as "minor" and dropped. Neither selection is a gold standard.' }));
+  const topics = el('div', { class: 'ovcard' }, el('h3', { text: 'For discussion' }), el('ul', { class: 'topics' }, ...Object.entries(S.topics).sort((a, b) => b[1] - a[1]).map(([t, n]) => { const a = el('a', { href: '#discussion' }, el('span', { text: t }), el('b', { text: String(n) })); a.addEventListener('click', (e) => { e.preventDefault(); view = 'discussion'; $('topic').value = t; idx = 0; location.hash = 'discussion'; refresh(); }); return el('li', {}, a); })));
+  const question = el('div', { class: 'ovcard' }, el('h3', { text: 'The open research question' }),
+    el('p', { text: 'Are we judging the mathematical argument, the Lean formalisation, or the tactic script? Most kept pairs improve the formalisation (reuse of a general theorem, less duplicated work), not the mathematics. When two scripts encode the same mathematics, a preference needs a reason beyond the code: reader reconstruction, maintenance, library fit or measured cost. Automation versus explicit steps is the largest unsettled class.' }));
+  ov.append(el('div', { class: 'ovgrid' }, method, spencer, topics, question));
+  main.append(ov);
+}
 function refresh(keepRow) {
+  $('main').closest('.layout').classList.toggle('full', view === 'overview');
+  if (view === 'overview') { renderTabs(); renderOverview(); return; }
   renderTabs(); $('viewnote').textContent = VIEWS[view].note; $('topic').hidden = view !== 'discussion'; rows = filtered();
   if (keepRow != null) { const f = rows.findIndex((r) => r.row === keepRow); idx = f >= 0 ? f : 0; }
   idx = Math.max(0, Math.min(idx, rows.length - 1));
@@ -250,7 +306,7 @@ function route() {
   const h = location.hash.replace(/^#/, '');
   if (VIEWS[h]) { view = h; idx = 0; refresh(); return; }
   const m = /^r(\d+)$/.exec(h);
-  if (m) { const r = D.rows.find((x) => x.row === Number(m[1])); if (r) { view = Object.keys(VIEWS).find((k) => k !== 'hard' && VIEWS[k].test(r)) || view; $('q').value = ''; $('dir').value = $('dim').value = $('sp').value = $('topic').value = ''; refresh(r.row); return; } }
+  if (m) { const r = D.rows.find((x) => x.row === Number(m[1])); if (r) { view = Object.keys(VIEWS).find((k) => k !== 'hard' && k !== 'overview' && VIEWS[k].test(r)) || view; $('q').value = ''; $('dir').value = $('dim').value = $('sp').value = $('topic').value = ''; refresh(r.row); return; } }
   refresh();
 }
 for (const tp of D.topics) $('topic').append(el('option', { value: tp, text: tp }));
@@ -261,7 +317,7 @@ document.addEventListener('keydown', (e) => {
   if ((e.key === 'ArrowRight' || e.key === 'j') && idx < rows.length - 1) { idx++; show(); }
   else if ((e.key === 'ArrowLeft' || e.key === 'k') && idx > 0) { idx--; show(); }
 });
-window.addEventListener('hashchange', () => { const h = location.hash.replace(/^#/, ''); if ((VIEWS[h] && h !== view) || (/^r\d+$/.test(h) && rows[idx] && 'r' + rows[idx].row !== h)) route(); });
+window.addEventListener('hashchange', () => { const h = location.hash.replace(/^#/, ''); if (h === 'meaningful' && view !== 'meaningful') { view = 'meaningful'; refresh(); return; } if ((VIEWS[h] && h !== view) || (/^r\d+$/.test(h) && rows[idx] && 'r' + rows[idx].row !== h)) route(); });
 $('subtitle').textContent = D.subtitle;
 $('footer').textContent = D.footer;
 route();

@@ -73,7 +73,25 @@ def build_data(data_dir: Path) -> dict:
             "earlier_url": MATHLIB + sk["earlier_snapshot_commit_sha"] + "/" + sk["earlier_file_path"],
             "final_url": MATHLIB + sk["final_snapshot_commit_sha"] + "/" + sk["file_path"],
         })
+    from collections import Counter
+    dec = Counter(r["decision"] for r in out)
+    a1_path = DEFAULT_DOCS / "stage-a" / "a1-results.jsonl"
+    a1 = read_jsonl(a1_path) if a1_path.exists() else []
+    stage = Counter((s.get("stage_a") or {}).get("outcome") for s in records if s.get("stage_a"))
+    summary = {
+        "total": len(out),
+        "prs": len({r["pr"] for r in out}),
+        "retain": dec["retain"], "exclude": dec["exclude"], "unresolved": dec["unresolved"],
+        "final_better": sum(r["decision"] == "retain" and r["direction"] == "final_better" for r in out),
+        "earlier_better": sum(r["decision"] == "retain" and r["direction"] == "earlier_better" for r in out),
+        "spencer": {f"{str(sp).lower()}|{d}": sum(r["spencer"] == sp and r["decision"] == d for r in out) for sp in (True, False) for d in ("retain", "exclude", "unresolved")},
+        "topics": Counter(r["meeting"]["topic"] for r in out if r.get("meeting")),
+        "two_screens": stage.get("two_screens_agree", 0), "adjudicated": stage.get("adjudicated", 0),
+        "a1_match": sum(r["outcome"] == "match" for r in a1), "a1_total": len(a1),
+        "human": sum(bool(r["human"]) for r in out),
+    }
     return {
+        "summary": summary,
         "rows": out,
         "dimensions": DIMENSIONS,
         "topics": sorted({s["meeting"]["topic"] for s in records if s.get("meeting")}),
@@ -100,6 +118,7 @@ def main() -> None:
     parser.add_argument("--docs-dir", type=Path, default=DEFAULT_DOCS)
     parser.add_argument("--port", type=int, default=8740)
     parser.add_argument("--no-open", action="store_true")
+    parser.add_argument("--start", choices=["overview", "meaningful", "discussion", "unresolved", "excluded"], default="meaningful", help="tab to open in the browser")
     args = parser.parse_args()
     data_dir = args.data_dir.expanduser().resolve()
     docs_dir = args.docs_dir.expanduser().resolve()
@@ -138,7 +157,7 @@ def main() -> None:
             continue
     if server is None:
         raise SystemExit(f"Could not bind a port starting at {args.port}")
-    url = f"http://127.0.0.1:{port}/"
+    url = f"http://127.0.0.1:{port}/" + ("" if args.start == "meaningful" else "#" + args.start)
     counts = {d: sum(r["decision"] == d for r in data["rows"]) for d in EXPORTS}
     print(f"Serving {data_dir}\nmeaningful difference {counts['retain']}, unresolved {counts['unresolved']}, "
           f"no meaningful difference {counts['exclude']}\n{url}", flush=True)

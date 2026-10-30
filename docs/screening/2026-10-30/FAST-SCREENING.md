@@ -2,7 +2,7 @@
 
 2026-10-30. Continues the user-requested direct pass (round 1 by Codex, archived at `fast-screen/archive-initial-pass/FAST-SCREENING.round1.md`). The approved rubric v0.3 (`RUBRIC.md`, sha256 `bc072e19…cdb8`) is applied directly through its dimensions, materiality and support levels. No rubric amendment. Training inclusion is **not decided**.
 
-## Current state after the Stage A cross-check
+## Current state after Stage A and your answers
 
 This section supersedes the round-2 counts further down, which are kept as history.
 
@@ -11,12 +11,36 @@ This section supersedes the round-2 counts further down, which are kept as histo
 | Decision | Final better | Earlier better | No meaningful difference | Unresolved | Total |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | retain (meaningful difference) | 258 | 7 | – | – | **265** |
-| exclude | – | – | 2,025 | 4* | **2,029** |
-| unresolved | 1† | – | – | 84 | **85** |
+| exclude | – | – | 2,052 | 4* | **2,056** |
+| unresolved | 1† | – | – | 57 | **58** |
 
 \* Rows withheld by the data-quality check whose quality question was itself open. † Row 445: your final-better verdict is kept, but the row is withheld because of the statement/proof boundary defect.
 
 Earlier-better rows: 739, 765, 1222, 1477, 1764, 1800, 1936.
+
+**Your answers to the question sheet** (recorded verbatim in `human-cluster-answers.jsonl`):
+- Q2 (helper-lemma call versus direct proof, 17 pairs) and Q4 (API adaptation, 10 pairs) are applied as **no meaningful difference**. Q2 also stays on the meeting list.
+- Q1, Q3, Q5, Q6, Q7 and Q8 are kept unresolved **for discussion**.
+- The discussion list holds 74 pairs in five topics:
+
+  | Topic | Pairs |
+  | --- | ---: |
+  | Automated tactics | 33 |
+  | Convention: helper-lemma call versus direct proof | 17 |
+  | Automated tactics: Mathlib convention for `grind` | 15 |
+  | Mathematical taste: different valid routes | 8 |
+  | Presentation detail: calc granularity | 1 |
+
+  The agenda is Part C of `FAST-DISCUSSION.md`.
+
+- Of the 58 unresolved pairs, 52 are on the discussion list. 5 are your own per-pair records (4 deferrals, plus 445 withheld for the data defect), and 1 (row 2313) cannot be judged from the stored pair.
+
+**Spencer comparison now.**
+
+| Spencer \\ this pass | retain | exclude | unresolved | total |
+| --- | ---: | ---: | ---: | ---: |
+| retained | 184 | 307 | 48 | 539 |
+| excluded | 81 | 1,749 | 10 | 1,840 |
 
 **What Stage A did (agents only, none of your time).**
 
@@ -60,16 +84,7 @@ The single-reading rows were outside the A2 sample. Their decided-row stability 
 
 **New data issues.** Row 86's final body is truncated, and row 2313's argument moved into a helper that the pair doesn't contain. Both are withheld from the retained set.
 
-**Spencer comparison now.**
-
-| Spencer \\ this pass | retain | exclude | unresolved | total |
-| --- | ---: | ---: | ---: | ---: |
-| retained | 184 | 287 | 68 | 539 |
-| excluded | 81 | 1,742 | 17 | 1,840 |
-
-- 1,926 determinate agreements, 368 determinate changes, 85 abstentions.
-- Of his `construction` rows, 182 are retained, 269 excluded and 68 unresolved.
-- Length bias is still present: the final is shorter in 235 of the 258 final-better rows.
+Spencer comparison for this state: see the table above.
 
 ## Round-2 state (before Stage A, kept as history)
 
