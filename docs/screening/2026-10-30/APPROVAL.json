@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-30",
+  "source": "user message in current chat",
+  "verbatim": "I approve rubric v0.3 and the human-review rules. Choose C and process with prompt in `/Users/why/Documents/Projects/Research_Project/AI4Maths/ProofQualityReview/filtering/2026-10-30/prompts/04-codex-screen.md` . After this, I will run Claude Code independently.",
+  "rubric_version": "0.3.0-proposed",
+  "rubric_sha256": "bc072e19ab491e7aceb88b16354bbafc207d6a03a1b162fda1c0e698b0a6cdb8",
+  "human_rules_and_evidence_budget": "approved reconciled plan; optional blind-first off; no historical builds/profiling by default",
+  "population": "C: 2379 rows",
+  "checkpoint": "60 mixed rows then stop before remainder per approved plan"
+}

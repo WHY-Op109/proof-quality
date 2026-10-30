@@ -1,0 +1,49 @@
+{
+  "version": "fast-1.0",
+  "authority": "User requested direct pass replacing the extended workflow for this round; prior approved rubric remains preserved.",
+  "human_sources": [
+    "human-checkpoint-01-001",
+    "human-checkpoint-01-002",
+    "human-checkpoint-01-003",
+    "human-checkpoint-01-004",
+    "human-checkpoint-01-005",
+    "human-checkpoint-01-006",
+    "human-checkpoint-01-006-amendment-01",
+    "human-checkpoint-01-007",
+    "human-checkpoint-01-008",
+    "human-checkpoint-01-009",
+    "human-checkpoint-01-010",
+    "human-checkpoint-01-011",
+    "human-checkpoint-01-012",
+    "human-checkpoint-01-013",
+    "human-checkpoint-01-014",
+    "human-checkpoint-01-015",
+    "human-checkpoint-01-016",
+    "human-checkpoint-01-017",
+    "human-checkpoint-01-018",
+    "human-checkpoint-01-019",
+    "human-fast-screen-1128-001"
+  ],
+  "rule_order": [
+    "R0 preserve actual human judgments, including explicit deferrals",
+    "R1 code-identical comment removal/placement/capitalisation/spacing: little apparent mathematical effect; new comment wording remains unresolved",
+    "R2 limited lexical presentation and binder-renaming rules: provisional little-effect exclusions, not term equivalence",
+    "R3 automation vocabulary changes: abstain unless individually examined or human-judged",
+    "R4 substantial size changes: flag for examination; size alone never retains",
+    "R5 documented individual code judgments can retain reuse/argument/organisation differences, or abstain",
+    "R7 unmatched code: unresolved, not rejected",
+    "Usability gate: test paths, explicit admissions, malformed letI statement boundary are separated from quality; do not export defective pairs by default"
+  ],
+  "interpretations": [
+    "Human preferences are pair-specific; no universal anti-comment or pro-automation rule.",
+    "Final-side named lemma calls establish script-level reuse; earlier API availability is not inferred.",
+    "Conservative rule abstention is different from an individually identified difficult preference.",
+    "Meaningful includes Lean-formalisation clarity/reuse and argument structure; mathematical novelty is not required."
+  ],
+  "nonclaims": [
+    "No population precision/recall estimate",
+    "No historical recompilation or timing",
+    "No final training inclusion",
+    "No proof-term extraction implemented"
+  ]
+}

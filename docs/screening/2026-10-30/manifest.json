@@ -1,0 +1,59 @@
+{
+  "created_utc": "2026-10-30T16:54:35.406735+00:00",
+  "population": 2379,
+  "spencer_retained": 539,
+  "counts": {
+    "exclude": 1963,
+    "unresolved": 181,
+    "retain": 235
+  },
+  "method_counts": {
+    "individual_diff_examination": 2229,
+    "individual_code_examination": 130,
+    "recorded_human_judgment": 20
+  },
+  "cross_table": {
+    "(True, 'retain')": 166,
+    "(True, 'exclude')": 253,
+    "(True, 'unresolved')": 120,
+    "(False, 'retain')": 69,
+    "(False, 'exclude')": 1710,
+    "(False, 'unresolved')": 61
+  },
+  "unprocessed_rows": 0,
+  "agent_disagreement_rows": 40,
+  "discussion_rows": 27,
+  "individually_unexamined_rows": 0,
+  "human_record_lines": 21,
+  "human_unique_cases": 20,
+  "human_finalized": 16,
+  "inputs": {
+    "/Users/why/Documents/Projects/Research_Project/AI4Maths/proof-quality/data/mathlibpr/pairs.jsonl": "8fbd80ca6c0656ebdedc805e602fe94a07e48d00e9225bc0596067f0872f644f",
+    "/Users/why/Documents/Projects/Research_Project/AI4Maths/proof-quality/data/mathlibpr/pairs.substantive.jsonl": "6f7d2f69d63b25ab66d8d8a5db5832872e208a2c4dc47fabfc3d8961435375ee",
+    "human-decisions.jsonl": "475bd7be0a33f5b6a63355ecec08af7861d52ee53f0b9de1f75adcb95d062946",
+    "sample-index.jsonl": "712660af454a4436d7287b8b2385cd00dc6bb90865eefc0d8540fb826e06df82",
+    "fast-screen/individual-assessments.json": "d62f362d23fbfeb7235940eb16e7e4ee431ac9a239a4f0808279beaf9b482ad3",
+    "fast-screen/expansion-assessments.json": "e9b6242c114a4f9ea1afbec58cb4eea7724e29599612d3d577fd0774163bbc83",
+    "fast-screen/continuation-assessments.json": "b73a20402a87b12b52a8f51c1d65f67696d4980a8863a35889080616796fdf9f",
+    "fast-screen/round2/out-00.json": "680775789c55c21cd0f1dc9ab1a81e384a6c549c2f4e617a3b2a47008b0d173e",
+    "fast-screen/round2/out-01.json": "a6b538a2fd19359e754acbf9d0675fe81e2309c4f4a6c3f0030d13122e009d99",
+    "fast-screen/round2/out-02.json": "c731321fdaf5e994015232a53212459b0693f463d5fdb5cd3b77c4afe8a4ba4f",
+    "fast-screen/round2/out-03.json": "fe473f43e85d7deca23962ad51d1bf6d760f49b677d6cbe66db095eecad90104",
+    "fast-screen/round2/out-04.json": "4f890f1183d8f74b7cddfb90a43575e192bfe00595f829176ffd44499ad0d705",
+    "fast-screen/round2/out-05.json": "45d14af49cbd96331e44193fb0616ee1841130afb7374752be34e6b8a5176a77",
+    "fast-screen/round2/out-06.json": "4e93134120e942ab9914119af029a36ca6ea02a6675ba0358291e083831a7433",
+    "fast-screen/round2/out-07.json": "6aac6abf7083851ec6fcdb9284d60b6c12f44d298e52257724ccc029d1927627",
+    "fast-screen/round2/out-08.json": "e7ded7df9a7c581bd3cdade6b752c2d5c9e577306f6951d500dd1c8c344e8886",
+    "fast-screen/round2/out-09.json": "5b09f3351405cef5c0ae0f5e94a732378b53430bf2adccddfd29574c54001ca9",
+    "fast-screen/round2/out-10.json": "d442153771a98b89f31f85dc122a5be65ed8a379b6bc7b91d58f1b711a3559af",
+    "fast-screen/round2/out-11.json": "0ee42c6b2e45957f9c532e15b00e3ec7d1e604d556a03118282853fbbc018668",
+    "fast-screen/run.py": "cfeaac97f536f3c91e31ee07858a22ffc2e6047922112766b40ad623bda5e227"
+  },
+  "output_hashes": {
+    "FAST-SCREENING.jsonl": "4932dc58c9bf13b70ba1d3c3a0243b1a732900e17181c93ed441e681383f758b",
+    "fast-retained.pairs.jsonl": "2840a90e3b565eece3ab4a6eb9c302bb01bc79d74374ef4248a9129efb19c48f",
+    "fast-unresolved.pairs.jsonl": "ebb0612a317fd2e5cb1c5d4cbf33ccea444df83992879f6faf7f2fa4518a8f1e",
+    "fast-excluded.pairs.jsonl": "1de712dc01277d486a7df1b9ea2b2cbc7fd48d12b899abdf2f72b3bd4b8b3189",
+    "fast-navigation.jsonl": "de9284d665edcfdaf4354ad917c8b90f949e7d3858c490273bc96d4984deef0f"
+  }
+}
