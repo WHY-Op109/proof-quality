@@ -68,7 +68,7 @@ def build_data(data_dir: Path) -> dict:
             "statement": statement_of(r["prompt"]), "earlier": r["rejected"], "final": r["chosen"],
             "decision": s["decision"], "direction": s["preference_direction"], "reason": s["reason"],
             "dims": [d for d in s.get("dimensions") or [] if d in DIMENSIONS], "assessor": s.get("assessor") or s["assessment_method"],
-            "check": basis(s), "human": s["human_verbatim"], "discussion": s.get("discussion"), "cluster": s.get("cluster"),
+            "check": basis(s), "human": s["human_verbatim"], "discussion": s.get("discussion"), "cluster": s.get("cluster"), "meeting": s.get("meeting"), "answer": s.get("cluster_answer"),
             "spencer": s["spencer_retained"], "spencer_class": s["spencer_class"], "flags": s["usability_flags"],
             "earlier_url": MATHLIB + sk["earlier_snapshot_commit_sha"] + "/" + sk["earlier_file_path"],
             "final_url": MATHLIB + sk["final_snapshot_commit_sha"] + "/" + sk["file_path"],
@@ -76,6 +76,7 @@ def build_data(data_dir: Path) -> dict:
     return {
         "rows": out,
         "dimensions": DIMENSIONS,
+        "topics": sorted({s["meeting"]["topic"] for s in records if s.get("meeting")}),
         "subtitle": f"{len(out):,} declaration pairs from Mathlib PRs · screened against rubric v0.3",
         "footer": "Left is the earlier revision (the dataset's rejected field); right is the final, historically accepted revision (chosen). "
         "Acceptance is history, not a quality label: the outlined card is the side the screening prefers. Highlighting marks textual "

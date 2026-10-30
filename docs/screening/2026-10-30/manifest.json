@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-10-30T17:20:05.279965+00:00",
+  "created_utc": "2026-10-30T17:42:06.275380+00:00",
   "population": 2379,
   "spencer_retained": 539,
   "counts": {
@@ -22,7 +22,8 @@
   },
   "unprocessed_rows": 0,
   "agent_disagreement_rows": 40,
-  "discussion_rows": 13,
+  "discussion_rows": 6,
+  "meeting_rows": 73,
   "individually_unexamined_rows": 0,
   "human_record_lines": 21,
   "human_unique_cases": 20,
@@ -49,10 +50,11 @@
     "fast-screen/round2/out-11.json": "0ee42c6b2e45957f9c532e15b00e3ec7d1e604d556a03118282853fbbc018668",
     "fast-screen/stage-a/final.json": "73daa0c6f22981e04dbc4fda7975e490b3daeb8d8caf23f293796ef8bbf58485",
     "fast-screen/stage-a/clusters.json": "69b375391a2da18444b3f4e09337d2f9d102d8370fac33624f544c6c875cf32f",
-    "fast-screen/run.py": "afb9907f3f871f4a676503625f378d2a63886884b575143e191b4b13657bcc64"
+    "fast-screen/human-cluster-answers.jsonl": "e31b1b6243781c9fb3ff20c602147ffba6ef0744047368261ae0d249dcfc8e20",
+    "fast-screen/run.py": "70924a6f442459a9d2ebcc77334d49a9562fa4efb068a74122dc4174cdb8e7d8"
   },
   "output_hashes": {
-    "FAST-SCREENING.jsonl": "130e2176c729b33816cf408e20eed5912b8fc5f481e738488e7ab193034fca83",
+    "FAST-SCREENING.jsonl": "874ce484f1034107b850964ab2a6a3c6a4368809d39f8bace59a44a9ab2f106f",
     "fast-retained.pairs.jsonl": "e48ea95094407fd350a81d84d492995964cd357f2f62431ca4a5c4b77ec371b1",
     "fast-unresolved.pairs.jsonl": "09655087bda5d3d3af3a5e03a4a995ab79ee921279f133f0274a1d194772b31b",
     "fast-excluded.pairs.jsonl": "17046375f114d79406fb94741f355e2cb41598ad4d2125ee395cb4f55ea54a95",

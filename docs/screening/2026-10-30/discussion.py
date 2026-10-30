@@ -19,20 +19,42 @@ for s in sorted(user,key=lambda s:s['source_line_1based']):
     sec=sections.get(n)
     if sec:out.append('\n'+sec.replace('## Original example','### Original example',1))
     else:out.append(f"\n### Original example {n}\nYour note: {s['discussion']['why']}\n")
+answers=[json.loads(l) for l in (BASE/'fast-screen/human-cluster-answers.jsonl').read_text().splitlines()]
 reps=sorted(agent,key=lambda s:-(s['discussion'].get('cluster_size') or 0))
-members={}
-for s in fs:
-    if s.get('cluster'):members.setdefault(s['cluster']['cluster_id'],[]).append(s['source_line_1based'])
-out.append(f"\n## Part B: Your question sheet ({len(reps)} questions covering {sum(len(v) for k,v in members.items() if k!='needs_context')} unresolved pairs)\n\nAgents screened every pair twice and adjudicated each disagreement. These are the only open questions left. Each one is asked once, on a representative pair, and your answer would be applied to that cluster only, after you see which rows it changes. A one-word answer is enough: **final / earlier / same / depends**. Open each representative in the viewer under *Hard cases*.\n\n| # | Question | Pairs | Representative |\n| --- | --- | ---: | --- |\n")
-for i,s in enumerate(reps,1):
-    d=s['discussion'];out.append(f"| {i} | {d['question']} | {d['cluster_size']} | [row {s['source_line_1based']}](http://127.0.0.1:8740/#r{s['source_line_1based']}) |\n")
-out.append("\nThe cluster *automation hides routine steps* includes the same kinds of change as your deferred cases 1574, 1617 and 1587. Your answer would **not** be applied to those three automatically.\n")
-nc=members.get('needs_context',[])
-if nc:out.append(f"\nNot a question: row(s) {', '.join(map(str,sorted(nc)))} cannot be judged from the stored pair: {next(x for x in fs if x.get('cluster') and x['cluster']['cluster_id']=='needs_context')['cluster']['summary']}\n")
-for i,s in enumerate(reps,1):
-    n=s['source_line_1based'];r=orig[n-1];m=r['metadata'];cid=s['discussion']['cluster_id']
-    d=''.join(difflib.unified_diff(r['rejected'].splitlines(True),r['chosen'].splitlines(True),'earlier','final',n=2))
-    if len(d)>2500:d=d[:2500]+'\n… (truncated; full bodies in the viewer)\n'
-    out.append(f"\n### Q{i}. {cid}: row {n}, {m['declaration_name']}\n{s['discussion']['question']}\n\nAll pairs in this cluster: {', '.join(map(str,sorted(members[cid])))}.\n\n```diff\n{d}```\n")
+def diff_of(n,limit=2500):
+    r=orig[n-1];d=''.join(difflib.unified_diff(r['rejected'].splitlines(True),r['chosen'].splitlines(True),'earlier','final',n=2))
+    return d[:limit]+'\n… (truncated; full bodies in the viewer)\n' if len(d)>limit else d
+out.append("\n## Part B: Your answers to the question sheet\n\nYour answers are recorded verbatim in `fast-screen/human-cluster-answers.jsonl`, kept separate from your per-pair verdicts. Each answer applies only to its own cluster.\n\n| Q | Cluster | Pairs | Your answer | Effect |\n| --- | --- | ---: | --- | --- |\n")
+for a in answers:
+    it=a['interpretation']
+    eff=('**Pending your confirmation**: would mark the pairs *no meaningful difference*' if a['application_status']=='pending_user_confirmation' else 'Applied' if a['application_status']=='confirmed' else 'Kept unresolved')
+    if it['discussion_topic']:eff+=f"; listed for discussion under *{it['discussion_topic']}*"
+    out.append(f"| {a['question_id']} | {a['cluster_id']} ([example row {a['representative_row']}](http://127.0.0.1:8740/#r{a['representative_row']})) | {len(a['member_rows'])} | “{a['user_answer_verbatim']}” | {eff} |\n")
+if reps:
+    out.append("\n**Still awaiting your answer** (viewer tab *Awaiting your answer*):\n\n")
+    for s in reps:
+        d=s['discussion'];out.append(f"- Row [{s['source_line_1based']}](http://127.0.0.1:8740/#r{s['source_line_1based']}) ({d['cluster_size']} pair): {d['question']}\n")
+nc=sorted(x['source_line_1based'] for x in fs if x.get('cluster') and x['cluster']['cluster_id']=='needs_context' and x['decision']=='unresolved')
+if nc:out.append(f"\nNot a question: row(s) {', '.join(map(str,nc))} cannot be judged from the stored pair (the argument moved into a helper lemma that the pair does not contain).\n")
+topics={}
+for x in fs:
+    if x.get('meeting'):topics.setdefault(x['meeting']['topic'],[]).append(x)
+notes={'Automated tactics: Mathlib convention for grind':"""**Online check (2026-10-30).** I found no official Mathlib style rule on when to prefer `grind` over `simp`, other automation or explicit steps.
+- The closest discussion is an informal Zulip thread on `@[grind]` *annotations*, not on using `grind` to close goals. It suggests passing one-off lemmas explicitly (`grind [lemma]`) instead of adding global annotations: [Zulip: Good practices for grind annotation](https://leanprover-community.github.io/archive/stream/270676-lean4/topic/Good.20practices.20for.20grind.20annotation.html).
+- The Lean reference documents how `grind` works (E-matching, congruence closure, case splits), but it gives no style guidance: [Lean reference: the grind tactic](https://lean-lang.org/doc/reference/latest/The--grind--tactic/Bigger-Examples/).
+- A 2025 Mathlib tooling talk still lists `grind` as automation that is "in progress": [LeanTogether 2025 slides](https://scanner-eg.ipv4.math.uni-bonn.de/people/rothgang/slides_LeanTogether2025_mathlib_tooling.pdf).
+- The data contain one concrete reason a revision moved *away* from `grind`. In row [740](http://127.0.0.1:8740/#r740), the final proof's comment cites heartbeat variance, so the motivation was performance stability, not readability.
+
+**Question for the meeting.** Does current Mathlib review practice treat `grind` as preferred, neutral or discouraged for closing goals? The Mathlib style guide and the #mathlib4 Zulip stream are where to confirm this.""",
+'Automated tactics':"Includes your earlier meeting cases 1381 (`aesop`), 1574 (simp set inside `grind`), 1587 (`by_cases <;> simp`) and 1617 (`cat_disch`). Q1 covers routine steps folded into automation, and Q3 covers automation that hides the main step.",
+'Convention: helper-lemma call vs direct proof':"You judged these to be a convention change with no difference (pending confirmation), but still worth mentioning at the meeting.",
+'Mathematical taste: different valid routes':"Your note: the preference depends on the mathematician's taste.",
+'Presentation detail: calc granularity':"Your earlier deferral: a small presentation gain, but no clear meaningful difference."}
+out.append("\n## Part C: Meeting agenda by topic\n\nThis matches the viewer tab *For discussion*, where you can filter by topic.\n")
+for tp in sorted(topics,key=lambda t:-len(topics[t])):
+    xs=sorted(topics[tp],key=lambda x:x['source_line_1based']);ex=[x for x in xs if x['meeting'].get('example_row')==x['source_line_1based']]
+    out.append(f"\n### {tp} ({len(xs)} pair{"s" if len(xs)!=1 else ""})\n\n{notes.get(tp,'')}\n\nRows: {', '.join(f'[{x['source_line_1based']}](http://127.0.0.1:8740/#r{x['source_line_1based']})' for x in xs)}.\n")
+    for x in ex:
+        n=x['source_line_1based'];out.append(f"\nExample, row {n} `{orig[n-1]['metadata']['declaration_name']}` ({x['meeting']['question_id']}):\n\n```diff\n{diff_of(n,1800)}```\n")
 (BASE/'FAST-DISCUSSION.md').write_text(''.join(out))
-print(len(user),len(reps))
+print(len(user),len(reps),{k:len(v) for k,v in topics.items()})

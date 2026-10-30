@@ -198,29 +198,48 @@ by
   cat_disch
 ```
 
-## Part B: Your question sheet (8 questions covering 79 unresolved pairs)
+## Part B: Your answers to the question sheet
 
-Agents screened every pair twice and adjudicated each disagreement. These are the only open questions left. Each one is asked once, on a representative pair, and your answer would be applied to that cluster only, after you see which rows it changes. A one-word answer is enough: **final / earlier / same / depends**. Open each representative in the viewer under *Hard cases*.
+Your answers are recorded verbatim in `fast-screen/human-cluster-answers.jsonl`, kept separate from your per-pair verdicts. Each answer applies only to its own cluster.
 
-| # | Question | Pairs | Representative |
-| --- | --- | ---: | --- |
-| 1 | When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference? | 18 | [row 1997](http://127.0.0.1:8740/#r1997) |
-| 2 | When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference? | 17 | [row 1359](http://127.0.0.1:8740/#r1359) |
-| 3 | When automation (grind, aesop, nlinarith or a golfed term) replaces the explicit proof of the lemma's main step, so the decisive lemma, hypothesis or witness is no longer visible, is the earlier proof better? | 11 | [row 1344](http://127.0.0.1:8740/#r1344) |
-| 4 | When the argument is unchanged and the final only switches the interface used to carry it out (erw vs simp, unfolding a definition vs a transport/API lemma, coe_* vs generic map_* lemmas), apparently following an upstream definition or API change, is there no difference? | 10 | [row 2144](http://127.0.0.1:8740/#r2144) |
-| 5 | When both proofs are valid and the final takes a different route of similar length (more general lemma vs direct lemma, abstract characterisation vs elementary argument, structural vs direct computation), is there no difference? | 8 | [row 396](http://127.0.0.1:8740/#r396) |
-| 6 | When the final replaces automation or a terse chain with explicit steps that name the key lemma, certificate or intermediate bound (or add a roadmap comment) for the same argument, is the final better? | 8 | [row 1405](http://127.0.0.1:8740/#r1405) |
-| 7 | When the final replaces short automation with a longer explicit proof that adds no mathematical insight (case bashes, rewrite or witness plumbing), is the earlier proof better? | 6 | [row 2220](http://127.0.0.1:8740/#r2220) |
-| 8 | The final states the reduced goals via suffices but replaces the explicit sign-case argument with grind; is the final better overall? | 1 | [row 1957](http://127.0.0.1:8740/#r1957) |
+| Q | Cluster | Pairs | Your answer | Effect |
+| --- | --- | ---: | --- | --- |
+| Q1 | automation-hides-routine-steps ([example row 1997](http://127.0.0.1:8740/#r1997)) | 18 | “Q1. unknown, to be discussion(for the one need to be discussion, make a now tab to collect them, this one be labled as automated tactics)” | Kept unresolved; listed for discussion under *Automated tactics* |
+| Q2 | sibling-reuse-vs-rederivation ([example row 1359](http://127.0.0.1:8740/#r1359)) | 17 | “Q2. Seems like convention change, no difference, but still worth to saying on the meeting.” | **Pending your confirmation**: would mark the pairs *no meaningful difference*; listed for discussion under *Convention: helper-lemma call vs direct proof* |
+| Q3 | automation-hides-main-step ([example row 1344](http://127.0.0.1:8740/#r1344)) | 11 | “Q3. Same as Q1, automated tactics.” | Kept unresolved; listed for discussion under *Automated tactics* |
+| Q4 | api-interface-adaptation ([example row 2144](http://127.0.0.1:8740/#r2144)) | 10 | “Q4. Same.” | **Pending your confirmation**: would mark the pairs *no meaningful difference* |
+| Q5 | different-valid-route ([example row 396](http://127.0.0.1:8740/#r396)) | 8 | “Q5. worth to discussion, based on different mathematician taste.” | Kept unresolved; listed for discussion under *Mathematical taste: different valid routes* |
+| Q6 | explicit-names-key-content ([example row 1405](http://127.0.0.1:8740/#r1405)) | 8 | “Q6. Same for grind, this still worth to discussion, mathlib's convention to the use of grind and when prefer grind or other automated tactics, needed to be check online and worth to mention during discussion.” | Kept unresolved; listed for discussion under *Automated tactics: Mathlib convention for grind* |
+| Q7 | explicit-replaces-automation-no-insight ([example row 2220](http://127.0.0.1:8740/#r2220)) | 6 | “Q7, Same as Q6. Worth to discussion, and you categorize it.” | Kept unresolved; listed for discussion under *Automated tactics: Mathlib convention for grind* |
 
-The cluster *automation hides routine steps* includes the same kinds of change as your deferred cases 1574, 1617 and 1587. Your answer would **not** be applied to those three automatically.
+**Still awaiting your answer** (viewer tab *Awaiting your answer*):
 
-Not a question: row(s) 2313 cannot be judged from the stored pair: Blocked by data: row 86's final body appears truncated (only the conv_lhs line); row 2313's change moves the argument into a `proof_body` lemma not visible in the pair.
+- Row [1957](http://127.0.0.1:8740/#r1957) (1 pair): The final states the reduced goals via suffices but replaces the explicit sign-case argument with grind; is the final better overall?
 
-### Q1. automation-hides-routine-steps: row 1997, Metric.maximalSeparatedSet_subset
-When the final folds routine steps (definitional case splits, membership or category bookkeeping, intermediate arithmetic/calc steps) into automation or a shorter chain while the key fact stays the same or remains cited, is there no difference?
+Not a question: row(s) 2313 cannot be judged from the stored pair (the argument moved into a helper lemma that the pair does not contain).
 
-All pairs in this cluster: 64, 357, 452, 567, 727, 1046, 1132, 1167, 1243, 1342, 1503, 1638, 1664, 1955, 1997, 2020, 2021, 2260.
+## Part C: Meeting agenda by topic
+
+This matches the viewer tab *For discussion*, where you can filter by topic.
+
+### Automated tactics (33 pairs)
+
+Includes your earlier meeting cases 1381 (`aesop`), 1574 (simp set inside `grind`), 1587 (`by_cases <;> simp`) and 1617 (`cat_disch`). Q1 covers routine steps folded into automation, and Q3 covers automation that hides the main step.
+
+Rows: [64](http://127.0.0.1:8740/#r64), [357](http://127.0.0.1:8740/#r357), [450](http://127.0.0.1:8740/#r450), [452](http://127.0.0.1:8740/#r452), [567](http://127.0.0.1:8740/#r567), [727](http://127.0.0.1:8740/#r727), [924](http://127.0.0.1:8740/#r924), [1046](http://127.0.0.1:8740/#r1046), [1056](http://127.0.0.1:8740/#r1056), [1132](http://127.0.0.1:8740/#r1132), [1167](http://127.0.0.1:8740/#r1167), [1243](http://127.0.0.1:8740/#r1243), [1342](http://127.0.0.1:8740/#r1342), [1344](http://127.0.0.1:8740/#r1344), [1381](http://127.0.0.1:8740/#r1381), [1503](http://127.0.0.1:8740/#r1503), [1558](http://127.0.0.1:8740/#r1558), [1574](http://127.0.0.1:8740/#r1574), [1587](http://127.0.0.1:8740/#r1587), [1617](http://127.0.0.1:8740/#r1617), [1638](http://127.0.0.1:8740/#r1638), [1664](http://127.0.0.1:8740/#r1664), [1762](http://127.0.0.1:8740/#r1762), [1804](http://127.0.0.1:8740/#r1804), [1814](http://127.0.0.1:8740/#r1814), [1955](http://127.0.0.1:8740/#r1955), [1962](http://127.0.0.1:8740/#r1962), [1997](http://127.0.0.1:8740/#r1997), [2017](http://127.0.0.1:8740/#r2017), [2020](http://127.0.0.1:8740/#r2020), [2021](http://127.0.0.1:8740/#r2021), [2048](http://127.0.0.1:8740/#r2048), [2260](http://127.0.0.1:8740/#r2260).
+
+Example, row 1344 `SimplexCategoryGenRel.lt_and_eval_eq_eval_add_one_of_mem_isAdmissible` (Q3):
+
+```diff
+--- earlier
++++ final
+@@ -1,4 +1,2 @@
+ by
+-  simp_rw [List.mem_iff_getElem] at hj
+-  rcases hj with ⟨k, hk, rfl⟩
+-  exact ⟨hL.getElem_lt, hL.simplicialEvalσ_succ_getElem⟩+  grind [List.mem_iff_getElem]```
+
+Example, row 1997 `Metric.maximalSeparatedSet_subset` (Q1):
 
 ```diff
 --- earlier
@@ -232,10 +251,13 @@ All pairs in this cluster: 64, 357, 452, 567, 727, 1046, 1132, 1167, 1243, 1342,
 -    exact (exists_set_encard_eq_packingNumber h).choose_spec.1
 -  · simp only [maximalSeparatedSet, h, dite_false, Set.empty_subset]+by grind [maximalSeparatedSet]```
 
-### Q2. sibling-reuse-vs-rederivation: row 1359, Real.log_prod
-When the earlier proof is a short appeal to a sibling or helper lemma and the final proves the statement directly (plausibly because the helper was removed, moved below the import level, or is now derived from this lemma), is the earlier proof better or is there no difference?
+### Convention: helper-lemma call vs direct proof (17 pairs)
 
-All pairs in this cluster: 106, 107, 390, 397, 774, 1079, 1095, 1355, 1359, 1532, 1675, 1676, 1980, 2031, 2195, 2284, 2319.
+You judged these to be a convention change with no difference (pending confirmation), but still worth mentioning at the meeting.
+
+Rows: [106](http://127.0.0.1:8740/#r106), [107](http://127.0.0.1:8740/#r107), [390](http://127.0.0.1:8740/#r390), [397](http://127.0.0.1:8740/#r397), [774](http://127.0.0.1:8740/#r774), [1079](http://127.0.0.1:8740/#r1079), [1095](http://127.0.0.1:8740/#r1095), [1355](http://127.0.0.1:8740/#r1355), [1359](http://127.0.0.1:8740/#r1359), [1532](http://127.0.0.1:8740/#r1532), [1675](http://127.0.0.1:8740/#r1675), [1676](http://127.0.0.1:8740/#r1676), [1980](http://127.0.0.1:8740/#r1980), [2031](http://127.0.0.1:8740/#r2031), [2195](http://127.0.0.1:8740/#r2195), [2284](http://127.0.0.1:8740/#r2284), [2319](http://127.0.0.1:8740/#r2319).
+
+Example, row 1359 `Real.log_prod` (Q2):
 
 ```diff
 --- earlier
@@ -245,57 +267,19 @@ All pairs in this cluster: 106, 107, 390, 397, 774, 1079, 1095, 1355, 1359, 1532
 +  rw [← prod_map_toList, log_list_prod (by simp_all)]
 +  simp```
 
-### Q3. automation-hides-main-step: row 1344, SimplexCategoryGenRel.lt_and_eval_eq_eval_add_one_of_mem_isAdmissible
-When automation (grind, aesop, nlinarith or a golfed term) replaces the explicit proof of the lemma's main step, so the decisive lemma, hypothesis or witness is no longer visible, is the earlier proof better?
+### Automated tactics: Mathlib convention for grind (14 pairs)
 
-All pairs in this cluster: 450, 924, 1056, 1344, 1558, 1762, 1804, 1814, 1962, 2017, 2048.
+**Online check (2026-10-30).** I found no official Mathlib style rule on when to prefer `grind` over `simp`, other automation or explicit steps.
+- The closest discussion is an informal Zulip thread on `@[grind]` *annotations*, not on using `grind` to close goals. It suggests passing one-off lemmas explicitly (`grind [lemma]`) instead of adding global annotations: [Zulip: Good practices for grind annotation](https://leanprover-community.github.io/archive/stream/270676-lean4/topic/Good.20practices.20for.20grind.20annotation.html).
+- The Lean reference documents how `grind` works (E-matching, congruence closure, case splits), but it gives no style guidance: [Lean reference: the grind tactic](https://lean-lang.org/doc/reference/latest/The--grind--tactic/Bigger-Examples/).
+- A 2025 Mathlib tooling talk still lists `grind` as automation that is "in progress": [LeanTogether 2025 slides](https://scanner-eg.ipv4.math.uni-bonn.de/people/rothgang/slides_LeanTogether2025_mathlib_tooling.pdf).
+- The data contain one concrete reason a revision moved *away* from `grind`. In row [740](http://127.0.0.1:8740/#r740), the final proof's comment cites heartbeat variance, so the motivation was performance stability, not readability.
 
-```diff
---- earlier
-+++ final
-@@ -1,4 +1,2 @@
- by
--  simp_rw [List.mem_iff_getElem] at hj
--  rcases hj with ⟨k, hk, rfl⟩
--  exact ⟨hL.getElem_lt, hL.simplicialEvalσ_succ_getElem⟩+  grind [List.mem_iff_getElem]```
+**Question for the meeting.** Does current Mathlib review practice treat `grind` as preferred, neutral or discouraged for closing goals? The Mathlib style guide and the #mathlib4 Zulip stream are where to confirm this.
 
-### Q4. api-interface-adaptation: row 2144, RCLike.sqrt_of_nonneg
-When the argument is unchanged and the final only switches the interface used to carry it out (erw vs simp, unfolding a definition vs a transport/API lemma, coe_* vs generic map_* lemmas), apparently following an upstream definition or API change, is there no difference?
+Rows: [398](http://127.0.0.1:8740/#r398), [500](http://127.0.0.1:8740/#r500), [501](http://127.0.0.1:8740/#r501), [740](http://127.0.0.1:8740/#r740), [875](http://127.0.0.1:8740/#r875), [1102](http://127.0.0.1:8740/#r1102), [1124](http://127.0.0.1:8740/#r1124), [1165](http://127.0.0.1:8740/#r1165), [1252](http://127.0.0.1:8740/#r1252), [1405](http://127.0.0.1:8740/#r1405), [2218](http://127.0.0.1:8740/#r2218), [2219](http://127.0.0.1:8740/#r2219), [2220](http://127.0.0.1:8740/#r2220), [2377](http://127.0.0.1:8740/#r2377).
 
-All pairs in this cluster: 9, 41, 634, 979, 1186, 1255, 1448, 2144, 2145, 2304.
-
-```diff
---- earlier
-+++ final
-@@ -1,6 +1,5 @@
- by
-   obtain (h | h) := I_eq_zero_or_im_I_eq_one (K := 𝕜)
--  · simp [h, sqrt]
--  apply_fun complexRingEquiv h
--  rw [← sqrt_complexRingEquiv h, Complex.sqrt_of_nonneg (by grind)]
-+  · simp [h, sqrt_eq_ite]
-+  rw [sqrt_eq_ite, dif_pos h, RingEquiv.symm_apply_eq, Complex.sqrt_of_nonneg (by simpa)]
-   simp```
-
-### Q5. different-valid-route: row 396, RingHom.finitePresentation_respectsIso
-When both proofs are valid and the final takes a different route of similar length (more general lemma vs direct lemma, abstract characterisation vs elementary argument, structural vs direct computation), is there no difference?
-
-All pairs in this cluster: 396, 692, 1458, 1619, 1803, 2091, 2205, 2243.
-
-```diff
---- earlier
-+++ final
-@@ -1,4 +1,2 @@
--by
--  refine finitePresentation_stableUnderComposition.respectsIso (fun {R S} _ _ e ↦ ?_)
--  algebraize [e.toRingHom]
--  apply Algebra.FinitePresentation.equiv <| .ofRingEquiv (congrFun rfl)+  finitePresentation_stableUnderComposition.respectsIso
-+    fun e ↦ .of_surjective _ e.surjective <| by simpa using Submodule.fg_bot```
-
-### Q6. explicit-names-key-content: row 1405, Equiv.eq_or_eq_of_swap_apply_ne_self
-When the final replaces automation or a terse chain with explicit steps that name the key lemma, certificate or intermediate bound (or add a roadmap comment) for the same argument, is the final better?
-
-All pairs in this cluster: 398, 501, 875, 1124, 1165, 1252, 1405, 2377.
+Example, row 1405 `Equiv.eq_or_eq_of_swap_apply_ne_self` (Q6):
 
 ```diff
 --- earlier
@@ -305,10 +289,7 @@ All pairs in this cluster: 398, 501, 875, 1124, 1165, 1252, 1405, 2377.
 -  grind+  contrapose! h
 +  exact swap_apply_of_ne_of_ne h.1 h.2```
 
-### Q7. explicit-replaces-automation-no-insight: row 2220, Equiv.Perm.support_swap_mul_eq
-When the final replaces short automation with a longer explicit proof that adds no mathematical insight (case bashes, rewrite or witness plumbing), is the earlier proof better?
-
-All pairs in this cluster: 500, 740, 1102, 2218, 2219, 2220.
+Example, row 2220 `Equiv.Perm.support_swap_mul_eq` (Q7):
 
 ```diff
 --- earlier
@@ -326,41 +307,26 @@ All pairs in this cluster: 500, 740, 1102, 2218, 2219, 2220.
 +  · simp [Ne.symm hzx, hzx, Ne.symm hzf, hzfx]
 +  · simp [hzx, hzfx, f.injective.ne hzx, swap_apply_of_ne_of_ne]```
 
-### Q8. singleton-1957: row 1957, LinearMap.BilinForm.linearIndependent_of_pairwise_le_zero
-The final states the reduced goals via suffices but replaces the explicit sign-case argument with grind; is the final better overall?
+### Mathematical taste: different valid routes (8 pairs)
 
-All pairs in this cluster: 1957.
+Your note: the preference depends on the mathematician's taste.
+
+Rows: [396](http://127.0.0.1:8740/#r396), [692](http://127.0.0.1:8740/#r692), [1458](http://127.0.0.1:8740/#r1458), [1619](http://127.0.0.1:8740/#r1619), [1803](http://127.0.0.1:8740/#r1803), [2091](http://127.0.0.1:8740/#r2091), [2205](http://127.0.0.1:8740/#r2205), [2243](http://127.0.0.1:8740/#r2243).
+
+Example, row 396 `RingHom.finitePresentation_respectsIso` (Q5):
 
 ```diff
 --- earlier
 +++ final
-@@ -7,15 +7,13 @@
-     simp [← s.sum_filter_add_sum_filter_not (p := fun i ↦ 0 ≤ c i) (f := fun i ↦ c i • v i)]
-   have hx₀ : x = 0 := by
--    rw [← hB.le_zero_iff, B.toQuadraticMap_apply]
--    nth_rw 1 [hx]
--    rw [hc, hy]
--    simp only [map_sum, map_smul, neg_smul, Finset.sum_neg_distrib, map_neg, LinearMap.coe_sum,
--      Finset.sum_apply, LinearMap.smul_apply, smul_eq_mul, Finset.mul_sum, Left.neg_nonpos_iff]
-+    suffices B x y ≤ 0 by simpa [hc, ← hB.le_zero_iff, B.toQuadraticMap_apply]
-+    suffices 0 ≤ ∑ x ∈ s with c x < 0, ∑ i ∈ s with 0 ≤ c i, c x * (c i * (B (v i)) (v x)) by
-+      simpa [hx, hy, map_neg, Finset.mul_sum]
-     refine Finset.sum_nonneg fun i hi ↦ Finset.sum_nonneg fun j hj ↦ ?_
-     rcases eq_or_ne i j with rfl | hij
-     · rw [← mul_assoc]
-       exact mul_nonneg (mul_self_nonneg _) (hB.nonneg _)
--    · exact mul_nonneg_iff.mpr <|
--        Or.inr ⟨by grind, mul_nonpos_iff.mpr <| Or.inl ⟨by grind, hn hij.symm⟩⟩
-+    · specialize hn hij.symm
-+      grind [mul_nonneg_iff, mul_nonpos_iff]
-   replace hx : ∑ i ∈ s with 0 ≤ c i, c i * f (v i) = 0 := by
-     rw [hx₀] at hx
-@@ -30,6 +28,5 @@
-     grind
-   replace hy : ∑ i ∈ s with c i < 0, c i * f (v i) = 0 := by
--    rw [hx₀] at hc
--    rw [← hc] at hy
-+    rw [← hc, hx₀] at hy
-     simpa using (congr(f $hy)).symm
-   replace hy (i : ι) (hi : i ∈ s) : 0 ≤ c i := by
-```
+@@ -1,4 +1,2 @@
+-by
+-  refine finitePresentation_stableUnderComposition.respectsIso (fun {R S} _ _ e ↦ ?_)
+-  algebraize [e.toRingHom]
+-  apply Algebra.FinitePresentation.equiv <| .ofRingEquiv (congrFun rfl)+  finitePresentation_stableUnderComposition.respectsIso
++    fun e ↦ .of_surjective _ e.surjective <| by simpa using Submodule.fg_bot```
+
+### Presentation detail: calc granularity (1 pair)
+
+Your earlier deferral: a small presentation gain, but no clear meaningful difference.
+
+Rows: [1128](http://127.0.0.1:8740/#r1128).

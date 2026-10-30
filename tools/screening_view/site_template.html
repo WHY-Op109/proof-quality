@@ -109,11 +109,12 @@
   <aside aria-label="Pairs">
     <p class="viewnote" id="viewnote"></p>
     <div class="filters">
-      <input id="q" type="search" placeholder="Search declaration, lemma or reason" aria-label="Search">
+      <input id="q" type="search" placeholder="Search row number, declaration, lemma or reason" aria-label="Search">
       <div class="row2">
         <select id="dir" aria-label="Preferred side"><option value="">Any direction</option><option value="final_better">Final better</option><option value="earlier_better">Earlier better</option></select>
         <select id="dim" aria-label="Quality dimension"><option value="">Any dimension</option></select>
       </div>
+      <select id="topic" aria-label="Discussion topic" hidden><option value="">All discussion topics</option></select>
       <select id="sp" aria-label="Spencer's filter"><option value="">Spencer: any</option><option value="agree">Spencer agrees</option><option value="differs">Spencer differs</option></select>
     </div>
     <ol class="list" id="list"></ol>
@@ -128,7 +129,8 @@ const D = JSON.parse(document.getElementById('data').textContent);
 const $ = (id) => document.getElementById(id);
 const VIEWS = {
   meaningful: { label: 'Meaningful difference', note: 'Pairs with a material, source-visible quality difference. The preferred side is outlined; most prefer the final revision, a few the earlier one.', test: (r) => r.decision === 'retain' },
-  hard: { label: 'Hard cases', note: 'Cases you flagged or the agents could not settle. They stay unresolved until you decide them.', test: (r) => !!r.discussion },
+  discussion: { label: 'For discussion', note: 'Pairs you marked for the meeting, grouped by topic. Pick a topic below. The highlighted example is the pair each question was asked on.', test: (r) => !!r.meeting },
+  hard: { label: 'Awaiting your answer', note: 'Questions you have not answered yet. Each is shown on one example pair and settles the pairs that share it.', test: (r) => !!r.discussion && !r.meeting },
   unresolved: { label: 'Unresolved', note: 'Examined individually, but no quality direction was established. Each row says what is still open.', test: (r) => r.decision === 'unresolved' },
   excluded: { label: 'No meaningful difference', note: 'Examined individually: surface, convention or API changes with little apparent effect on quality.', test: (r) => r.decision === 'exclude' },
 };
@@ -177,11 +179,13 @@ function renderCode(left, right, r) {
 }
 
 function filtered() {
-  const q = $('q').value.trim().toLowerCase(), dir = $('dir').value, dim = $('dim').value, sp = $('sp').value;
-  return D.rows.filter((r) => VIEWS[view].test(r)
+  const q = $('q').value.trim().toLowerCase(), dir = $('dir').value, dim = $('dim').value, sp = $('sp').value, topic = view === 'discussion' ? $('topic').value : '';
+  const out = D.rows.filter((r) => VIEWS[view].test(r) && (!topic || r.meeting.topic === topic)
     && (!dir || r.direction === dir) && (!dim || r.dims.includes(dim))
     && (!sp || (sp === 'agree') === (r.spencer === (r.decision === 'retain')))
-    && (!q || (r.decl + ' ' + r.reason + ' ' + r.earlier + ' ' + r.final).toLowerCase().includes(q)));
+    && (!q || String(r.row) === q || (r.decl + ' ' + r.reason + ' ' + r.earlier + ' ' + r.final).toLowerCase().includes(q)));
+  if (view === 'discussion') out.sort((a, b) => a.meeting.topic.localeCompare(b.meeting.topic) || (b.row === b.meeting.example_row) - (a.row === a.meeting.example_row) || a.row - b.row);
+  return out;
 }
 function renderTabs() {
   const t = $('tabs'); t.replaceChildren();
@@ -191,12 +195,13 @@ function renderTabs() {
   }
 }
 function refresh(keepRow) {
-  renderTabs(); $('viewnote').textContent = VIEWS[view].note; rows = filtered();
+  renderTabs(); $('viewnote').textContent = VIEWS[view].note; $('topic').hidden = view !== 'discussion'; rows = filtered();
   if (keepRow != null) { const f = rows.findIndex((r) => r.row === keepRow); idx = f >= 0 ? f : 0; }
   idx = Math.max(0, Math.min(idx, rows.length - 1));
   const list = $('list'); list.replaceChildren();
   rows.forEach((r, i) => {
-    const b = el('button', { type: 'button', 'aria-current': String(i === idx) }, el('span', { class: 'decl', text: r.decl }), chip(r.direction), el('span', { class: 'sub', text: `row ${r.row} · PR ${r.pr}` + (r.human ? ' · your verdict' : '') }));
+    const sub = `row ${r.row} · PR ${r.pr}` + (r.human ? ' · your verdict' : '') + (view === 'discussion' ? ' · ' + r.meeting.topic + (r.row === r.meeting.example_row ? ' · example' : '') : '');
+    const b = el('button', { type: 'button', 'aria-current': String(i === idx) }, el('span', { class: 'decl', text: r.decl }), chip(r.direction), el('span', { class: 'sub', text: sub }));
     b.addEventListener('click', () => { idx = i; show(); }); list.append(el('li', {}, b));
   });
   show();
@@ -218,9 +223,11 @@ function show() {
   v.append(el('p', { text: r.reason }));
   if (r.dims.length) v.append(el('div', { class: 'dims' }, ...r.dims.map((d) => el('span', { text: d }))));
   if (r.human) v.append(el('p', { class: 'you' }, el('span', { class: 'chip human', text: 'your verdict' }), ' “' + r.human + '”' + (r.decision === 'unresolved' ? ' (deferred for discussion)' : '')));
-  if (r.discussion) v.append(el('p', { class: 'you' }, el('span', { class: 'chip human', text: r.discussion.source === 'user_flagged' ? 'you flagged' : 'question for you' }), ' ' + (r.discussion.question || r.discussion.why) + (r.discussion.cluster_size > 1 ? ` Your answer would settle ${r.discussion.cluster_size} pairs with the same question.` : '')));
-  else if (r.cluster && r.cluster.representative_row) { const a = el('a', { href: '#r' + r.cluster.representative_row, text: 'row ' + r.cluster.representative_row }); v.append(el('p', { class: 'small' }, `Open question shared with ${r.cluster.size - 1} other pairs; asked once at `, a, `: ${r.cluster.question}`)); }
-  else if (r.cluster) v.append(el('p', { class: 'small', text: 'Needs historical context or a data repair before anyone can judge it: ' + r.cluster.summary }));
+  if (r.meeting) v.append(el('p', { class: 'you' }, el('span', { class: 'chip human', text: 'for discussion' }), ` ${r.meeting.topic}. Your note (${r.meeting.question_id}): “${r.meeting.note}”`));
+  if (r.answer && r.answer.status === 'pending_user_confirmation') v.append(el('p', { class: 'small', text: `Your answer to ${r.answer.question_id} (“${r.answer.verbatim}”) would mark this pair as no meaningful difference. Not applied yet: waiting for your confirmation.` }));
+  if (r.discussion && !r.meeting) v.append(el('p', { class: 'you' }, el('span', { class: 'chip human', text: r.discussion.source === 'user_flagged' ? 'you flagged' : 'question for you' }), ' ' + (r.discussion.question || r.discussion.why) + (r.discussion.cluster_size > 1 ? ` Your answer would settle ${r.discussion.cluster_size} pairs with the same question.` : '')));
+  else if (r.cluster && r.cluster.representative_row && !r.answer) { const a = el('a', { href: '#r' + r.cluster.representative_row, text: 'row ' + r.cluster.representative_row }); v.append(el('p', { class: 'small' }, `Open question shared with ${r.cluster.size - 1} other pairs; asked once at `, a, `: ${r.cluster.question}`)); }
+  else if (r.cluster && r.cluster.cluster_id === 'needs_context') v.append(el('p', { class: 'small', text: 'Needs historical context or a data repair before anyone can judge it: ' + r.cluster.summary }));
   const basis = r.human ? 'your recorded judgment' : r.check ? r.check : `one individual reading (${r.assessor})`;
   const pr = el('a', { href: `https://github.com/leanprover-community/mathlib4/pull/${r.pr}`, target: '_blank', rel: 'noopener', text: `PR #${r.pr}` });
   v.append(el('p', { class: 'small' }, `Basis: ${basis}. Spencer's filter: ${r.spencer ? 'retained' : 'excluded'} (${r.spencer_class}). `, pr, ' · ', el('a', { href: r.earlier_url, target: '_blank', rel: 'noopener', text: 'earlier source' }), ' · ', el('a', { href: r.final_url, target: '_blank', rel: 'noopener', text: 'final source' }), r.flags.length ? ` · Data issue: ${r.flags.join(', ')}` : ''));
@@ -243,11 +250,12 @@ function route() {
   const h = location.hash.replace(/^#/, '');
   if (VIEWS[h]) { view = h; idx = 0; refresh(); return; }
   const m = /^r(\d+)$/.exec(h);
-  if (m) { const r = D.rows.find((x) => x.row === Number(m[1])); if (r) { view = Object.keys(VIEWS).find((k) => k !== 'hard' && VIEWS[k].test(r)) || view; $('q').value = ''; $('dir').value = $('dim').value = $('sp').value = ''; refresh(r.row); return; } }
+  if (m) { const r = D.rows.find((x) => x.row === Number(m[1])); if (r) { view = Object.keys(VIEWS).find((k) => k !== 'hard' && VIEWS[k].test(r)) || view; $('q').value = ''; $('dir').value = $('dim').value = $('sp').value = $('topic').value = ''; refresh(r.row); return; } }
   refresh();
 }
+for (const tp of D.topics) $('topic').append(el('option', { value: tp, text: tp }));
 for (const d of D.dimensions) $('dim').append(el('option', { value: d, text: d.replace(/_/g, ' ') }));
-for (const id of ['q', 'dir', 'dim', 'sp']) $(id).addEventListener('input', () => { idx = 0; refresh(); });
+for (const id of ['q', 'dir', 'dim', 'sp', 'topic']) $(id).addEventListener('input', () => { idx = 0; refresh(); });
 document.addEventListener('keydown', (e) => {
   if (e.target.closest('input, select, textarea')) return;
   if ((e.key === 'ArrowRight' || e.key === 'j') && idx < rows.length - 1) { idx++; show(); }
